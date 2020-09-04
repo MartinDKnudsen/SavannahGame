@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace SavannahGame
 {
-    class SavannahBoard
+    class Savannah
     {
 
 

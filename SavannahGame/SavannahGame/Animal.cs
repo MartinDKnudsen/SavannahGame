@@ -2,26 +2,22 @@
 
 namespace SavannahGame
 {
-    abstract class Animal
+  public  abstract class Animal
     {
+        public string Gender { get; set; }
 
-        string Genger;
+        public double Weight { get; set; }
+        public double WeigthGain { get; set; }
+        public double WeightLoss { get; set; }
 
-        int Number;
-
-        double Weight;
-        double WeigthGain;
-        double WeightLoss;
-
-        int xCon;
-        int yCon;
-
-
-        List<Animal> Animals;
-
+        public int posX { get; set; }
+        public int posY { get; set; }
+  
         public abstract void Eat();
 
-        public abstract void Move();
+        public abstract int Move();
+
+        public abstract void Mate(string gender1, string gender2);
 
 
 

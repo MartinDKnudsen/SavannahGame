@@ -9,7 +9,7 @@ namespace SavannahGame
         public int[,] GenerateFields()
         {
 
-         return new int[21, 21;
+            return new int[21, 21];
 
         }
 

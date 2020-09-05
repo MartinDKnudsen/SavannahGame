@@ -8,29 +8,13 @@ namespace SavannahGame
 {
     class Lion : Animal
     {
-        public Lion()
+
+        public Lion(string gender)
         {
             Weight = 80;
-            Gender = DesideGender();
-
+            this.Gender = gender;
         }
-        public string DesideGender()
-        {
-            int mOrf;
-            Random r = new Random();
-            mOrf = r.Next(0, 100);
-            if (mOrf > 50)
-            {
-                Gender = "Female";
-            }
-            else if (mOrf < 50)
-            {
-                Gender = "Male";
-            }
-            return Gender;
-
-        }
-
+        
         public override void Eat()
         {
             Weight = Weight + 20;
@@ -41,6 +25,16 @@ namespace SavannahGame
         {
             Weight = Weight - 5;
             return 1;
+        }
+
+        public override void Mate(string gender1, string gender2)
+        {
+            
+        }
+
+        public override string ToString()
+        {
+            return "Lion";
         }
     }
 }

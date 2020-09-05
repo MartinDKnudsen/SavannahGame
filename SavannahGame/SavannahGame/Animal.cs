@@ -2,7 +2,7 @@
 
 namespace SavannahGame
 {
-  public  abstract class Animal
+  public abstract class Animal
     {
         public string Gender { get; set; }
 

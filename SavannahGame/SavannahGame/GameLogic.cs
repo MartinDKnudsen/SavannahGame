@@ -1,11 +1,13 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace SavannahGame
 {
-   public class GameLogic
+    public class GameLogic
     {
 
         List<List<Field>> territories = new List<List<Field>>();
+        List<Animal> AllAnimals = new List<Animal>();
 
         public void Placement()
         {
@@ -19,23 +21,34 @@ namespace SavannahGame
                 for (int j = 0; j < 20; j++)
                 {
                     territories[i].Add(new Field());
-                    
+
                 }
             }
-            
         }
-        public void AddAnimal(Animal a)
+        public void AddAnimal(int numberOfLion, int numberOfRabbits)
         {
+            while (numberOfLion != 0)
+            {
+                AllAnimals.Add(new Lion(RandomRoll.rRoll()));
+                numberOfLion--;
+            }
 
+            while (numberOfRabbits != 0)
+            {
+                AllAnimals.Add(new Rabbit(RandomRoll.rRoll()));
+                numberOfRabbits--;
+            }
 
+            foreach (var VARIABLE in AllAnimals)
+            {
+                Console.WriteLine(VARIABLE);
+            }
         }
 
         public void RemoveAnimal(Animal a)
         {
 
         }
-
-
 
     }
 }

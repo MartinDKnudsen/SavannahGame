@@ -12,10 +12,11 @@ namespace BetaTest
         static void Main(string[] args)
         {
 
-
             var m = new GameLogic();
-            m.AddFields();
-           
+            // m.AddFields();
+         // m.AddAnimal("Lion",10);
+            m.AddAnimal(10,10);
+
             Console.ReadLine();
         }
     }

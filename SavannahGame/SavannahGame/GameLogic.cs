@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SavannahGame
 {
@@ -39,10 +40,15 @@ namespace SavannahGame
                 numberOfRabbits--;
             }
 
-            foreach (var VARIABLE in AllAnimals)
+            var count = AllAnimals.Count(s => s is Lion);
+
+            foreach (var animal in AllAnimals)
             {
-                Console.WriteLine(VARIABLE);
+                Console.WriteLine(animal);
+                
             }
+            Console.WriteLine(count);
+
         }
 
         public void RemoveAnimal(Animal a)

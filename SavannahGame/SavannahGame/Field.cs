@@ -9,7 +9,7 @@ namespace SavannahGame
     public class Field
     {
       //  public Animal animal { get; set; } = new Lion();
-
+      public Animal animal { get; set; }
 
     }
 }

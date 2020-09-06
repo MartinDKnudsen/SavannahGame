@@ -20,11 +20,11 @@ namespace SavannahGame
             Weight = Weight + 20;
         }
 
-
         public override int Move()
         {
             Weight = Weight - 5;
             return 1;
+
         }
 
         public override void Mate(string gender1, string gender2)

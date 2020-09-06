@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using SavannahGame;
+using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using SavannahGame;
 
 namespace BetaTest
 {
@@ -13,9 +10,16 @@ namespace BetaTest
         {
 
             var m = new GameLogic();
-            // m.AddFields();
-         // m.AddAnimal("Lion",10);
-            m.AddAnimal(10,10);
+            m.AddFields();
+            // m.AddAnimal("Lion",10);
+            m.AddAnimal(200, 100);
+            m.Placement();
+
+            var k = m.territories.SelectMany(c => c).Count(c => c.animal != null);
+            var hvemder = m.territories.SelectMany(d => d).First(d => d.animal != null).animal;
+
+            var k2 = m.CheckPosistion(hvemder);
+            Console.WriteLine(k2);
 
             Console.ReadLine();
         }

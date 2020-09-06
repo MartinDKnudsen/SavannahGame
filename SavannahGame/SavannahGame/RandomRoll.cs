@@ -24,6 +24,13 @@ namespace SavannahGame
             return null;
         }
 
+        public static int AnimalRandomPlacement()
+        {
+            var ARP = RandomNumber(0, 20);
+
+            return ARP;
+        }
+
         public static int RandomNumber(int min, int max)
         {
             return random.Next(min, max);

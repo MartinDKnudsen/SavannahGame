@@ -22,12 +22,13 @@ namespace SavannahGame
 
         public override int Move()
         {
-            Weight = Weight - 5;
-            return 1;
+            Weight = Weight - 2;
+            return 2;
         }
 
         public override void Mate(string gender1, string gender2)
         {
+
 
         }
 

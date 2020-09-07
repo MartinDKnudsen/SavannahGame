@@ -14,7 +14,7 @@ namespace SavannahGame
 
         public abstract int Move();
 
-        public abstract void Mate(string gender1, string gender2);
+        public abstract void Mate(int NumberOfCubs);
 
 
 

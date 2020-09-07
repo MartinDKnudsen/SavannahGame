@@ -27,9 +27,11 @@ namespace SavannahGame
 
         }
 
-        public override void Mate(string gender1, string gender2)
+        public override void Mate(int NumberOfCubs)
         {
-            
+            var GL = new GameLogic();
+            GL.AddAnimal(NumberOfCubs, 0); 
+
         }
 
         public override string ToString()

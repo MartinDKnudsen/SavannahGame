@@ -12,30 +12,29 @@ namespace SavannahGame
         public void Placement()
         {
 
-            foreach (var animal in AllAnimals)
-            {
-                var r = RandomRoll.AnimalRandomPlacement();
-                var r1 = RandomRoll.AnimalRandomPlacement();
+        // Flatter min liste og tjekker hvilke dyr der ikke er på felt    
+              var existingAnimals = territories.SelectMany(c => c).Where(a => AllAnimals.Contains(a.animal)).Select(m => m.animal);
 
-                while (territories[r][r1].animal != null)
-                {
-                    r = RandomRoll.AnimalRandomPlacement();
-                    r1 = RandomRoll.AnimalRandomPlacement();
+              foreach (var animal in AllAnimals.Except(existingAnimals))
+              {
+                    var r = RandomRoll.AnimalRandomPlacement();
+                    var r1 = RandomRoll.AnimalRandomPlacement();
 
+                    while (territories[r][r1].animal != null)
+                    {
+                        r = RandomRoll.AnimalRandomPlacement();
+                        r1 = RandomRoll.AnimalRandomPlacement();
+
+                    }
+                    territories[r][r1].animal = animal;
                 }
-                territories[r][r1].animal = animal;
-
-            }
-
-            //Giv alle dyr en position 
         }
+
         public void AddFields()
         {
-            
 
             for (int i = 0; i < 20; i++)
             {
-               
                 territories.Add(new List<Field>());
 
                 for (int j = 0; j < 20; j++)
@@ -49,14 +48,7 @@ namespace SavannahGame
                     {
                         territories[i].Add(new Field(false));
                     }
-                    
                 }
-            }
-
-            foreach (var territory in territories)
-            {
-                Console.Write(territory.Count);
-
             }
         }
         public void AddAnimal(int numberOfLion, int numberOfRabbits)
@@ -73,16 +65,6 @@ namespace SavannahGame
                 numberOfRabbits--;
             }
 
-            var count = AllAnimals.Count(s => s is Lion);
-            var count2 = AllAnimals.Count(s => s is Rabbit);
-
-            foreach (var animal in AllAnimals)
-            {
-                Console.WriteLine(animal);
-
-            }
-            Console.WriteLine($"There is {count} lions \nand {count2} rabbits");
-
         }
 
         public void RemoveAnimal(Animal a)
@@ -90,7 +72,28 @@ namespace SavannahGame
 
 
         }
+        public void NewCubs(bool rabbit, int NumberOfNewRabbits = 4, int NumberOfNewLions = 1)
+        {
 
+            if (rabbit)
+            {
+                while (NumberOfNewRabbits != 0)
+                {
+                    AddAnimal(0, 1);
+
+                    NumberOfNewRabbits--;
+                }
+            }
+            else if (rabbit == false)
+            {
+                while (NumberOfNewLions != 0)
+                {
+                    AddAnimal(1, 0);
+                    NumberOfNewLions--;
+                }
+            }
+            Placement();
+        }
 
         public Field CheckPosistion(Animal animal)
         {

@@ -26,7 +26,7 @@ namespace SavannahGame
             return 2;
         }
 
-        public override void Mate(string gender1, string gender2)
+        public override void Mate(int NumberOfCubs)
         {
 
 

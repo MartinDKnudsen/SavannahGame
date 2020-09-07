@@ -8,11 +8,9 @@ namespace SavannahGame
 
         public int[,] GenerateFields()
         {
-
-
             return new int[21, 21];
-
         }
+
         public int AddGrass ()
         {
             var m = 0;

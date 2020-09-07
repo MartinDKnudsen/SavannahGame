@@ -1,15 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SavannahGame
+﻿namespace SavannahGame
 {
     public class Field
     {
-      //  public Animal animal { get; set; } = new Lion();
-      public Animal animal { get; set; }
+
+        public Animal animal { get; set; }
+
+        public bool GreenField { get; set; }
+
+        public Field(bool greenField)
+        {
+            GreenField = greenField;
+
+        }
+        //  public Animal animal { get; set; } = new Lion();
+       
+
 
     }
 }

@@ -17,9 +17,11 @@ namespace BetaTest
 
             var k = m.territories.SelectMany(c => c).Count(c => c.animal != null);
             var hvemder = m.territories.SelectMany(d => d).First(d => d.animal != null).animal;
+            var isgreenfield = m.territories.SelectMany(e => e).Count(e => e.GreenField);
 
-            var k2 = m.CheckPosistion(hvemder);
-            Console.WriteLine(k2);
+
+
+            Console.WriteLine(isgreenfield);
 
             Console.ReadLine();
         }

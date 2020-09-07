@@ -10,8 +10,8 @@ namespace SavannahGame
 
         public static string rRoll()
         {
-         var mOrf = RandomNumber(1, 50);
-         
+            var mOrf = RandomNumber(1, 50);
+
             if (mOrf >= 25)
             {
                 return "Female";
@@ -23,7 +23,12 @@ namespace SavannahGame
 
             return null;
         }
+        public static int Greenfield()
+        {
+            var gField = RandomNumber(1, 20);
+            return gField;
 
+        }
         public static int AnimalRandomPlacement()
         {
             var ARP = RandomNumber(0, 20);

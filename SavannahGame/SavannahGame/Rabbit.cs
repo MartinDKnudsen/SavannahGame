@@ -1,12 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SavannahGame
+﻿namespace SavannahGame
 {
-    class Rabbit : Animal
+    public class Rabbit : Animal
     {
         public Rabbit(string gender)
         {

@@ -1,20 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SavannahGame
+﻿namespace SavannahGame
 {
-    class Lion : Animal
+   public class Lion : Animal
     {
 
         public Lion(string gender)
         {
             Weight = 80;
             this.Gender = gender;
+            
         }
-        
+
         public override void Eat()
         {
             Weight = Weight + 20;
@@ -24,14 +19,18 @@ namespace SavannahGame
         {
             Weight = Weight - 5;
             return 1;
-
         }
 
-        public override void Mate(int NumberOfCubs)
+        public override void Mate(int NumberOfCubs = 1)
         {
-            var GL = new GameLogic();
-            GL.AddAnimal(NumberOfCubs, 0); 
+            var MateLion = new GameLogic();
 
+            while (NumberOfCubs != 0)
+            {
+                MateLion.AddAnimal(1, 0);
+                NumberOfCubs--;
+            }
+            MateLion.Placement();
         }
 
         public override string ToString()
@@ -40,3 +39,4 @@ namespace SavannahGame
         }
     }
 }
+

@@ -19,11 +19,12 @@ namespace BetaTest
             var ekg = m.CountGreenField();
             var ekm = m.CountField();
 
-            var tæl = m.CountAnimalsByType(true);
+           var kkk = m.CountAllSpecAnimalOnTheTerritories<Lion>();
+            Console.WriteLine($"Af løver er der {kkk}");
             var TypeAfDyrPåSavannah = m.CountSpecAnimalOnTheTerritories(false);
             Console.WriteLine($"There is {TypeAfDyrPåSavannah} rabbits on the savannah");
 
-            Console.WriteLine($"der er {tæl} løver i listen");
+           // Console.WriteLine($"der er {tæl} løver i listen");
             //  m.CountAnimalsByType();
 
             int LøverAllAnimals = m.AllAnimals.Count(c => c is Lion);

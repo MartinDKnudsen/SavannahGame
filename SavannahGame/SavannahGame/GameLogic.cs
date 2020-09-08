@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace SavannahGame
@@ -48,7 +49,16 @@ namespace SavannahGame
 
         }
 
-        public int CountSpecAnimalOnTheTerritories(bool LonS)
+
+        public int CountAllSpecAnimalOnTheTerritories<T>()
+            {
+
+            int LionsOnTheSavannah = territories.SelectMany(c => c).Count(c => c.animal is T );
+            return LionsOnTheSavannah;
+        }
+
+
+        public int CountSpecAnimalOnTheTerritories(bool LonS )
         {
             //Count a specific number of animals in the territories 
             if (LonS)
@@ -61,7 +71,6 @@ namespace SavannahGame
                 int RabbitsOnTheSavannah = territories.SelectMany(c => c).Count(c => c.animal is Rabbit);
                 return RabbitsOnTheSavannah;
             }
-
             return default;
         }
         public int CountAnimalsByType(bool countLionsTrue)

@@ -5,7 +5,7 @@
 
         public Lion(string gender)
         {
-            Weight = 80;
+            Weight = 250;
             this.Gender = gender;
             
         }
@@ -17,7 +17,7 @@
 
         public override int Move()
         {
-            Weight = Weight - 5;
+            Weight = Weight - 10;
             return 1;
         }
 

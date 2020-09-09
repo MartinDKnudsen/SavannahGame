@@ -9,7 +9,7 @@ namespace SavannahGame
         public List<List<Field>> territories = new List<List<Field>>();
         public List<Animal> AllAnimals = new List<Animal>();
 
-        //Placerer dyrnene 
+        //Placement of animals to random fields 
         public void Placement()
         {
             // Flatter min liste og tjekker hvilke dyr der ikke er på felt    
@@ -30,67 +30,41 @@ namespace SavannahGame
             }
         }
 
-
+        //Count all animals on the Savannah
         public int CountAnimals()
         {
-            //Tæller Dyr
+ 
             return territories.SelectMany(c => c).Count(c => c.animal != null);
 
         }
+
+        //Count greenfields
         public int CountGreenField()
         {
-            //Tæller grønne felter 
             return territories.SelectMany(e => e).Count(e => e.GreenField);
         }
         public int CountField()
         {
             //Tæller felter
             return territories.SelectMany(f => f).Count();
-
         }
-
 
         public int CountAllSpecAnimalOnTheTerritories<T>()
             {
 
-            int LionsOnTheSavannah = territories.SelectMany(c => c).Count(c => c.animal is T );
-            return LionsOnTheSavannah;
+            int SelectedAnimalsOnTheTerritories = territories.SelectMany(c => c).Count(c => c.animal is T );
+            return SelectedAnimalsOnTheTerritories;
         }
 
 
-        public int CountSpecAnimalOnTheTerritories(bool LonS )
+        // Count all animals in Animal List
+        public int CountAnimalsByType<T>()
         {
-            //Count a specific number of animals in the territories 
-            if (LonS)
-            {
-                int LionsOnTheSavannah = territories.SelectMany(c => c).Count(c => c.animal is Lion);
-                return LionsOnTheSavannah;
-            }
-            else if (LonS == false)
-            {
-                int RabbitsOnTheSavannah = territories.SelectMany(c => c).Count(c => c.animal is Rabbit);
-                return RabbitsOnTheSavannah;
-            }
-            return default;
-        }
-        public int CountAnimalsByType(bool countLionsTrue)
-        {
-            if (countLionsTrue)
-            {
-                var LionsInAllAnimals = AllAnimals.Count(c => c is Lion);
-                return LionsInAllAnimals;
-            }
-            else if (countLionsTrue == false)
-            {
-                var RabbitsInAllAnimals = AllAnimals.Count(c => c is Rabbit);
-                return RabbitsInAllAnimals;
-
-            }
-
-            return default;
-
+            var AnimalsOfType = AllAnimals.Count(c => c is T);
+            return AnimalsOfType;
         }
 
+        // Add a field to all fields, and generate random number of greenfields
         public void AddFields()
         {
 
@@ -127,10 +101,20 @@ namespace SavannahGame
             }
         }
 
-        public void RemoveAnimal(Animal a)
+        //Show the weigth of all animals of a speficic type on the savannah
+        public double WeigthOfAllAnimalsOfATypeOnTheSavannah<T>()
         {
+            var flattenList = territories.SelectMany(c => c).Where(a => AllAnimals.Contains(a.animal)).Select(x => x.animal);
+            var XAnimalWeigth = flattenList.OrderByDescending(x => x.Weight).Where(c => c is T).ToList();
+      
+            double total = XAnimalWeigth.Sum(item => item.Weight);
 
+            return total;
+        }
 
+        public void RemoveAnimal(int x)
+        {
+            AllAnimals.RemoveAt(x);
         }
         public void NewCubs(bool rabbit, int NumberOfNewRabbits = 4, int NumberOfNewLions = 1)
         {

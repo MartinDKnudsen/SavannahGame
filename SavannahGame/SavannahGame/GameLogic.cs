@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 
 namespace SavannahGame
@@ -33,9 +32,7 @@ namespace SavannahGame
         //Count all animals on the Savannah
         public int CountAnimals()
         {
- 
             return territories.SelectMany(c => c).Count(c => c.animal != null);
-
         }
 
         //Count greenfields
@@ -43,19 +40,20 @@ namespace SavannahGame
         {
             return territories.SelectMany(e => e).Count(e => e.GreenField);
         }
+
+        //Count number of fields
         public int CountField()
         {
             //Tæller felter
             return territories.SelectMany(f => f).Count();
         }
 
+        //Count number of selected animal on territories
         public int CountAllSpecAnimalOnTheTerritories<T>()
-            {
-
-            int SelectedAnimalsOnTheTerritories = territories.SelectMany(c => c).Count(c => c.animal is T );
+        {
+            int SelectedAnimalsOnTheTerritories = territories.SelectMany(c => c).Count(c => c.animal is T);
             return SelectedAnimalsOnTheTerritories;
         }
-
 
         // Count all animals in Animal List
         public int CountAnimalsByType<T>()
@@ -67,7 +65,6 @@ namespace SavannahGame
         // Add a field to all fields, and generate random number of greenfields
         public void AddFields()
         {
-
             for (int i = 0; i < 20; i++)
             {
                 territories.Add(new List<Field>());
@@ -86,6 +83,8 @@ namespace SavannahGame
                 }
             }
         }
+
+        //Add selected number of animals, and roll their gender 
         public void AddAnimal(int numberOfLion, int numberOfRabbits)
         {
             while (numberOfLion != 0)
@@ -104,18 +103,28 @@ namespace SavannahGame
         //Show the weigth of all animals of a speficic type on the savannah
         public double WeigthOfAllAnimalsOfATypeOnTheSavannah<T>()
         {
-            var flattenList = territories.SelectMany(c => c).Where(a => AllAnimals.Contains(a.animal)).Select(x => x.animal);
-            var XAnimalWeigth = flattenList.OrderByDescending(x => x.Weight).Where(c => c is T).ToList();
-      
-            double total = XAnimalWeigth.Sum(item => item.Weight);
 
+            var XAnimalWeigth = FlatList().OrderByDescending(x => x.Weight).Where(c => c is T).ToList();
+
+            double total = XAnimalWeigth.Sum(item => item.Weight);
             return total;
+
         }
 
+        //Create a FlatList of animals on territories
+        public List<Animal> FlatList()
+        {
+            var flattenList = territories.SelectMany(c => c).Where(a => AllAnimals.Contains(a.animal)).Select(x => x.animal).ToList();
+            return flattenList;
+        }
+
+        //Remove specific animal
         public void RemoveAnimal(int x)
         {
             AllAnimals.RemoveAt(x);
         }
+
+        //Add Cubs to the animal list
         public void NewCubs(bool rabbit, int NumberOfNewRabbits = 4, int NumberOfNewLions = 1)
         {
 

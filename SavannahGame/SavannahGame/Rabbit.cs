@@ -2,10 +2,14 @@
 {
     public class Rabbit : Animal
     {
-        public Rabbit(string gender)
+   
+        public int Counter { get; set; }
+
+        public Rabbit(string gender, int counter)
         {
             Weight = 20;
             this.Gender = gender;
+            ID = counter;
         }
 
         public override void Eat()

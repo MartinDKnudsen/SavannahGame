@@ -9,7 +9,7 @@ namespace SavannahGame
         public double Weight { get; set; }
         public double WeigthGain { get; set; }
         public double WeightLoss { get; set; }
-
+        public int ID { get; set; }
         public abstract void Eat();
 
         public abstract int Move();

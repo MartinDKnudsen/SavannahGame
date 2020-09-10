@@ -85,23 +85,28 @@ namespace SavannahGame
         }
 
         //Add selected number of animals, and roll their gender 
-        public void AddAnimal(int numberOfLion, int numberOfRabbits)
+        public void AddAnimal(int numberOfLion, int numberOfRabbits, int AnimalId = 0)
         {
+          
             while (numberOfLion != 0)
             {
-                AllAnimals.Add(new Lion(RandomRoll.rRoll()));
+                
+                AllAnimals.Add(new Lion(RandomRoll.rRoll(), AnimalId));
+                AnimalId++;
                 numberOfLion--;
             }
-
+            AnimalId = 0;
             while (numberOfRabbits != 0)
             {
-                AllAnimals.Add(new Rabbit(RandomRoll.rRoll()));
+                AllAnimals.Add(new Rabbit(RandomRoll.rRoll(), AnimalId));
+                AnimalId++;
                 numberOfRabbits--;
             }
+            
         }
 
         //Show the weigth of all animals of a speficic type on the savannah
-        public double WeigthOfAllAnimalsOfATypeOnTheSavannah<T>()
+        public double WeigthOfAllAnimalsOfAType<T>()
         {
 
             var XAnimalWeigth = FlatList().OrderByDescending(x => x.Weight).Where(c => c is T).ToList();
@@ -124,10 +129,27 @@ namespace SavannahGame
             AllAnimals.RemoveAt(x);
         }
 
+        public void AnimalMovement(int oldIndex, int newIndex)
+        {
+            var item = AllAnimals[oldIndex];
+            AllAnimals.RemoveAt(oldIndex);
+            AllAnimals.Insert(newIndex, item);
+        }
+
+        public void PrintAllAnimals()
+        {
+            var k = 0;
+            var list = AllAnimals.OrderByDescending(x => x.ID).Where(c => c is Lion);
+       
+            foreach (var item in list)
+            {
+                System.Console.WriteLine($"Id of animal: {item.ID} {item.Gender} ");
+              
+            }
+        }
         //Add Cubs to the animal list
         public void NewCubs(bool rabbit, int NumberOfNewRabbits = 4, int NumberOfNewLions = 1)
         {
-
             if (rabbit)
             {
                 while (NumberOfNewRabbits != 0)
@@ -143,7 +165,6 @@ namespace SavannahGame
                 {
                     AddAnimal(1, 0);
                     NumberOfNewLions--;
-
                 }
             }
             Placement();

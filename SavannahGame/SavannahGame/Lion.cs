@@ -2,12 +2,13 @@
 {
    public class Lion : Animal
     {
+      
 
-        public Lion(string gender)
+        public Lion(string gender, int counter)
         {
             Weight = 250;
             this.Gender = gender;
-            
+            ID = counter;
         }
 
         public override void Eat()
@@ -18,6 +19,7 @@
         public override int Move()
         {
             Weight = Weight - 10;
+            
             return 1;
         }
 
@@ -35,7 +37,7 @@
 
         public override string ToString()
         {
-            return "Lion";
+            return $"{ID}Lion";
         }
     }
 }

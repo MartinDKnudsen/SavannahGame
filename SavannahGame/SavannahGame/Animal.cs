@@ -14,7 +14,7 @@ namespace SavannahGame
 
         public abstract void Eat();
 
-        public abstract int Move();
+        public abstract void Move();
 
         public abstract void Mate(int NumberOfCubs);
 

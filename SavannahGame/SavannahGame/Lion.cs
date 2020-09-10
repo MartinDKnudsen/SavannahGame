@@ -5,10 +5,11 @@
       
         public Lion(string gender, int counter)
         {
-            Weight = 250;
+            this.Weight = 250;
             this.Gender = gender;
             ID = counter;
             typeOfAnimal = "Lion";
+            WeightLoss = 10;
         }
 
         public override void Eat()
@@ -16,11 +17,10 @@
             Weight = Weight + 20;
         }
 
-        public override int Move()
+        public override void Move()
         {
-            Weight = Weight - 10;
-            
-            return 1;
+            this.Weight -= WeightLoss;
+
         }
 
         public override void Mate(int NumberOfCubs = 1)
@@ -37,7 +37,7 @@
 
         public override string ToString()
         {
-            return $"{ID}Lion";
+            return $"Lion";
         }
     }
 }

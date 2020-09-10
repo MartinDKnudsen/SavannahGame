@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Xml.Schema;
 
 namespace SavannahGame
 {
@@ -34,6 +35,13 @@ namespace SavannahGame
             var ARP = RandomNumber(0, 20);
 
             return ARP;
+        }
+
+        public static (int, int) NewPos()
+        {
+            int fNumber = RandomNumber(0, 20);
+            int sNumber = RandomNumber(0, 20);
+            return (fNumber, sNumber);
         }
 
         public static int RandomNumber(int min, int max)

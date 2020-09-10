@@ -11,9 +11,9 @@ namespace BetaTest
 
             var m = new GameLogic();
             m.AddFields();
-            //// m.AddAnimal("Lion",10);
-             m.AddAnimal(10, 10);
-             m.Placement();
+
+            m.AddAnimal(5, 5);
+            m.Placement();
             //m.NewCubs(true);
             //m.RemoveAnimal(2);
             //var ekg = m.CountGreenField();
@@ -73,38 +73,56 @@ namespace BetaTest
             //Console.WriteLine($"af dem er der {ekg} grønne felter");
 
 
-            
-            var x = 1;
-            //// m.RemoveAnimal(5);
-            ///
+            //var testAnimal = m.AllAnimals[0];
+            //var testAnimal2 = m.AllAnimals[4];
 
-            var testAnimal = m.AllAnimals[0];
-            var testAnimal2 = m.AllAnimals[4];
+       
+            //foreach (var item in m.AllAnimals)
+            //{
+            //    // Console.WriteLine(m.territories.SelectMany(s => s).Select(s => s).First(s => s.animal == item).Id);
 
-            foreach (var item in m.AllAnimals)
-            {
-                Console.WriteLine(m.territories.SelectMany(s => s).Select(s => s).First(s => s.animal == item).Id);
+            //    m.AnimalMovement(m.territories.SelectMany(s => s).Select(s => s.animal).First(s => s == item));
 
-                m.AnimalMovement(m.territories.SelectMany(s => s).Select(s => s.animal).First(s => s == item));
+            //    // Console.WriteLine(m.territories.SelectMany(s => s).Select(s => s).First(s => s.animal == item).Id);
+            //}
 
-                Console.WriteLine(m.territories.SelectMany(s => s).Select(s => s).First(s => s.animal == item).Id);
-            }
+
+            //foreach (var item in m.AllAnimals)
+            //{
+            //    Console.WriteLine(m.territories.SelectMany(s => s).Select(s => s).First(s => s.animal == item).Id);
+
+            //    m.AnimalMovement(m.territories.SelectMany(s => s).Select(s => s.animal).First(s => s == item));
+
+            //    Console.WriteLine(m.territories.SelectMany(s => s).Select(s => s).First(s => s.animal == item).Id);
+            //}
 
             //Console.WriteLine(m.territories.SelectMany(s => s).Select(s => s).First(s => s.animal == testAnimal).Id);
 
             //m.AnimalMovement(m.territories.SelectMany(s => s).Select(s => s.animal).First(s => s == testAnimal));
 
             //Console.WriteLine(m.territories.SelectMany(s => s).Select(s => s).First(s => s.animal == testAnimal).Id);
+            //     m.PrintAllAnimals();
+
+            //foreach (var item in m.AllAnimals.ToList())
+            //{
 
 
-            Console.WriteLine();
+            //    m.RemoveAnimal(m.territories.SelectMany(s => s).Select(s => s.animal).First(s => s == item));
+
+            //}
+            //m.PrintAllAnimals();
+
+            //Console.WriteLine();
+
+
+            m.PrintFelter();
             //m.RemoveAnimal(1);
             //m.RemoveAnimal(2);
             //m.RemoveAnimal(3);
             //m.RemoveAnimal(4);
-          //  m.NewCubs(true);
-        //    m.NewCubs(false);
-        
+            //  m.NewCubs(true);
+            //    m.NewCubs(false);
+
 
             Console.ReadLine();
         }

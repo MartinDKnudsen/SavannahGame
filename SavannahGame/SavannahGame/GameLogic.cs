@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using System;
 
 namespace SavannahGame
 {
@@ -91,19 +91,19 @@ namespace SavannahGame
         {
             while (numberOfLion != 0)
             {
-                
+
                 AllAnimals.Add(new Lion(RandomRoll.rRoll(), TheAnimalId));
                 TheAnimalId++;
                 numberOfLion--;
             }
-        
+
             while (numberOfRabbits != 0)
             {
                 AllAnimals.Add(new Rabbit(RandomRoll.rRoll(), TheAnimalId));
                 TheAnimalId++;
                 numberOfRabbits--;
             }
-            
+
         }
 
         //Show the weigth of all animals of a speficic type on the savannah
@@ -125,57 +125,81 @@ namespace SavannahGame
         }
 
         //Remove specific animal
-        public void RemoveAnimal(int x)
+        public void RemoveAnimal(Animal animal)
         {
-            AllAnimals.RemoveAt(x);
+            var tt = territories.SelectMany(c => c).Select(c => c).First(c => c.animal == animal);
+            var cAnimal = tt.animal;
+            territories.SelectMany(c => c).Select(c => c).First(c => c.animal == animal).animal = null;
+            AllAnimals.Remove(cAnimal);
+
         }
 
+        public (int, int) RandomMove()
+        {
 
+            return RandomRoll.NewPos();
+
+        }
         public Field SelectetMove()
         {
 
+
             //Vælg en af de felter fra CheckValidMoves
-
+            return default;
         }
-        public List <Field> CheckValidMoves(Animal animalOnField)
+
+
+        public Field SelectAnimalOnTerritorie(Animal animal)
         {
-
-            //Tjek felterne omkring dyret 
-
+            var TheField = territories.SelectMany(c => c).Select(c => c).First(c => c.animal == animal);
+            return TheField;
         }
+
+
+
         public void AnimalMovement(Animal animal)
         {
-           
-            var tt = territories.SelectMany(c => c).Select(c => c).First(c => c.animal == animal);
-            var CAnimal = tt.animal;
-            territories.SelectMany(c => c).Select(c => c).First(c => c.animal == animal).animal = null;
-            SelectetMove().animal = CAnimal;
-            
+            (int xCon, int yCon) = RandomRoll.NewPos();
+            var x = SelectAnimalOnTerritorie(animal);
+            var gemt = animal;
+            animal.Move();
+            var cAnimal = x.animal;
 
+            RandomMove();
+
+            territories.SelectMany(c => c).Select(c => c).First(c => c.animal == gemt).animal = null;
+
+            territories[xCon][yCon].animal = cAnimal;
 
             //CheckValidMoves 
-
-
-
         }
 
         public void PrintAllAnimals()
         {
-            var list = AllAnimals.Where(c => c is Lion);
-            var list2 = AllAnimals.Where(c => c is Rabbit);
-            foreach (var item in list)
+            if (AllAnimals.Count != 0)
             {
-                Console.WriteLine($"Id of animal: {item.ID} -- Gender: {item.Gender} -- is Type: {item.typeOfAnimal}");
-              
-            }
-            Console.WriteLine("_________________________");
+                var list = AllAnimals.Where(c => c is Lion);
+                var list2 = AllAnimals.Where(c => c is Rabbit);
+                foreach (var item in list)
+                {
+                    Console.WriteLine($"Id of animal: {item.ID} -- Gender: {item.Gender} -- is Type: {item.typeOfAnimal}");
 
-            foreach (var item in list2)
+                }
+                Console.WriteLine("_________________________");
+
+                foreach (var item in list2)
+                {
+                    Console.WriteLine($"Id of animal: {item.ID} -- Gender: {item.Gender} -- Type: {item.typeOfAnimal}");
+                }
+
+                Console.WriteLine("_________________________");
+
+            }
+
+            else
             {
-                Console.WriteLine($"Id of animal: {item.ID} -- Gender: {item.Gender} -- Type: {item.typeOfAnimal}");
+                Console.WriteLine("All animals are dead");
             }
-
-            Console.WriteLine("_________________________");
         }
 
         //Add Cubs to the animal list
@@ -198,13 +222,59 @@ namespace SavannahGame
                     NumberOfNewLions--;
                 }
             }
-           //Placement();
+            //Placement();
         }
 
-        public Field CheckPosistion(Animal animal)
+        public List<Field> CheckValidMoves(Animal animal)
         {
-            return territories.SelectMany(c => c).FirstOrDefault(c => c.animal == animal);
+
+            //Start XY
+            var tempInt = XandY(territories.SelectMany(c => c).Select(c => c).First(c => c.animal == animal));
+
+            var tempInt2 = territories.SelectMany(c => c).Select(c => c)
+                .Where(c => XandY(c).Item1 == 1 && XandY(c).Item2 == 2);
+
+
+
+            //Tjek felterne omkring dyret 
+            return default;
+        }
+        public (int, int) XandY(Field field)
+        {
+
+            var boardFields = territories.Select(s => s).First(s => s.Contains(field));
+
+            int yCon = territories.FindIndex(c => c == boardFields);
+            int xCon = boardFields.FindIndex(c => c == field);
+
+            return (xCon, yCon);
+
         }
 
+        public void PrintFelter()
+        {
+
+
+            foreach (var VARIABLE in territories.SelectMany(s => s).Where(s => s.animal != null))
+            {
+                //   Thread.Sleep(500);
+                Console.WriteLine($"{VARIABLE.animal.ID} {VARIABLE.animal} stands on {XandY(VARIABLE)} weigth {VARIABLE.animal.Weight}");
+
+            }
+
+            foreach (var dyr in territories.SelectMany(s => s).Where(s => s.animal != null).Select(s => s.animal))
+            {
+
+                AnimalMovement(dyr);
+
+            }
+
+            foreach (var VARIABLE in territories.SelectMany(s => s).Where(s => s.animal != null))
+            {
+                //Thread.Sleep(500);
+                Console.WriteLine($"{VARIABLE.animal.ID} {VARIABLE.animal} stands on {XandY(VARIABLE)} weigth {VARIABLE.animal.Weight}");
+
+            }
+        }
     }
 }

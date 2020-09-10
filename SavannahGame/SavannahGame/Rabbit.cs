@@ -2,15 +2,16 @@
 {
     public class Rabbit : Animal
     {
-   
+
         public int Counter { get; set; }
 
         public Rabbit(string gender, int counter)
         {
-            Weight = 20;
+            this.Weight = 20;
             this.Gender = gender;
             ID = counter;
             typeOfAnimal = "Rabbit";
+            WeightLoss = 2;
         }
 
         public override void Eat()
@@ -19,10 +20,10 @@
         }
 
 
-        public override int Move()
+        public override void Move()
         {
-            Weight = Weight - 2;
-            return 2;
+            this.Weight -= WeightLoss;
+
         }
 
         public override void Mate(int NumberOfCubs)

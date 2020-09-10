@@ -227,13 +227,15 @@ namespace SavannahGame
 
         public List<Field> CheckValidMoves(Animal animal)
         {
-
             //Start XY
             var tempInt = XandY(territories.SelectMany(c => c).Select(c => c).First(c => c.animal == animal));
+            
 
-            var tempInt2 = territories.SelectMany(c => c).Select(c => c)
+             // x2 - x1 = 1 && y2 - y1 = 1 
+             // x2 - x1 = -1
+
+            var fieldsAroundValid = territories.SelectMany(c => c).Select(c => c)
                 .Where(c => XandY(c).Item1 == 1 && XandY(c).Item2 == 2);
-
 
 
             //Tjek felterne omkring dyret 

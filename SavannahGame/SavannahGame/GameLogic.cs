@@ -1,10 +1,12 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System;
 
 namespace SavannahGame
 {
     public class GameLogic
     {
+        public int TheAnimalId { get; set; }
         public List<List<Field>> territories = new List<List<Field>>();
         public List<Animal> AllAnimals = new List<Animal>();
 
@@ -85,21 +87,20 @@ namespace SavannahGame
         }
 
         //Add selected number of animals, and roll their gender 
-        public void AddAnimal(int numberOfLion, int numberOfRabbits, int AnimalId = 0)
+        public void AddAnimal(int numberOfLion, int numberOfRabbits)
         {
-          
             while (numberOfLion != 0)
             {
                 
-                AllAnimals.Add(new Lion(RandomRoll.rRoll(), AnimalId));
-                AnimalId++;
+                AllAnimals.Add(new Lion(RandomRoll.rRoll(), TheAnimalId));
+                TheAnimalId++;
                 numberOfLion--;
             }
-            AnimalId = 0;
+        
             while (numberOfRabbits != 0)
             {
-                AllAnimals.Add(new Rabbit(RandomRoll.rRoll(), AnimalId));
-                AnimalId++;
+                AllAnimals.Add(new Rabbit(RandomRoll.rRoll(), TheAnimalId));
+                TheAnimalId++;
                 numberOfRabbits--;
             }
             
@@ -129,24 +130,54 @@ namespace SavannahGame
             AllAnimals.RemoveAt(x);
         }
 
-        public void AnimalMovement(int oldIndex, int newIndex)
+
+        public Field SelectetMove()
         {
-            var item = AllAnimals[oldIndex];
-            AllAnimals.RemoveAt(oldIndex);
-            AllAnimals.Insert(newIndex, item);
+
+            //Vælg en af de felter fra CheckValidMoves
+
+        }
+        public List <Field> CheckValidMoves(Animal animalOnField)
+        {
+
+            //Tjek felterne omkring dyret 
+
+        }
+        public void AnimalMovement(Animal animal)
+        {
+           
+            var tt = territories.SelectMany(c => c).Select(c => c).First(c => c.animal == animal);
+            var CAnimal = tt.animal;
+            territories.SelectMany(c => c).Select(c => c).First(c => c.animal == animal).animal = null;
+            SelectetMove().animal = CAnimal;
+            
+
+
+            //CheckValidMoves 
+
+
+
         }
 
         public void PrintAllAnimals()
         {
-            var k = 0;
-            var list = AllAnimals.OrderByDescending(x => x.ID).Where(c => c is Lion);
-       
+            var list = AllAnimals.Where(c => c is Lion);
+            var list2 = AllAnimals.Where(c => c is Rabbit);
             foreach (var item in list)
             {
-                System.Console.WriteLine($"Id of animal: {item.ID} {item.Gender} ");
+                Console.WriteLine($"Id of animal: {item.ID} -- Gender: {item.Gender} -- is Type: {item.typeOfAnimal}");
               
             }
+            Console.WriteLine("_________________________");
+
+            foreach (var item in list2)
+            {
+                Console.WriteLine($"Id of animal: {item.ID} -- Gender: {item.Gender} -- Type: {item.typeOfAnimal}");
+            }
+
+            Console.WriteLine("_________________________");
         }
+
         //Add Cubs to the animal list
         public void NewCubs(bool rabbit, int NumberOfNewRabbits = 4, int NumberOfNewLions = 1)
         {
@@ -167,7 +198,7 @@ namespace SavannahGame
                     NumberOfNewLions--;
                 }
             }
-            Placement();
+           //Placement();
         }
 
         public Field CheckPosistion(Animal animal)

@@ -3,12 +3,12 @@
    public class Lion : Animal
     {
       
-
         public Lion(string gender, int counter)
         {
             Weight = 250;
             this.Gender = gender;
             ID = counter;
+            typeOfAnimal = "Lion";
         }
 
         public override void Eat()

@@ -10,6 +10,7 @@
             Weight = 20;
             this.Gender = gender;
             ID = counter;
+            typeOfAnimal = "Rabbit";
         }
 
         public override void Eat()

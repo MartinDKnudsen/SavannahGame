@@ -10,10 +10,10 @@ namespace BetaTest
         {
 
             var m = new GameLogic();
-            //m.AddFields();
+            m.AddFields();
             //// m.AddAnimal("Lion",10);
              m.AddAnimal(10, 10);
-            //m.Placement();
+             m.Placement();
             //m.NewCubs(true);
             //m.RemoveAnimal(2);
             //var ekg = m.CountGreenField();
@@ -35,7 +35,7 @@ namespace BetaTest
             //var list = test.OrderByDescending(x => x.Gender).ToList();
             //var listweigth = test.OrderByDescending(x => x.Weight).Where(c => c is Lion).ToList();
             //int LionsOnTheSavannah = m.territories.SelectMany(c => c).Count(c => c.animal is Lion);
-    
+
 
             ////// Console.WriteLine(LionsOnTheSavannah);
 
@@ -73,15 +73,38 @@ namespace BetaTest
             //Console.WriteLine($"af dem er der {ekg} grønne felter");
 
 
-            m.PrintAllAnimals();
+            
+            var x = 1;
+            //// m.RemoveAnimal(5);
+            ///
 
-           //// m.RemoveAnimal(5);
-            m.AnimalMovement(8, 16);
-           // m.RemoveAnimal(1);
-           // m.RemoveAnimal(2);
-           // m.RemoveAnimal(3);
-            m.RemoveAnimal(4);
-           m.PrintAllAnimals();
+            var testAnimal = m.AllAnimals[0];
+            var testAnimal2 = m.AllAnimals[4];
+
+            foreach (var item in m.AllAnimals)
+            {
+                Console.WriteLine(m.territories.SelectMany(s => s).Select(s => s).First(s => s.animal == item).Id);
+
+                m.AnimalMovement(m.territories.SelectMany(s => s).Select(s => s.animal).First(s => s == item));
+
+                Console.WriteLine(m.territories.SelectMany(s => s).Select(s => s).First(s => s.animal == item).Id);
+            }
+
+            //Console.WriteLine(m.territories.SelectMany(s => s).Select(s => s).First(s => s.animal == testAnimal).Id);
+
+            //m.AnimalMovement(m.territories.SelectMany(s => s).Select(s => s.animal).First(s => s == testAnimal));
+
+            //Console.WriteLine(m.territories.SelectMany(s => s).Select(s => s).First(s => s.animal == testAnimal).Id);
+
+
+            Console.WriteLine();
+            //m.RemoveAnimal(1);
+            //m.RemoveAnimal(2);
+            //m.RemoveAnimal(3);
+            //m.RemoveAnimal(4);
+          //  m.NewCubs(true);
+        //    m.NewCubs(false);
+        
 
             Console.ReadLine();
         }

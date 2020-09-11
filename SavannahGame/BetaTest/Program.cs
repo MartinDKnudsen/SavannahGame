@@ -1,6 +1,7 @@
 ﻿using SavannahGame;
 using System;
 using System.Linq;
+using System.Threading;
 
 namespace BetaTest
 {
@@ -76,7 +77,7 @@ namespace BetaTest
             //var testAnimal = m.AllAnimals[0];
             //var testAnimal2 = m.AllAnimals[4];
 
-       
+
             //foreach (var item in m.AllAnimals)
             //{
             //    // Console.WriteLine(m.territories.SelectMany(s => s).Select(s => s).First(s => s.animal == item).Id);
@@ -114,8 +115,13 @@ namespace BetaTest
 
             //Console.WriteLine();
 
-
-            m.PrintFelter();
+            foreach (var VARIABLE in m.territories.SelectMany(s => s).Where(s => s.animal != null))
+            {
+                Thread.Sleep(500);
+               // Console.WriteLine($"{VARIABLE.animal.ID} {VARIABLE.animal} stands on {m.XandY(VARIABLE)} weigth {VARIABLE.animal.Weight}");
+                Console.WriteLine(m.CheckValidMoves(VARIABLE.animal));
+            }
+          //  m.PrintFelter();
             //m.RemoveAnimal(1);
             //m.RemoveAnimal(2);
             //m.RemoveAnimal(3);

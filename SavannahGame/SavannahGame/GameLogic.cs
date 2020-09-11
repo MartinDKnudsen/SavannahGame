@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace SavannahGame
 {
@@ -171,7 +172,10 @@ namespace SavannahGame
 
             territories[xCon][yCon].animal = cAnimal;
 
-            //CheckValidMoves 
+            //After moveing the field arround will be checked and the animal(if lion) will eat one rabbit if its near,
+            //and gain weight as a % of the rabbits weight
+            //If a rabbit lands on a greenfeld the rabbit will gain flat amount of weigth
+           // CheckValidMoves
         }
 
         public void PrintAllAnimals()
@@ -193,9 +197,7 @@ namespace SavannahGame
                 }
 
                 Console.WriteLine("_________________________");
-
             }
-
             else
             {
                 Console.WriteLine("All animals are dead");
@@ -229,20 +231,17 @@ namespace SavannahGame
         {
             //Start XY
             var tempInt = XandY(territories.SelectMany(c => c).Select(c => c).First(c => c.animal == animal));
+
+            //Check for valid moves arround the animal, and create a list of valid moves (can only move to fields where no other animals are)
             
-
-             // x2 - x1 = 1 && y2 - y1 = 1 
-             // x2 - x1 = -1
-
-            var fieldsAroundValid = territories.SelectMany(c => c).Select(c => c)
-                .Where(c => XandY(c).Item1 == 1 && XandY(c).Item2 == 2);
-
+     
 
             //Tjek felterne omkring dyret 
             return default;
         }
         public (int, int) XandY(Field field)
         {
+            //Take a field and find the cordinates of it 
 
             var boardFields = territories.Select(s => s).First(s => s.Contains(field));
 
@@ -253,30 +252,28 @@ namespace SavannahGame
 
         }
 
+        //Prints all field with animals and their cordinates
         public void PrintFelter()
         {
-
-
-            foreach (var VARIABLE in territories.SelectMany(s => s).Where(s => s.animal != null))
+            while (true)
             {
-                //   Thread.Sleep(500);
-                Console.WriteLine($"{VARIABLE.animal.ID} {VARIABLE.animal} stands on {XandY(VARIABLE)} weigth {VARIABLE.animal.Weight}");
+                foreach (var VARIABLE in territories.SelectMany(s => s).Where(s => s.animal != null))
+                {
+                       Thread.Sleep(500);
+                    Console.WriteLine($"{VARIABLE.animal.ID} {VARIABLE.animal} stands on {XandY(VARIABLE)} weigth {VARIABLE.animal.Weight}");
+                }
 
-            }
+                foreach (var dyr in territories.SelectMany(s => s).Where(s => s.animal != null).Select(s => s.animal))
+                {
+                    AnimalMovement(dyr);
+                }
 
-            foreach (var dyr in territories.SelectMany(s => s).Where(s => s.animal != null).Select(s => s.animal))
-            {
-
-                AnimalMovement(dyr);
-
-            }
-
-            foreach (var VARIABLE in territories.SelectMany(s => s).Where(s => s.animal != null))
-            {
-                //Thread.Sleep(500);
-                Console.WriteLine($"{VARIABLE.animal.ID} {VARIABLE.animal} stands on {XandY(VARIABLE)} weigth {VARIABLE.animal.Weight}");
-
-            }
+                foreach (var VARIABLE in territories.SelectMany(s => s).Where(s => s.animal != null))
+                {
+                    Thread.Sleep(500);
+                    Console.WriteLine($"{VARIABLE.animal.ID} {VARIABLE.animal} stands on {XandY(VARIABLE)} weigth {VARIABLE.animal.Weight}");
+                }
+            }  
         }
     }
 }

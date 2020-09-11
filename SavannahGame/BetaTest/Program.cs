@@ -115,13 +115,7 @@ namespace BetaTest
 
             //Console.WriteLine();
 
-            foreach (var VARIABLE in m.territories.SelectMany(s => s).Where(s => s.animal != null))
-            {
-                Thread.Sleep(500);
-               // Console.WriteLine($"{VARIABLE.animal.ID} {VARIABLE.animal} stands on {m.XandY(VARIABLE)} weigth {VARIABLE.animal.Weight}");
-                Console.WriteLine(m.CheckValidMoves(VARIABLE.animal));
-            }
-          //  m.PrintFelter();
+            m.PrintFelter();
             //m.RemoveAnimal(1);
             //m.RemoveAnimal(2);
             //m.RemoveAnimal(3);

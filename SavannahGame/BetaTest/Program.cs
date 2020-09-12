@@ -1,6 +1,8 @@
 ﻿using SavannahGame;
 using System;
+using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Remoting.Channels;
 
 namespace BetaTest
 {
@@ -76,7 +78,7 @@ namespace BetaTest
             //var testAnimal = m.AllAnimals[0];
             //var testAnimal2 = m.AllAnimals[4];
 
-       
+
             //foreach (var item in m.AllAnimals)
             //{
             //    // Console.WriteLine(m.territories.SelectMany(s => s).Select(s => s).First(s => s.animal == item).Id);
@@ -115,7 +117,16 @@ namespace BetaTest
             //Console.WriteLine();
 
 
-            m.PrintFelter();
+            //Test Af check Cordinater
+            ////List<List<int>> data = new List<List<int>>();
+
+         
+
+           m.CheckValidMoves(m.territories.SelectMany(c => c).Select(c => c.animal).First(c => c != null));
+
+
+               
+            //m.PrintFelter();
             //m.RemoveAnimal(1);
             //m.RemoveAnimal(2);
             //m.RemoveAnimal(3);

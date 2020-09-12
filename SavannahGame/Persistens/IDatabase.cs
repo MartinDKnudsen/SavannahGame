@@ -4,14 +4,10 @@ using System.Text;
 
 namespace Persistens
 {
-    class Database
+    interface IDatabase
     {
-
-        //Constring
-        //SaveListOfAnimals
-
-
-
+        
+        //Methods
 
 
     }

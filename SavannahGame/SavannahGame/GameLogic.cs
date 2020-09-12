@@ -234,15 +234,47 @@ namespace SavannahGame
 
             //Start XY
             var tempInt = XandY(territories.SelectMany(c => c).Select(c => c).First(c => c.animal == animal));
-            
-
-             // x2 - x1 = 1 && y2 - y1 = 1 
-             // x2 - x1 = -1
-
-            var fieldsAroundValid = territories.SelectMany(c => c).Select(c => c)
-                .Where(c => XandY(c).Item1 == 1 && XandY(c).Item2 == 2);
 
 
+            // x2 - x1 = 1 && y2 - y1 = 1 
+            // x2 - x1 = -1
+            var k = tempInt.Item1;
+            var k2 = tempInt.Item2;
+            var xx = k - 1;
+            var xx2 = k2 - 1;
+            var xx3 = k + 1;
+            var xx4 = k2 + 1;
+            var pos1 = (xx, xx3);
+            var post2 = (xx3, xx4);
+            try
+            {
+                while (true)
+                {
+                    if (territories[xx][xx2] == null)
+                    {
+                        Console.WriteLine("TEEEST");
+                    }
+                    if (xx < 0 || xx2 < 0 || xx3 < 0 || xx4 < 0)
+                    {
+                        Console.WriteLine("Below 0");
+                        break;
+                    }
+                    if (territories[xx][xx3].animal == null)
+                    {
+                        Console.WriteLine("Intet dyr her");
+                        validFields.Add(territories[xx][xx3]);
+                    }
+                    else if (territories[xx][xx2].animal != null)
+                    {
+                        Console.WriteLine("Dyr her");
+                    }
+                    break;
+                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine("Error");
+            }
             //Tjek felterne omkring dyret 
             return validFields;
         }

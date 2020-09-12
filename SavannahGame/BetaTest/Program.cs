@@ -2,7 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Runtime.Remoting.Channels;
 
 namespace BetaTest
 {
@@ -117,16 +116,7 @@ namespace BetaTest
             //Console.WriteLine();
 
 
-            //Test Af check Cordinater
-            ////List<List<int>> data = new List<List<int>>();
-
-         
-
-           m.CheckValidMoves(m.territories.SelectMany(c => c).Select(c => c.animal).First(c => c != null));
-
-
-               
-            //m.PrintFelter();
+            m.PrintFelter();
             //m.RemoveAnimal(1);
             //m.RemoveAnimal(2);
             //m.RemoveAnimal(3);

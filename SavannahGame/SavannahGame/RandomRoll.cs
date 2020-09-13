@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Xml.Schema;
 
 namespace SavannahGame
@@ -48,6 +50,14 @@ namespace SavannahGame
         {
             return random.Next(min, max);
         }
+
+        public static int RField(List<Field> field)
+        {
+            var randomField = random.Next(field.Count);
+            return randomField;
+
+        }
+
     }
 
 }

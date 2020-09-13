@@ -116,16 +116,9 @@ namespace BetaTest
             //Console.WriteLine();
 
 
-            m.PrintFelter();
-            //m.RemoveAnimal(1);
-            //m.RemoveAnimal(2);
-            //m.RemoveAnimal(3);
-            //m.RemoveAnimal(4);
-            //  m.NewCubs(true);
-            //    m.NewCubs(false);
-
-
+           m.PrintFelter();
             Console.ReadLine();
         }
     }
 }
+

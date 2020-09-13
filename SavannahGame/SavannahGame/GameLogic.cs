@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Threading;
+using System.Xml.Schema;
 
 namespace SavannahGame
 {
@@ -135,20 +137,17 @@ namespace SavannahGame
 
         }
 
-        public (int, int) RandomMove()
-        {
-
-            return RandomRoll.NewPos();
-
-        }
-        public Field SelectetMove()
+        public (int, int) SelectetMove(Animal animal)
         {
 
 
-            //Vælg en af de felter fra CheckValidMoves
-            return default;
-        }
+            var validFields = CheckValidMoves(animal);
+            var randomfield = RandomRoll.RField(validFields);
+            var selectedRamdomFeld = validFields[randomfield];
+            var posOfRField = XandY(selectedRamdomFeld);
 
+            return posOfRField;
+        }
 
         public Field SelectAnimalOnTerritorie(Animal animal)
         {
@@ -160,22 +159,15 @@ namespace SavannahGame
 
         public void AnimalMovement(Animal animal)
         {
-            (int xCon, int yCon) = RandomRoll.NewPos();
+            
             var x = SelectAnimalOnTerritorie(animal);
-            var gemt = animal;
+            var TempSaved = animal;
             animal.Move();
-            var cAnimal = x.animal;
+            var savedAnimal = x.animal;
+            var newRandomPos =  SelectetMove(savedAnimal);
 
-            RandomMove();
-
-            territories.SelectMany(c => c).Select(c => c).First(c => c.animal == gemt).animal = null;
-
-            territories[xCon][yCon].animal = cAnimal;
-
-            //After moveing the field arround will be checked and the animal(if lion) will eat one rabbit if its near,
-            //and gain weight as a % of the rabbits weight
-            //If a rabbit lands on a greenfeld the rabbit will gain flat amount of weigth
-           // CheckValidMoves
+            territories.SelectMany(c => c).Select(c => c).First(c => c.animal == TempSaved).animal = null;
+            territories[newRandomPos.Item1][newRandomPos.Item2].animal = savedAnimal;
         }
 
         public void PrintAllAnimals()
@@ -229,53 +221,56 @@ namespace SavannahGame
 
         public List<Field> CheckValidMoves(Animal animal)
         {
-
+            
             var validFields = new List<Field>();
 
             //Start XY
             var tempInt = XandY(territories.SelectMany(c => c).Select(c => c).First(c => c.animal == animal));
 
+            var itemOne = tempInt.Item1;
+            var itemTwo = tempInt.Item2;
+            
 
-            // x2 - x1 = 1 && y2 - y1 = 1 
-            // x2 - x1 = -1
-            var k = tempInt.Item1;
-            var k2 = tempInt.Item2;
-            var xx = k - 1;
-            var xx2 = k2 - 1;
-            var xx3 = k + 1;
-            var xx4 = k2 + 1;
-            var pos1 = (xx, xx3);
-            var post2 = (xx3, xx4);
-            try
+            if (itemTwo != 0 && territories[itemOne][itemTwo - 1] != null)
             {
-                while (true)
-                {
-                    if (territories[xx][xx2] == null)
-                    {
-                        Console.WriteLine("TEEEST");
-                    }
-                    if (xx < 0 || xx2 < 0 || xx3 < 0 || xx4 < 0)
-                    {
-                        Console.WriteLine("Below 0");
-                        break;
-                    }
-                    if (territories[xx][xx3].animal == null)
-                    {
-                        Console.WriteLine("Intet dyr her");
-                        validFields.Add(territories[xx][xx3]);
-                    }
-                    else if (territories[xx][xx2].animal != null)
-                    {
-                        Console.WriteLine("Dyr her");
-                    }
-                    break;
-                }
+                validFields.Add(territories[itemOne][itemTwo - 1]);
             }
-            catch (Exception e)
+
+            if (itemOne < 18 && (territories[itemOne + 1][itemTwo] != null))
             {
-                Console.WriteLine("Error");
+                validFields.Add(territories[itemOne + 1][itemTwo]);
             }
-            //Tjek felterne omkring dyret 
+
+            if (itemOne != 0 && territories[itemOne - 1][itemTwo] != null)
+            {
+                validFields.Add(territories[itemOne - 1][itemTwo]);
+            }
+
+            if (itemTwo < 18 && (territories[itemOne][itemTwo + 1] != null))
+            {
+                validFields.Add(territories[itemOne][itemTwo + 1]);
+            }
+
+            if (itemOne < 18 && itemTwo < 18  && (territories[itemOne + 1][itemTwo + 1] != null))
+            {
+                validFields.Add(territories[itemOne + 1][itemTwo + 1]);
+            }
+
+            if (itemTwo != 0 && (itemOne != 0 && (territories[itemOne - 1][itemTwo - 1] != null ? true : false)))
+            {
+                validFields.Add(territories[itemOne - 1][itemTwo - 1]);
+            }
+
+            if (itemOne < 18 && itemTwo != 0 && (territories[itemOne + 1][itemTwo - 1] != null))
+            {
+                validFields.Add(territories[itemOne + 1][itemTwo - 1]);
+            }
+
+            if (itemOne != 0 && itemTwo < 18 && territories[itemOne - 1][itemTwo + 1] != null)
+            {
+                validFields.Add(territories[itemOne - 1][itemTwo + 1]);
+            }
+
             return validFields;
         }
 
@@ -299,7 +294,7 @@ namespace SavannahGame
             {
                 foreach (var VARIABLE in territories.SelectMany(s => s).Where(s => s.animal != null))
                 {
-                       Thread.Sleep(500);
+                      // Thread.Sleep(500);
                     Console.WriteLine($"{VARIABLE.animal.ID} {VARIABLE.animal} stands on {XandY(VARIABLE)} weigth {VARIABLE.animal.Weight}");
                 }
 
@@ -310,7 +305,8 @@ namespace SavannahGame
 
                 foreach (var VARIABLE in territories.SelectMany(s => s).Where(s => s.animal != null))
                 {
-                    Thread.Sleep(500);
+                    Console.WriteLine("---------------NEW POS---------------");
+                    Thread.Sleep(1000);
                     Console.WriteLine($"{VARIABLE.animal.ID} {VARIABLE.animal} stands on {XandY(VARIABLE)} weigth {VARIABLE.animal.Weight}");
                 }
             }  

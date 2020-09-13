@@ -15,17 +15,11 @@
 
         public override void Eat()
         {
-            Weight = Weight + 20;
+            Weight += 2;
         }
-
         public override void Move()
         {
             this.Weight -= WeightLoss;
-        }
-
-        public override void Mate(int NumberOfCubs)
-        {
-
         }
 
         public override string ToString()

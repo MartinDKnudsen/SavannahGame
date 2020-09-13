@@ -13,7 +13,7 @@ namespace BetaTest
             var m = new GameLogic();
             m.AddFields();
 
-            m.AddAnimal(5, 5);
+            m.AddAnimal(100, 10);
             m.Placement();
             //m.NewCubs(true);
             //m.RemoveAnimal(2);
@@ -115,8 +115,7 @@ namespace BetaTest
 
             //Console.WriteLine();
 
-
-           m.PrintFelter();
+             m.PrintFelter();
             Console.ReadLine();
         }
     }

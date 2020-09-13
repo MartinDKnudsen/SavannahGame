@@ -8,7 +8,7 @@
             this.Weight = 250;
             this.Gender = gender;
             ID = counter;
-            typeOfAnimal = "Lion";
+            AnimalType = "Lion";
             WeightLoss = 10;
         }
 
@@ -37,8 +37,10 @@
 
         public override string ToString()
         {
-            return $"Lion";
+            return "Lion";
         }
+
+
     }
 }
 

@@ -3,14 +3,13 @@
     public class Rabbit : Animal
     {
 
-        public int Counter { get; set; }
 
         public Rabbit(string gender, int counter)
         {
             this.Weight = 20;
             this.Gender = gender;
             ID = counter;
-            typeOfAnimal = "Rabbit";
+            AnimalType = "Rabbit";
             WeightLoss = 2;
         }
 
@@ -19,16 +18,13 @@
             Weight = Weight + 20;
         }
 
-
         public override void Move()
         {
             this.Weight -= WeightLoss;
-
         }
 
         public override void Mate(int NumberOfCubs)
         {
-
 
         }
 
@@ -36,5 +32,6 @@
         {
             return "Rabbit";
         }
+
     }
 }

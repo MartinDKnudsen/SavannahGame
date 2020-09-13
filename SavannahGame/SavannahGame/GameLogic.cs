@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Threading;
-using System.Xml.Schema;
 
 namespace SavannahGame
 {
@@ -30,7 +27,10 @@ namespace SavannahGame
                     r1 = RandomRoll.AnimalRandomPlacement();
 
                 }
+
+
                 territories[r][r1].animal = animal;
+
             }
         }
 
@@ -70,11 +70,11 @@ namespace SavannahGame
         // Add a field to all fields, and generate random number of greenfields
         public void AddFields()
         {
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i <= 20; i++)
             {
                 territories.Add(new List<Field>());
 
-                for (int j = 0; j < 20; j++)
+                for (int j = 0; j <= 20; j++)
                 {
                     int greenfield = RandomRoll.Greenfield();
                     if (greenfield < 5)
@@ -155,21 +155,46 @@ namespace SavannahGame
             return TheField;
         }
 
+        public List<Field> Test(Animal animal)
+        {
+            List<Field> fieldWithRabbits = new List<Field>();
+
+            var k = CheckValidMoves(animal);
+            foreach (var Animal in k)
+            {
+                if (Animal.animal is Rabbit)
+                {
+                    fieldWithRabbits.Add(Animal);
+
+                }
+            }
+            return fieldWithRabbits;
+        }
+
 
 
         public void AnimalMovement(Animal animal)
         {
-            
+
             var x = SelectAnimalOnTerritorie(animal);
-            var TempSaved = animal;
+            var tempSaved = animal;
             animal.Move();
             var savedAnimal = x.animal;
-            var newRandomPos =  SelectetMove(savedAnimal);
+            var newRandomPos = SelectetMove(savedAnimal);
 
-            territories.SelectMany(c => c).Select(c => c).First(c => c.animal == TempSaved).animal = null;
+            territories.SelectMany(c => c).Select(c => c).First(c => c.animal == tempSaved).animal = null;
             territories[newRandomPos.Item1][newRandomPos.Item2].animal = savedAnimal;
+            Dead(animal);
         }
 
+        public void Dead(Animal animal)
+        {
+            if (animal.Weight < 0)
+            {
+                RemoveAnimal(animal);
+            }
+
+        }
         public void PrintAllAnimals()
         {
             if (AllAnimals.Count != 0)
@@ -178,14 +203,14 @@ namespace SavannahGame
                 var list2 = AllAnimals.Where(c => c is Rabbit);
                 foreach (var item in list)
                 {
-                    Console.WriteLine($"Id of animal: {item.ID} -- Gender: {item.Gender} -- is Type: {item.typeOfAnimal}");
+                    Console.WriteLine($"Id of animal: {item.ID} -- Gender: {item.Gender} -- is Type: {item.AnimalType}");
 
                 }
                 Console.WriteLine("_________________________");
 
                 foreach (var item in list2)
                 {
-                    Console.WriteLine($"Id of animal: {item.ID} -- Gender: {item.Gender} -- Type: {item.typeOfAnimal}");
+                    Console.WriteLine($"Id of animal: {item.ID} -- Gender: {item.Gender} -- Type: {item.AnimalType}");
                 }
 
                 Console.WriteLine("_________________________");
@@ -197,7 +222,7 @@ namespace SavannahGame
         }
 
         //Add Cubs to the animal list
-        public void NewCubs(bool rabbit, int NumberOfNewRabbits = 4, int NumberOfNewLions = 1)
+        public void NewCubs(bool rabbit, int NumberOfNewRabbits = 1, int NumberOfNewLions = 1)
         {
             if (rabbit)
             {
@@ -216,20 +241,19 @@ namespace SavannahGame
                     NumberOfNewLions--;
                 }
             }
-            //Placement();
+            Placement();
         }
 
         public List<Field> CheckValidMoves(Animal animal)
         {
-            
+
             var validFields = new List<Field>();
 
-            //Start XY
             var tempInt = XandY(territories.SelectMany(c => c).Select(c => c).First(c => c.animal == animal));
 
             var itemOne = tempInt.Item1;
             var itemTwo = tempInt.Item2;
-            
+
 
             if (itemTwo != 0 && territories[itemOne][itemTwo - 1] != null)
             {
@@ -251,12 +275,12 @@ namespace SavannahGame
                 validFields.Add(territories[itemOne][itemTwo + 1]);
             }
 
-            if (itemOne < 18 && itemTwo < 18  && (territories[itemOne + 1][itemTwo + 1] != null))
+            if (itemOne < 18 && itemTwo < 18 && (territories[itemOne + 1][itemTwo + 1] != null))
             {
                 validFields.Add(territories[itemOne + 1][itemTwo + 1]);
             }
 
-            if (itemTwo != 0 && (itemOne != 0 && (territories[itemOne - 1][itemTwo - 1] != null ? true : false)))
+            if (itemTwo != 0 && (itemOne != 0 && (territories[itemOne - 1][itemTwo - 1] != null)))
             {
                 validFields.Add(territories[itemOne - 1][itemTwo - 1]);
             }
@@ -271,7 +295,13 @@ namespace SavannahGame
                 validFields.Add(territories[itemOne - 1][itemTwo + 1]);
             }
 
+
             return validFields;
+        }
+
+        public List<Field> ValiMovesForRabbits()
+        {
+            return default;
         }
 
         public (int, int) XandY(Field field)
@@ -290,26 +320,35 @@ namespace SavannahGame
         //Prints all field with animals and their cordinates
         public void PrintFelter()
         {
-            while (true)
+
+
+            while (AllAnimals.Count != 0)
             {
+
                 foreach (var VARIABLE in territories.SelectMany(s => s).Where(s => s.animal != null))
                 {
-                      // Thread.Sleep(500);
+                    // Thread.Sleep(500);
                     Console.WriteLine($"{VARIABLE.animal.ID} {VARIABLE.animal} stands on {XandY(VARIABLE)} weigth {VARIABLE.animal.Weight}");
+
                 }
 
                 foreach (var dyr in territories.SelectMany(s => s).Where(s => s.animal != null).Select(s => s.animal))
                 {
+                    Dead(dyr);
                     AnimalMovement(dyr);
+
                 }
 
+                NewCubs(false);
                 foreach (var VARIABLE in territories.SelectMany(s => s).Where(s => s.animal != null))
                 {
                     Console.WriteLine("---------------NEW POS---------------");
-                    Thread.Sleep(1000);
+                    //    Thread.Sleep(200);
                     Console.WriteLine($"{VARIABLE.animal.ID} {VARIABLE.animal} stands on {XandY(VARIABLE)} weigth {VARIABLE.animal.Weight}");
+
                 }
-            }  
+            }
         }
     }
 }
+

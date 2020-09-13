@@ -264,7 +264,6 @@ namespace SavannahGame
             var itemTwo = tempInt.Item2;
 
             List<(int, int)> addList = new List<(int, int)>();
-            var d = 1;
             #region !=0
             if (itemOne != 0)
                 addList.Add((itemOne - 1, itemTwo));

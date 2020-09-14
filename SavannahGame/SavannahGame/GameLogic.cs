@@ -11,7 +11,7 @@ namespace SavannahGame
         public List<List<Field>> territories = new List<List<Field>>();
         public List<Animal> AllAnimals = new List<Animal>();
 
-        //Placement of animals to random fields 
+        //Placement of animals to random fields - make private
         public void Placement()
         {
             // Flatter min liste og tjekker hvilke dyr der ikke er på felt    
@@ -35,6 +35,15 @@ namespace SavannahGame
             }
         }
 
+        public void StartGame(int aLions, int aRabbits)
+        {
+            //Code to start everything
+
+            AddAnimal(aLions, aRabbits);
+            AddFields();
+            Placement();
+
+        }
         //Count all animals on the Savannah
         public int CountAnimals()
         {
@@ -122,14 +131,14 @@ namespace SavannahGame
         }
 
         //Create a FlatList of animals on territories
-        public List<Animal> FlatList()
+        private List<Animal> FlatList()
         {
             var flattenList = territories.SelectMany(c => c).Where(a => AllAnimals.Contains(a.animal)).Select(x => x.animal).ToList();
             return flattenList;
         }
 
         //Remove specific animal
-        public void RemoveAnimal(Animal animal)
+        private void RemoveAnimal(Animal animal)
         {
             var tt = territories.SelectMany(c => c).Select(c => c).First(c => c.animal == animal);
             var cAnimal = tt.animal;
@@ -140,13 +149,24 @@ namespace SavannahGame
 
         private (int, int) SelectetMove(Animal animal)
         {
+            if (animal is Lion)
+            {
+                var validFields = ValidMovesForLions(animal);
+                var randomfield = RandomRoll.RField(validFields);
+                var selectedRamdomFeld = validFields[randomfield];
+                var posOfRField = XandY(selectedRamdomFeld);
+                return posOfRField;
+            }
+            else if (animal is Rabbit)
+            {
+                var validFields = ValidMovesForRabbits(animal);
+                var randomfield = RandomRoll.RField(validFields);
+                var selectedRamdomFeld = validFields[randomfield];
+                var posOfRField = XandY(selectedRamdomFeld);
+                return posOfRField;
+            }
 
-            var validFields = CheckValidMoves(animal);
-            var randomfield = RandomRoll.RField(validFields);
-            var selectedRamdomFeld = validFields[randomfield];
-            var posOfRField = XandY(selectedRamdomFeld);
-
-            return posOfRField;
+            return default;
         }
 
         public Field SelectAnimalOnTerritorie(Animal animal)
@@ -274,8 +294,7 @@ namespace SavannahGame
             Placement();
         }
 
-
-        private List<Field> CheckValidMoves(Animal animal)
+        private List<Field> ValidMovesForLions(Animal animal)
         {
 
             var validFields = new List<Field>();
@@ -312,9 +331,40 @@ namespace SavannahGame
 
         }
 
-        public List<Field> ValiMovesForRabbits()
+        private List<Field> ValidMovesForRabbits(Animal animal)
         {
-            return default;
+            // (-2, 0), (-2, 2), (-2, -2), (0, -2), (0, 2), (2, -2), (2, 0), (2, 2)
+            var validFields = new List<Field>();
+
+            var tempInt = XandY(territories.SelectMany(c => c).Select(c => c).First(c => c.animal == animal));
+
+            var itemOne = tempInt.Item1;
+            var itemTwo = tempInt.Item2;
+
+            List<(int, int)> addList = new List<(int, int)>();
+            #region !=0
+            if (itemOne > 2)
+                addList.Add((itemOne - 2, itemTwo));
+            if (itemTwo > 2)
+                addList.Add((itemOne, itemTwo - 2));
+            #endregion
+            #region <18
+            if (itemOne < 17)
+                addList.Add((itemOne + 2, itemTwo));
+            if (itemTwo < 17)
+                addList.Add((itemOne, itemTwo + 2));
+            #endregion
+            #region twoField
+            addList.Add((itemOne > 3 ? itemOne - 2 : itemOne, itemTwo > 3 ? itemTwo - 2 : itemTwo));
+            addList.Add((itemOne < 18 ? itemOne + 2 : itemOne, itemTwo < 18 ? itemTwo + 2 : itemTwo));
+            #endregion
+            addList.ForEach(a =>
+            {
+                if (territories[a.Item1][a.Item2] != null)
+                    validFields.Add(territories[a.Item1][a.Item2]);
+            });
+
+            return validFields;
         }
 
         private (int, int) XandY(Field field)

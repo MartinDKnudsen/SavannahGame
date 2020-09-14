@@ -18,8 +18,6 @@
             Counter++;
 
         }
-        //  public Animal animal { get; set; } = new Lion();
-       
 
 
     }

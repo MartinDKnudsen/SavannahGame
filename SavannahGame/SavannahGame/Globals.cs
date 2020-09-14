@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace SavannahGame
 {
-    class Savannah
+    class Globals
     {
-        // Start the game here 
-        GameLogic GL = new GameLogic();
-        //Methods for game
+
+        //Add global att
+        //Maybe RandomRolls? 
 
     }
 }

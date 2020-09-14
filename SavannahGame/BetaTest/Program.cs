@@ -12,7 +12,6 @@ namespace BetaTest
 
             var m = new GameLogic();
             m.AddFields();
-
             m.AddAnimal(20, 10);
             m.Placement();
             //m.NewCubs(true);

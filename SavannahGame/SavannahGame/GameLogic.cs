@@ -138,7 +138,7 @@ namespace SavannahGame
 
         }
 
-        public (int, int) SelectetMove(Animal animal)
+        private (int, int) SelectetMove(Animal animal)
         {
 
             var validFields = CheckValidMoves(animal);
@@ -155,7 +155,7 @@ namespace SavannahGame
             return TheField;
         }
 
-        public void AnimalMovement(Animal animal)
+        private void AnimalMovement(Animal animal)
         {
 
             var x = SelectAnimalOnTerritorie(animal);
@@ -186,22 +186,44 @@ namespace SavannahGame
                 case Lion _ when fPos.animal is Lion && animal.Gender != fPos.animal.Gender:
                     NewCubs(false);
                     break;
-            }
-            territories.SelectMany(c => c).Select(c => c).First(c => c.animal == tempSaved).animal = null;
 
-            territories[randomPos.Item1][randomPos.Item2].animal = savedAnimal;
+            }
+            //Male Animals kill eachother of they land on same field 
+            if (fPos.animal != null && animal is Lion && animal.Gender == fPos.animal.Gender && fPos.animal is Lion)
+            {
+                var DeadLion = fPos.animal;
+                Console.WriteLine($"{fPos.animal.ID} IS DEAD and {savedAnimal.ID} gained {DeadLion.Weight} and is therefore FAT AF");
+                animal.Weight = +fPos.animal.Weight;
+                RemoveAnimal(DeadLion);
+                Thread.Sleep(100);
+            }
+            try
+            {
+                territories.SelectMany(c => c).Select(c => c).First(c => c.animal == savedAnimal).animal = null;
+
+                territories[randomPos.Item1][randomPos.Item2].animal = savedAnimal;
+
+            }
+            catch (Exception)
+            {
+                Console.WriteLine("No animal :( ");
+
+            }
 
             Dead(savedAnimal);
         }
 
-        public void Dead(Animal animal)
+        private void Dead(Animal animal)
         {
             if (animal.Weight < 0)
             {
                 RemoveAnimal(animal);
-                Console.WriteLine($"{animal} is dead... :(");
-            }
+                Console.WriteLine($"{animal} ({animal.ID}) is dead... :(");
+                Console.WriteLine(AllAnimals.Count());
+                //   Thread.Sleep(1000
 
+            }
+            GlobalWarming();
         }
         public void PrintAllAnimals()
         {
@@ -230,7 +252,7 @@ namespace SavannahGame
         }
 
         //Add Cubs to the animal list
-        public void NewCubs(bool rabbit, int NumberOfNewRabbits = 1, int NumberOfNewLions = 1)
+        private void NewCubs(bool rabbit, int NumberOfNewRabbits = 1, int NumberOfNewLions = 1)
         {
             if (rabbit)
             {
@@ -253,7 +275,7 @@ namespace SavannahGame
         }
 
 
-        public List<Field> CheckValidMoves(Animal animal)
+        private List<Field> CheckValidMoves(Animal animal)
         {
 
             var validFields = new List<Field>();
@@ -295,7 +317,7 @@ namespace SavannahGame
             return default;
         }
 
-        public (int, int) XandY(Field field)
+        private (int, int) XandY(Field field)
         {
             //Take a field and find the cordinates of it 
 
@@ -308,23 +330,42 @@ namespace SavannahGame
 
         }
 
+        private void GlobalWarming()
+        {
+            if (territories.SelectMany(c => c).Count(c => c.animal != null) >= 399)
+            {
+                Console.WriteLine("All animals are dying because of global warming ");
+                foreach (var item in territories.SelectMany(c => c))
+                {
+                    item.animal = null;
+
+                    // Thread.Sleep(200);
+                }
+                Console.WriteLine("ALL ANIMALS ARE DEAD GOOD FUCKING JOB IDIOTS");
+            }
+        }
+        private void NonSurvivers()
+        {
+            if (territories.SelectMany(c => c).Count(c => c.animal != null) < 1)
+            {
+                Console.WriteLine("All animals killed eachother :( ");
+            }
+
+        }
+
         //Prints all field with animals and their cordinates
         public void PrintFelter()
         {
 
-            while (AllAnimals.Count != 0)
+
+            while (territories.SelectMany(c => c).Count(c => c.animal != null) != 0)
             {
-
-                //foreach (var VARIABLE in territories.SelectMany(s => s).Where(s => s.animal != null))
-                //{
-                //    // Thread.Sleep(500);
-                //    Console.WriteLine($"{VARIABLE.animal.ID} {VARIABLE.animal} stands on {XandY(VARIABLE)} weigth {VARIABLE.animal.Weight}");
-
-                //}
+                GlobalWarming();
 
                 foreach (var dyr in territories.SelectMany(s => s).Where(s => s.animal != null).Select(s => s.animal))
                 {
                     Dead(dyr);
+
                     AnimalMovement(dyr);
                 }
 
@@ -332,15 +373,18 @@ namespace SavannahGame
                 foreach (var VARIABLE in territories.SelectMany(s => s).Where(s => s.animal != null))
                 {
                     Console.WriteLine("---------------NEW POS---------------");
-                    Thread.Sleep(500);
-                    Console.WriteLine($"{VARIABLE.animal.ID} {VARIABLE.animal} stands on {XandY(VARIABLE)} weigth {VARIABLE.animal.Weight}");
+                    //   Thread.Sleep(200);
+                    Console.WriteLine($"{VARIABLE.animal.ID} {VARIABLE.animal} stands on {XandY(VARIABLE)} weigth {VARIABLE.animal.Weight} and is {VARIABLE.animal.Gender}");
                     //if (VARIABLE.animal.Weight < 0)
                     //{
                     //    Console.WriteLine("DEAD BITCH");
                     //}
 
                 }
+
+                NonSurvivers();
             }
+
         }
     }
 }

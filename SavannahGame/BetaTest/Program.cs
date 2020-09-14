@@ -11,9 +11,10 @@ namespace BetaTest
         {
 
             var m = new GameLogic();
-            m.AddFields();
-            m.AddAnimal(20, 10);
-            m.Placement();
+            m.StartGame(20, 20);
+            //m.AddFields();
+            //m.AddAnimal(20, 10);
+            //m.Placement();
             //m.NewCubs(true);
             //m.RemoveAnimal(2);
             //var ekg = m.CountGreenField();

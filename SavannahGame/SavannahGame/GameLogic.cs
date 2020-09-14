@@ -191,6 +191,7 @@ namespace SavannahGame
                 //If rabbit move to greenfield, it eats
                 case Rabbit _ when fPos.GreenField:
                     animal.Eat();
+                    Console.WriteLine($"Rabbit {savedAnimal.ID} Ate some GRASS");
                     break;
                 //Rabbit Mate if a rabbit is on new pos, and the rabbit gender is different
                 case Rabbit _ when fPos.animal is Rabbit && animal.Gender != fPos.animal.Gender:
@@ -199,12 +200,15 @@ namespace SavannahGame
                 //If lion move to a field with a rabbit, it eats it.
                 case Lion _ when fPos.animal is Rabbit:
                     var soonToDieRabbit = fPos.animal;
+                    Console.WriteLine($"Lion number {savedAnimal.ID} eat Rabbit: {soonToDieRabbit.ID} and gained {soonToDieRabbit.Weight} more kg");
                     RemoveAnimal(soonToDieRabbit);
                     animal.Eat();
+                    Thread.Sleep(1000);
                     break;
                 //Lion Mate if a Lion is on new pos, and the Lion gender is different
                 case Lion _ when fPos.animal is Lion && animal.Gender != fPos.animal.Gender:
                     NewCubs(false);
+                    Console.WriteLine($"Lion: {savedAnimal.ID} ({savedAnimal.Gender}) and Lion {fPos.animal.ID} ({fPos.animal.Gender}) are now parents :D") ;
                     break;
 
             }
@@ -212,8 +216,9 @@ namespace SavannahGame
             if (fPos.animal != null && animal is Lion && animal.Gender == fPos.animal.Gender && fPos.animal is Lion)
             {
                 var DeadLion = fPos.animal;
-                Console.WriteLine($"{fPos.animal.ID} IS DEAD and {savedAnimal.ID} gained {DeadLion.Weight} and is therefore FAT AF");
-                animal.Weight = +fPos.animal.Weight;
+                var newWeigth = savedAnimal.Weight + DeadLion.Weight;
+                Console.WriteLine($"Lion: {fPos.animal.ID} IS DEAD because Lion: {savedAnimal.ID} landed on same field. {savedAnimal.ID} Gained {DeadLion.Weight}, and now weigths {newWeigth}");
+               
                 RemoveAnimal(DeadLion);
                 Thread.Sleep(100);
             }
@@ -322,8 +327,8 @@ namespace SavannahGame
 
             List<(int, int)> addList = new List<(int, int)>();
             #region !=0
-            if (animal is Lion && itemOne != 0 || animal is Rabbit && itemOne > 2)
-                addList.Add((itemOne - c, itemTwo));
+            if (animal is Lion && itemOne != 0)
+                addList.Add((itemOne - 1, itemTwo));
             if (itemTwo != a)
                 addList.Add((itemOne, itemTwo - 1));
             #endregion

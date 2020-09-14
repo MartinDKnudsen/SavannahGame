@@ -12,9 +12,12 @@
             WeightLoss = 10;
         }
 
+        
+
         public override void Eat()
         {
             Weight += 20;
+
         }
 
         public override void Move()

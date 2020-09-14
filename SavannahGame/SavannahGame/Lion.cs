@@ -25,7 +25,6 @@
             this.Weight -= WeightLoss;
         }
 
-
         public override string ToString()
         {
             return "Lion";

@@ -15,7 +15,7 @@
 
         public override void Eat()
         {
-            Weight += 2;
+            Weight += 4;
         }
         public override void Move()
         {
@@ -26,6 +26,7 @@
         {
             return "Rabbit";
         }
+
 
     }
 }

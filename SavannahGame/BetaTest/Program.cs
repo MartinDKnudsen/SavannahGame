@@ -11,7 +11,8 @@ namespace BetaTest
         {
 
             var m = new GameLogic();
-            m.StartGame(20, 20);
+            m.StartGame(10, 100);
+            m.PrintFelter();
             //m.AddFields();
             //m.AddAnimal(20, 10);
             //m.Placement();
@@ -115,7 +116,7 @@ namespace BetaTest
 
             //Console.WriteLine();
             //m.PrintAllAnimals();
-             m.PrintFelter();
+
             Console.ReadLine();
         }
     }

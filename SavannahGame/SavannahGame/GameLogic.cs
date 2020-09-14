@@ -297,18 +297,34 @@ namespace SavannahGame
         private List<Field> ValidMovesForLions(Animal animal)
         {
 
+            //FINSIH THIS SHIT 
+            int a = 0, b= 0, c= 0;
+      
+            if (animal is Lion)
+            {
+                a = 0;
+                b = 20;
+                c = 1;
+            }
+            else if (animal is Rabbit)
+            {
+                a = 2;
+                b = 18;
+                c = 2;
+            }
             var validFields = new List<Field>();
 
-            var tempInt = XandY(territories.SelectMany(c => c).Select(c => c).First(c => c.animal == animal));
+            var tempInt = XandY(territories.SelectMany(s => s).Select(s => s).First(s => s.animal == animal));
 
             var itemOne = tempInt.Item1;
             var itemTwo = tempInt.Item2;
+          
 
             List<(int, int)> addList = new List<(int, int)>();
             #region !=0
-            if (itemOne != 0)
-                addList.Add((itemOne - 1, itemTwo));
-            if (itemTwo != 0)
+            if (animal is Lion && itemOne != 0 || animal is Rabbit && itemOne > 2)
+                addList.Add((itemOne - c, itemTwo));
+            if (itemTwo != a)
                 addList.Add((itemOne, itemTwo - 1));
             #endregion
             #region <18
@@ -321,10 +337,10 @@ namespace SavannahGame
             addList.Add((itemOne != 0 ? itemOne - 1 : itemOne, itemTwo != 0 ? itemTwo - 1 : itemTwo));
             addList.Add((itemOne < 20 ? itemOne + 1 : itemOne, itemTwo < 20 ? itemTwo + 1 : itemTwo));
             #endregion
-            addList.ForEach(a =>
+            addList.ForEach(d =>
             {
-                if (territories[a.Item1][a.Item2] != null)
-                    validFields.Add(territories[a.Item1][a.Item2]);
+                if (territories[d.Item1][d.Item2] != null)
+                    validFields.Add(territories[d.Item1][d.Item2]);
             });
 
             return validFields;
@@ -349,13 +365,13 @@ namespace SavannahGame
                 addList.Add((itemOne, itemTwo - 2));
             #endregion
             #region <18
-            if (itemOne < 17)
+            if (itemOne < 18)
                 addList.Add((itemOne + 2, itemTwo));
-            if (itemTwo < 17)
+            if (itemTwo < 18)
                 addList.Add((itemOne, itemTwo + 2));
             #endregion
             #region twoField
-            addList.Add((itemOne > 3 ? itemOne - 2 : itemOne, itemTwo > 3 ? itemTwo - 2 : itemTwo));
+            addList.Add((itemOne > 2 ? itemOne - 2 : itemOne, itemTwo > 2 ? itemTwo - 2 : itemTwo));
             addList.Add((itemOne < 18 ? itemOne + 2 : itemOne, itemTwo < 18 ? itemTwo + 2 : itemTwo));
             #endregion
             addList.ForEach(a =>

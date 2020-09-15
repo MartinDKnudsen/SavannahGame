@@ -10,13 +10,14 @@
             ID = counter;
             AnimalType = "Lion";
             WeightLoss = 10;
+            WeigthGain = 20;
         }
 
         
 
         public override void Eat()
         {
-            Weight += 20;
+            Weight += WeigthGain;
 
         }
 

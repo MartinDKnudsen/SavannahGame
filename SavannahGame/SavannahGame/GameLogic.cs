@@ -49,39 +49,6 @@ namespace SavannahGame
             Placement();
 
         }
-        //Count all animals on the Savannah
-
-        public int CountAnimals()
-        {
-            return territories.SelectMany(c => c).Count(c => c.animal != null);
-        }
-
-        //Count greenfields
-        public int CountGreenField()
-        {
-            return territories.SelectMany(e => e).Count(e => e.GreenField);
-        }
-
-        //Count number of fields
-        public int CountField()
-        {
-            //Tæller felter
-            return territories.SelectMany(f => f).Count();
-        }
-
-        //Count number of selected animal on territories
-        public int CountAllSpecAnimalOnTheTerritories<T>()
-        {
-            int SelectedAnimalsOnTheTerritories = territories.SelectMany(c => c).Count(c => c.animal is T);
-            return SelectedAnimalsOnTheTerritories;
-        }
-
-        // Count all animals in Animal List
-        public int CountAnimalsByType<T>()
-        {
-            var AnimalsOfType = AllAnimals.Count(c => c is T);
-            return AnimalsOfType;
-        }
 
         // Add a field to all fields, and generate random number of greenfields
         public void AddFields()
@@ -125,19 +92,8 @@ namespace SavannahGame
 
         }
 
-        //Show the weigth of all animals of a speficic type on the savannah
-        public double WeigthOfAllAnimalsOfAType<T>()
-        {
-
-            var XAnimalWeigth = FlatList().OrderByDescending(x => x.Weight).Where(c => c is T).ToList();
-
-            double total = XAnimalWeigth.Sum(item => item.Weight);
-            return total;
-
-        }
-
         //Create a FlatList of animals on territories
-        private List<Animal> FlatList()
+        public List<Animal> FlatList()
         {
             var flattenList = territories.SelectMany(c => c).Where(a => AllAnimals.Contains(a.animal)).Select(x => x.animal).ToList();
             return flattenList;
@@ -263,32 +219,7 @@ namespace SavannahGame
             NonSurvivers();
             
         }
-        public void PrintAllAnimals()
-        {
-            if (AllAnimals.Count != 0)
-            {
-                var list = AllAnimals.Where(c => c is Lion);
-                var list2 = AllAnimals.Where(c => c is Rabbit);
-                foreach (var item in list)
-                {
-                    Console.WriteLine($"Id of animal: {item.ID} -- Gender: {item.Gender} -- is Type: {item.AnimalType}");
-
-                }
-                Console.WriteLine("_________________________");
-
-                foreach (var item in list2)
-                {
-                    Console.WriteLine($"Id of animal: {item.ID} -- Gender: {item.Gender} -- Type: {item.AnimalType}");
-                }
-
-                Console.WriteLine("_________________________");
-            }
-            else
-            {
-                Console.WriteLine("All animals are dead");
-            }
-        }
-
+        
         //Add Cubs to the animal list
         private void NewCubs(Animal animal, bool rabbit, int NumberOfNewRabbits = 2, int NumberOfNewLions = 1)
         {

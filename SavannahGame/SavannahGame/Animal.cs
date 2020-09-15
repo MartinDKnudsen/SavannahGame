@@ -11,8 +11,7 @@ namespace SavannahGame
         public double WeightLoss { get; set; }
         public int ID { get; set; }
         public string AnimalType { get; set; }
-        public int CubCounter { get; set; }
-
+  
         public abstract void Eat();
 
         public abstract void Move();

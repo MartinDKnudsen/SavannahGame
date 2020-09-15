@@ -11,11 +11,12 @@
             ID = counter;
             AnimalType = "Rabbit";
             WeightLoss = 2;
+            WeigthGain = 4;
         }
 
         public override void Eat()
         {
-            Weight += 4;
+            Weight += WeigthGain;
         }
         public override void Move()
         {

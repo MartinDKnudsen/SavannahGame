@@ -47,6 +47,29 @@ namespace SavannahGame
             AddAnimal(aLions, aRabbits);
             AddFields();
             Placement();
+            GameRunning();
+        }
+        //Do the full game here 
+        public void GameRunning()
+        {
+            
+            while (territories.SelectMany(c => c).Count(c => c.animal != null) != 0)
+            {
+
+                NonSurvivers();
+                GlobalWarming();
+
+                foreach (var animal in territories.SelectMany(s => s).Where(s => s.animal != null).Select(s => s.animal))
+                {
+                    Dead(animal);
+                    AnimalMovement(animal);
+
+                }
+                foreach (var animal in territories.SelectMany(s => s).Where(s => s.animal != null))
+                {
+
+                }
+            }
 
         }
 
@@ -135,7 +158,6 @@ namespace SavannahGame
         {
 
             var x = SelectAnimalOnTerritorie(animal);
-            //var tempSaved = animal;
             animal.Move();
             var savedAnimal = x.animal;
             var randomPos = SelectetMove(savedAnimal);
@@ -177,7 +199,7 @@ namespace SavannahGame
                 var newWeigth = savedAnimal.Weight + DeadLion.Weight;
                 Console.WriteLine($"Lion: {fPos.animal.ID} IS DEAD because Lion: {savedAnimal.ID} landed on same field. {savedAnimal.ID} Gained {DeadLion.Weight}, and now weigths {newWeigth}");
                 RemoveAnimal(DeadLion);
-               // Thread.Sleep(100);
+                // Thread.Sleep(100);
             }
 
             if (fPos.animal != null && animal is Rabbit && animal.Gender == fPos.animal.Gender && fPos.animal is Rabbit)
@@ -186,7 +208,7 @@ namespace SavannahGame
                 Console.WriteLine($"Rabbit: {fPos.animal.ID} IS DEAD because Rabbit: {savedAnimal.ID} landed on same field. ");
 
                 RemoveAnimal(DeadRabbit);
-              //  Thread.Sleep(100);
+                //  Thread.Sleep(100);
 
             }
             try
@@ -199,8 +221,8 @@ namespace SavannahGame
             catch (Exception)
             {
                 Console.WriteLine();
-
             }
+
 
             Dead(savedAnimal);
         }
@@ -212,14 +234,11 @@ namespace SavannahGame
                 RemoveAnimal(animal);
                 Console.WriteLine($"{animal} ({animal.ID}) is dead... :(");
                 Console.WriteLine(AllAnimals.Count());
-                //   Thread.Sleep(1000
+                Thread.Sleep(1000);
 
             }
-
-            NonSurvivers();
-            
         }
-        
+
         //Add Cubs to the animal list
         private void NewCubs(Animal animal, bool rabbit, int NumberOfNewRabbits = 2, int NumberOfNewLions = 1)
         {
@@ -343,6 +362,7 @@ namespace SavannahGame
                 Console.WriteLine($"Lions killed {lionsRabbitKillsCounter} Rabbits");
             }
         }
+
         private void NonSurvivers()
         {
             if (territories.SelectMany(c => c).Count(c => c.animal != null) < 1)
@@ -357,7 +377,6 @@ namespace SavannahGame
         //Prints all field with animals and their cordinates
         public void PrintFelter()
         {
-
             while (territories.SelectMany(c => c).Count(c => c.animal != null) != 0)
             {
                 GlobalWarming();
@@ -374,7 +393,6 @@ namespace SavannahGame
                     Console.WriteLine("---------------NEW POS---------------");
                     //   Thread.Sleep(200);
                     Console.WriteLine($"{animal.animal.ID} {animal.animal} stands on {XandY(animal)} weigth {animal.animal.Weight} and is {animal.animal.Gender}");
-                  
 
                 }
             }

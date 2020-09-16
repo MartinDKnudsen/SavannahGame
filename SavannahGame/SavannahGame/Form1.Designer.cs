@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.StartButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
@@ -55,13 +56,23 @@
             this.label5 = new System.Windows.Forms.Label();
             this.textBox10 = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.textBox11 = new System.Windows.Forms.TextBox();
-            this.textBox12 = new System.Windows.Forms.TextBox();
+            this.textBoxNumberOfRabbits = new System.Windows.Forms.TextBox();
+            this.textBoxNumberOfLions = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
+            this.TopPanelForMovement = new System.Windows.Forms.Panel();
+            this.MiniMaiseButton = new System.Windows.Forms.PictureBox();
+            this.CloseButton = new System.Windows.Forms.PictureBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.panel4 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.TopPanelForMovement.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.MiniMaiseButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CloseButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -89,7 +100,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 21F));
             this.tableLayoutPanel1.Location = new System.Drawing.Point(25, 60);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 20;
@@ -126,6 +137,7 @@
             this.StartButton.TabIndex = 2;
             this.StartButton.Text = "Start";
             this.StartButton.UseVisualStyleBackColor = true;
+            this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
             // 
             // button1
             // 
@@ -241,6 +253,7 @@
             // 
             this.textBox5.Location = new System.Drawing.Point(484, 348);
             this.textBox5.Name = "textBox5";
+            this.textBox5.ReadOnly = true;
             this.textBox5.Size = new System.Drawing.Size(100, 20);
             this.textBox5.TabIndex = 27;
             // 
@@ -349,19 +362,21 @@
             this.label7.TabIndex = 33;
             this.label7.Text = "How many animals should start on the Savannah?";
             // 
-            // textBox11
+            // textBoxNumberOfRabbits
             // 
-            this.textBox11.Location = new System.Drawing.Point(80, 529);
-            this.textBox11.Name = "textBox11";
-            this.textBox11.Size = new System.Drawing.Size(100, 20);
-            this.textBox11.TabIndex = 34;
+            this.textBoxNumberOfRabbits.Location = new System.Drawing.Point(80, 529);
+            this.textBoxNumberOfRabbits.Name = "textBoxNumberOfRabbits";
+            this.textBoxNumberOfRabbits.Size = new System.Drawing.Size(100, 20);
+            this.textBoxNumberOfRabbits.TabIndex = 34;
+            this.textBoxNumberOfRabbits.TextChanged += new System.EventHandler(this.textBoxNumberOfRabbits_TextChanged);
             // 
-            // textBox12
+            // textBoxNumberOfLions
             // 
-            this.textBox12.Location = new System.Drawing.Point(236, 529);
-            this.textBox12.Name = "textBox12";
-            this.textBox12.Size = new System.Drawing.Size(100, 20);
-            this.textBox12.TabIndex = 35;
+            this.textBoxNumberOfLions.Location = new System.Drawing.Point(236, 529);
+            this.textBoxNumberOfLions.Name = "textBoxNumberOfLions";
+            this.textBoxNumberOfLions.Size = new System.Drawing.Size(100, 20);
+            this.textBoxNumberOfLions.TabIndex = 35;
+            this.textBoxNumberOfLions.TextChanged += new System.EventHandler(this.textBoxNumberOfLions_TextChanged);
             // 
             // label6
             // 
@@ -394,6 +409,67 @@
             this.button3.Text = "Show previous simulated games";
             this.button3.UseVisualStyleBackColor = true;
             // 
+            // TopPanelForMovement
+            // 
+            this.TopPanelForMovement.BackColor = System.Drawing.Color.LightCyan;
+            this.TopPanelForMovement.Controls.Add(this.MiniMaiseButton);
+            this.TopPanelForMovement.Controls.Add(this.CloseButton);
+            this.TopPanelForMovement.Dock = System.Windows.Forms.DockStyle.Top;
+            this.TopPanelForMovement.Location = new System.Drawing.Point(0, 0);
+            this.TopPanelForMovement.Name = "TopPanelForMovement";
+            this.TopPanelForMovement.Size = new System.Drawing.Size(731, 32);
+            this.TopPanelForMovement.TabIndex = 41;
+            this.TopPanelForMovement.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TopPanelForMovement_MouseDown);
+            // 
+            // MiniMaiseButton
+            // 
+            this.MiniMaiseButton.BackColor = System.Drawing.Color.Black;
+            this.MiniMaiseButton.Image = global::SavannahGame.Properties.Resources.icons8_minimize_window_24px;
+            this.MiniMaiseButton.Location = new System.Drawing.Point(608, 6);
+            this.MiniMaiseButton.Name = "MiniMaiseButton";
+            this.MiniMaiseButton.Size = new System.Drawing.Size(25, 23);
+            this.MiniMaiseButton.TabIndex = 45;
+            this.MiniMaiseButton.TabStop = false;
+            this.MiniMaiseButton.Click += new System.EventHandler(this.MiniMaiseButton_Click);
+            // 
+            // CloseButton
+            // 
+            this.CloseButton.BackColor = System.Drawing.Color.Black;
+            this.CloseButton.Image = global::SavannahGame.Properties.Resources.icons8_close_window_26px;
+            this.CloseButton.Location = new System.Drawing.Point(639, 6);
+            this.CloseButton.Name = "CloseButton";
+            this.CloseButton.Size = new System.Drawing.Size(25, 23);
+            this.CloseButton.TabIndex = 45;
+            this.CloseButton.TabStop = false;
+            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
+            // 
+            // panel2
+            // 
+            this.panel2.BackColor = System.Drawing.Color.LightCyan;
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel2.Location = new System.Drawing.Point(0, 796);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(731, 11);
+            this.panel2.TabIndex = 42;
+            // 
+            // panel3
+            // 
+            this.panel3.BackColor = System.Drawing.Color.LightCyan;
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Left;
+            this.panel3.Location = new System.Drawing.Point(0, 32);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(19, 764);
+            this.panel3.TabIndex = 43;
+            // 
+            // panel4
+            // 
+            this.panel4.BackColor = System.Drawing.Color.LightCyan;
+            this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel4.Location = new System.Drawing.Point(712, 32);
+            this.panel4.Name = "panel4";
+            this.panel4.Size = new System.Drawing.Size(19, 764);
+            this.panel4.TabIndex = 44;
+            // 
             // pictureBox2
             // 
             this.pictureBox2.Image = global::SavannahGame.Properties.Resources.icons8_lion_48px;
@@ -412,19 +488,34 @@
             this.pictureBox1.TabIndex = 39;
             this.pictureBox1.TabStop = false;
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(25, 679);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(228, 24);
+            this.label9.TabIndex = 45;
+            this.label9.Text = "End of simulation result";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(680, 658);
+            this.ClientSize = new System.Drawing.Size(731, 807);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.panel4);
+            this.Controls.Add(this.panel3);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.TopPanelForMovement);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button3);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label6);
-            this.Controls.Add(this.textBox12);
-            this.Controls.Add(this.textBox11);
+            this.Controls.Add(this.textBoxNumberOfLions);
+            this.Controls.Add(this.textBoxNumberOfRabbits);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.textBox10);
             this.Controls.Add(this.label5);
@@ -452,9 +543,14 @@
             this.Controls.Add(this.button1);
             this.Controls.Add(this.StartButton);
             this.Controls.Add(this.tableLayoutPanel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "Form1";
             this.Text = "Savannah Game";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.TopPanelForMovement.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.MiniMaiseButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.CloseButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
@@ -491,13 +587,20 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox textBox10;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.TextBox textBox11;
-        private System.Windows.Forms.TextBox textBox12;
+        private System.Windows.Forms.TextBox textBoxNumberOfRabbits;
+        private System.Windows.Forms.TextBox textBoxNumberOfLions;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.Panel TopPanelForMovement;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.Panel panel4;
+        private System.Windows.Forms.PictureBox CloseButton;
+        private System.Windows.Forms.PictureBox MiniMaiseButton;
+        private System.Windows.Forms.Label label9;
     }
 }
 

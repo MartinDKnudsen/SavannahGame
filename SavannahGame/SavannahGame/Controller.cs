@@ -1,18 +1,20 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SavannahGame
+﻿namespace SavannahGame
 {
-    class Controller
+    public class Controller
     {
-    
-        private void startSavannahGame()
+      public GameLogic Gl = new GameLogic();
+      public CountData Cd = new CountData();
+
+
+        public void StartSavannahGame(int rabbits, int lions)
         {
-            GameLogic GM = new GameLogic();
-            GM.StartGame(10,20);
+            Gl.StartGame(lions,rabbits);
+        }
+        
+
+        public void CountData()
+        {
+            
 
         }
         //Kobling mellem methoder og forms

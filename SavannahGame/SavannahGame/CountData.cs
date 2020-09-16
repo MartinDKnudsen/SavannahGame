@@ -1,45 +1,43 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SavannahGame
 {
-    class CountData
+    public class CountData
     {
-        GameLogic Gl = new GameLogic();
+        GameLogic gl = new GameLogic();
 
         //Count all animals on the Savannah
         public int CountAnimals()
         {
-            return Gl.territories.SelectMany(c => c).Count(c => c.animal != null);
+            return gl.territories.SelectMany(c => c).Count(c => c.animal != null);
         }
 
         //Count Greenfields
         public int CountGreenField()
         {
-            return Gl.territories.SelectMany(e => e).Count(e => e.GreenField);
+            return gl.territories.SelectMany(e => e).Count(e => e.GreenField);
         }
 
         //Count number of Fields
         public int CountField()
         {
             //Tæller felter
-            return Gl.territories.SelectMany(f => f).Count();
+            gl.AddFields();
+            return gl.territories.SelectMany(f => f).Count();
         }
 
         //Count number of selected animal on Territories
         public int CountAllSpecAnimalOnTheTerritories<T>()
         {
-            int SelectedAnimalsOnTheTerritories = Gl.territories.SelectMany(c => c).Count(c => c.animal is T);
+            int SelectedAnimalsOnTheTerritories = gl.territories.SelectMany(c => c).Count(c => c.animal is T);
             return SelectedAnimalsOnTheTerritories;
         }
 
         // Count all animals in Animal List
         public int CountAnimalsByType<T>()
         {
-            var AnimalsOfType = Gl.AllAnimals.Count(c => c is T);
+            var AnimalsOfType = gl.AllAnimals.Count(c => c is T);
             return AnimalsOfType;
         }
 
@@ -48,7 +46,7 @@ namespace SavannahGame
         public double WeigthOfAllAnimalsOfAType<T>()
         {
 
-            var XAnimalWeigth = Gl.FlatList().OrderByDescending(x => x.Weight).Where(c => c is T).ToList();
+            var XAnimalWeigth = gl.FlatList().OrderByDescending(x => x.Weight).Where(c => c is T).ToList();
 
             double total = XAnimalWeigth.Sum(item => item.Weight);
             return total;
@@ -58,10 +56,10 @@ namespace SavannahGame
         //Print all animals
         public void PrintAllAnimals()
         {
-            if (Gl.AllAnimals.Count != 0)
+            if (gl.AllAnimals.Count != 0)
             {
-                var list = Gl.AllAnimals.Where(c => c is Lion);
-                var list2 = Gl.AllAnimals.Where(c => c is Rabbit);
+                var list = gl.AllAnimals.Where(c => c is Lion);
+                var list2 = gl.AllAnimals.Where(c => c is Rabbit);
                 foreach (var item in list)
                 {
                     Console.WriteLine($"Id of animal: {item.ID} -- Gender: {item.Gender} -- is Type: {item.AnimalType}");

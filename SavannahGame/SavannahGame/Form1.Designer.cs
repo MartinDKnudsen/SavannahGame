@@ -42,7 +42,7 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.textBox2 = new System.Windows.Forms.TextBox();
             this.textBox3 = new System.Windows.Forms.TextBox();
-            this.textBox4 = new System.Windows.Forms.TextBox();
+            this.NumberOfLions = new System.Windows.Forms.TextBox();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox6 = new System.Windows.Forms.TextBox();
             this.textBox7 = new System.Windows.Forms.TextBox();
@@ -242,12 +242,13 @@
             this.textBox3.Size = new System.Drawing.Size(100, 20);
             this.textBox3.TabIndex = 18;
             // 
-            // textBox4
+            // NumberOfLions
             // 
-            this.textBox4.Location = new System.Drawing.Point(484, 90);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(100, 20);
-            this.textBox4.TabIndex = 19;
+            this.NumberOfLions.Location = new System.Drawing.Point(484, 90);
+            this.NumberOfLions.Name = "NumberOfLions";
+            this.NumberOfLions.Size = new System.Drawing.Size(100, 20);
+            this.NumberOfLions.TabIndex = 19;
+            this.NumberOfLions.TextChanged += new System.EventHandler(this.NumberOfLions_TextChanged);
             // 
             // textBox5
             // 
@@ -529,7 +530,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label4);
-            this.Controls.Add(this.textBox4);
+            this.Controls.Add(this.NumberOfLions);
             this.Controls.Add(this.textBox3);
             this.Controls.Add(this.textBox2);
             this.Controls.Add(this.textBox1);
@@ -573,7 +574,7 @@
         private System.Windows.Forms.TextBox textBox1;
         private System.Windows.Forms.TextBox textBox2;
         private System.Windows.Forms.TextBox textBox3;
-        private System.Windows.Forms.TextBox textBox4;
+        private System.Windows.Forms.TextBox NumberOfLions;
         private System.Windows.Forms.TextBox textBox5;
         private System.Windows.Forms.TextBox textBox6;
         private System.Windows.Forms.TextBox textBox7;

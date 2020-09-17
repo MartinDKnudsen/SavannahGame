@@ -7,6 +7,24 @@ namespace SavannahGame
 {
     public class GameLogic
     {
+        private static GameLogic gl = null;
+        private GameLogic()
+        {
+
+        }
+        public static GameLogic Getinstance()
+        {
+
+            if (gl == null)
+            {
+                gl = new GameLogic();
+            }
+
+            return gl;
+        }
+
+
+
         public int animalID { get; set; }
         public List<List<Field>> territories = new List<List<Field>>();
         public List<Animal> AllAnimals = new List<Animal>();
@@ -52,7 +70,7 @@ namespace SavannahGame
         //Do the full game here 
         public void GameRunning()
         {
-            
+
             while (territories.SelectMany(c => c).Count(c => c.animal != null) != 0)
             {
 
@@ -63,7 +81,7 @@ namespace SavannahGame
                 {
                     Dead(animal);
                     AnimalMovement(animal);
-                    Thread.Sleep(1500);
+                    //   Thread.Sleep(500);
                 }
             }
 
@@ -142,7 +160,7 @@ namespace SavannahGame
             var selectedRamdomFeld = validFields[randomfield];
             var posOfRField = XandY(selectedRamdomFeld);
             return posOfRField;
-        } 
+        }
 
         public Field SelectAnimalOnTerritorie(Animal animal)
         {

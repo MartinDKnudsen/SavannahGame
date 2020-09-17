@@ -62,5 +62,10 @@ namespace SavannahGame
         {
             NumberOfStartLions = Convert.ToInt16(textBoxNumberOfLions.Text);
         }
+
+        private void NumberOfLions_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

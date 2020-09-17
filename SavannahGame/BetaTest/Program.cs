@@ -12,7 +12,7 @@ namespace BetaTest
 
             var m = new GameLogic();
             m.StartGame(10, 100);
-            m.PrintFelter();
+           // m.PrintFelter();
             //m.AddFields();
             //m.AddAnimal(20, 10);
             //m.Placement();

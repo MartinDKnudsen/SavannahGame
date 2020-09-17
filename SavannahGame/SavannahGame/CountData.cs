@@ -23,7 +23,6 @@ namespace SavannahGame
         public int CountField()
         {
             //Tæller felter
-            gl.AddFields();
             return gl.territories.SelectMany(f => f).Count();
         }
 

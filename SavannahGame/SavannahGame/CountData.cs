@@ -5,6 +5,7 @@ namespace SavannahGame
 {
     public class CountData
     {
+
         private readonly GameLogic gl = new GameLogic();
 
         //Count all animals on the Savannah

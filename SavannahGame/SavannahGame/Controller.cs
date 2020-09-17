@@ -2,8 +2,8 @@
 {
     public class Controller
     {
-      public GameLogic Gl = new GameLogic();
-      public CountData Cd = new CountData();
+      private GameLogic Gl = new GameLogic();
+      private CountData Cd = new CountData();
 
 
         public void StartSavannahGame(int rabbits, int lions)
@@ -14,7 +14,7 @@
 
         public void CountData()
         {
-            
+           
 
         }
         //Kobling mellem methoder og forms

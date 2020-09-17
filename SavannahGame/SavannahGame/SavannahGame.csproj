@@ -84,7 +84,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Rabbit.cs" />
     <Compile Include="RandomRoll.cs" />
-    <Compile Include="Rhino.cs" />
     <Compile Include="Savannah.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>

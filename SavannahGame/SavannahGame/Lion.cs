@@ -11,9 +11,7 @@
             AnimalType = "Lion";
             WeightLoss = 10;
             WeigthGain = 20;
-        }
-
-        
+        }     
 
         public override void Eat()
         {

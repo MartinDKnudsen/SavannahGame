@@ -11,7 +11,7 @@ namespace SavannahGame
         //readonly = kan ikke ændre på den.
         private static readonly Random random = new Random();
 
-        public static string rRoll()
+        public static string genderRoll()
         {
             var mOrf = RandomNumber(1, 50);
 

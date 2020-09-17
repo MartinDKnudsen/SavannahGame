@@ -425,7 +425,7 @@
             // 
             this.MiniMaiseButton.BackColor = System.Drawing.Color.Black;
             this.MiniMaiseButton.Image = global::SavannahGame.Properties.Resources.icons8_minimize_window_24px;
-            this.MiniMaiseButton.Location = new System.Drawing.Point(608, 6);
+            this.MiniMaiseButton.Location = new System.Drawing.Point(663, 6);
             this.MiniMaiseButton.Name = "MiniMaiseButton";
             this.MiniMaiseButton.Size = new System.Drawing.Size(25, 23);
             this.MiniMaiseButton.TabIndex = 45;
@@ -436,7 +436,7 @@
             // 
             this.CloseButton.BackColor = System.Drawing.Color.Black;
             this.CloseButton.Image = global::SavannahGame.Properties.Resources.icons8_close_window_26px;
-            this.CloseButton.Location = new System.Drawing.Point(639, 6);
+            this.CloseButton.Location = new System.Drawing.Point(694, 6);
             this.CloseButton.Name = "CloseButton";
             this.CloseButton.Size = new System.Drawing.Size(25, 23);
             this.CloseButton.TabIndex = 45;

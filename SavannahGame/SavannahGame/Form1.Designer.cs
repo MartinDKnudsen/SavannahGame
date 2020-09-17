@@ -32,7 +32,7 @@
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.StartButton = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            this.PrintResultButton = new System.Windows.Forms.Button();
             this.LionsLabel = new System.Windows.Forms.Label();
             this.NumberOfLionCubs = new System.Windows.Forms.Label();
             this.TotalWeigthLionsLabel = new System.Windows.Forms.Label();
@@ -70,6 +70,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label9 = new System.Windows.Forms.Label();
+            this.stopButton = new System.Windows.Forms.Button();
             this.TopPanelForMovement.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MiniMaiseButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CloseButton)).BeginInit();
@@ -150,16 +151,16 @@
             this.button1.Text = "Save result";
             this.button1.UseVisualStyleBackColor = true;
             // 
-            // button2
+            // PrintResultButton
             // 
-            this.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(324, 562);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(112, 39);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Print result";
-            this.button2.UseVisualStyleBackColor = true;
+            this.PrintResultButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.PrintResultButton.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PrintResultButton.Location = new System.Drawing.Point(324, 562);
+            this.PrintResultButton.Name = "PrintResultButton";
+            this.PrintResultButton.Size = new System.Drawing.Size(112, 39);
+            this.PrintResultButton.TabIndex = 4;
+            this.PrintResultButton.Text = "Print result";
+            this.PrintResultButton.UseVisualStyleBackColor = true;
             // 
             // LionsLabel
             // 
@@ -248,7 +249,6 @@
             this.NumberOfLions.Name = "NumberOfLions";
             this.NumberOfLions.Size = new System.Drawing.Size(100, 20);
             this.NumberOfLions.TabIndex = 19;
-            this.NumberOfLions.TextChanged += new System.EventHandler(this.NumberOfLions_TextChanged);
             // 
             // textBox5
             // 
@@ -285,9 +285,9 @@
             this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(480, 324);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(173, 21);
+            this.label1.Size = new System.Drawing.Size(196, 21);
             this.label1.TabIndex = 23;
-            this.label1.Text = "Total number of Lions";
+            this.label1.Text = "Total number of Rabbits";
             // 
             // label2
             // 
@@ -499,12 +499,25 @@
             this.label9.TabIndex = 45;
             this.label9.Text = "End of simulation result";
             // 
+            // stopButton
+            // 
+            this.stopButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.stopButton.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.stopButton.Location = new System.Drawing.Point(25, 607);
+            this.stopButton.Name = "stopButton";
+            this.stopButton.Size = new System.Drawing.Size(112, 39);
+            this.stopButton.TabIndex = 47;
+            this.stopButton.Text = "Stop";
+            this.stopButton.UseVisualStyleBackColor = true;
+            this.stopButton.Click += new System.EventHandler(this.stopButton_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(731, 807);
+            this.Controls.Add(this.stopButton);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.panel4);
             this.Controls.Add(this.panel3);
@@ -540,7 +553,7 @@
             this.Controls.Add(this.TotalWeigthLionsLabel);
             this.Controls.Add(this.NumberOfLionCubs);
             this.Controls.Add(this.LionsLabel);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.PrintResultButton);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.StartButton);
             this.Controls.Add(this.tableLayoutPanel1);
@@ -564,7 +577,7 @@
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.Button StartButton;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button PrintResultButton;
         private System.Windows.Forms.Label LionsLabel;
         private System.Windows.Forms.Label NumberOfLionCubs;
         private System.Windows.Forms.Label TotalWeigthLionsLabel;
@@ -602,6 +615,7 @@
         private System.Windows.Forms.PictureBox CloseButton;
         private System.Windows.Forms.PictureBox MiniMaiseButton;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button stopButton;
     }
 }
 

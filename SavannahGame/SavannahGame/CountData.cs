@@ -6,7 +6,18 @@ namespace SavannahGame
     public class CountData
     {
 
-        private readonly GameLogic gl = new GameLogic();
+        private GameLogic gl = GameLogic.Getinstance();
+
+        private static CountData cD = null;
+
+        private CountData()
+        {
+            
+        }
+        public static CountData Getinstance()
+        {
+            return cD ?? (cD = new CountData());
+        }
 
         //Count all animals on the Savannah
         public int CountAnimals()

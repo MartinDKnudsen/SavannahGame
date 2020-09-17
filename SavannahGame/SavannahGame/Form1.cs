@@ -1,4 +1,7 @@
 ﻿using System;
+using System.ComponentModel;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace SavannahGame
@@ -22,11 +25,12 @@ namespace SavannahGame
         public Form1()
         {
             InitializeComponent();
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+          
         }
 
         private void TopPanelForMovement_MouseDown(object sender, MouseEventArgs e)
@@ -50,7 +54,18 @@ namespace SavannahGame
 
         private void StartButton_Click(object sender, EventArgs e)
         {
-            Ct.StartSavannahGame(NumberOfStartRabbits, NumberOfStartLions);
+
+            try
+            {
+                Task.Factory.StartNew(() => Ct.StartSavannahGame(NumberOfStartRabbits, NumberOfStartLions));
+            }
+            
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error");
+               
+            }
+
         }
 
         private void textBoxNumberOfRabbits_TextChanged(object sender, EventArgs e)
@@ -63,9 +78,11 @@ namespace SavannahGame
             NumberOfStartLions = Convert.ToInt16(textBoxNumberOfLions.Text);
         }
 
-        private void NumberOfLions_TextChanged(object sender, EventArgs e)
+        private void stopButton_Click(object sender, EventArgs e)
         {
+            NumberOfLions.Text = "Frank";
 
         }
+
     }
 }

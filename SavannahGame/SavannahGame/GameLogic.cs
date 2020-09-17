@@ -8,22 +8,15 @@ namespace SavannahGame
     public class GameLogic
     {
         private static GameLogic gl = null;
+   
         private GameLogic()
         {
 
         }
         public static GameLogic Getinstance()
         {
-
-            if (gl == null)
-            {
-                gl = new GameLogic();
-            }
-
-            return gl;
+            return gl ?? (gl = new GameLogic());
         }
-
-
 
         public int animalID { get; set; }
         public List<List<Field>> territories = new List<List<Field>>();
@@ -81,7 +74,9 @@ namespace SavannahGame
                 {
                     Dead(animal);
                     AnimalMovement(animal);
-                    //   Thread.Sleep(500);
+                //    CD.CountAnimals();
+                  //  Console.WriteLine(CD.CountAnimals());
+                    //  Thread.Sleep(500);
                 }
             }
 

@@ -9,7 +9,7 @@ namespace SavannahGame
     class Savannah
     {
         // Start the game here 
-        GameLogic GL = new GameLogic();
+       
         //Methods for game
 
     }

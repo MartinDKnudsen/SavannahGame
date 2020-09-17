@@ -10,7 +10,7 @@ namespace BetaTest
         static void Main(string[] args)
         {
 
-            var m = new GameLogic();
+            var m = GameLogic.Getinstance();
             m.StartGame(10, 100);
            // m.PrintFelter();
             //m.AddFields();

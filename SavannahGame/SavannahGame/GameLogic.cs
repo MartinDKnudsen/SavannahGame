@@ -8,7 +8,7 @@ namespace SavannahGame
     public class GameLogic
     {
         private static GameLogic gl = null;
-   
+
         private GameLogic()
         {
 
@@ -22,8 +22,11 @@ namespace SavannahGame
         public List<List<Field>> territories = new List<List<Field>>();
         public List<Animal> AllAnimals = new List<Animal>();
 
-        public int Cubcounter { get; set; }
+        public int totalCubCounter { get; set; }
+        public int rabbitCubCounter { get; set; }
+        public int lionCubCounter { get; set; }
         public int lionsRabbitKillsCounter { get; set; }
+        public int grassEaten { get; set; }
 
         //Placement of animals to random fields - make private
         public void Placement()
@@ -51,6 +54,31 @@ namespace SavannahGame
             }
         }
 
+        public int GrassEated()
+        {
+            return grassEaten;
+
+        }
+        public int numberOfNewLions()
+        {
+
+            return lionCubCounter;
+
+        }
+        public int numberOfNewrabbits()
+        {
+            return rabbitCubCounter;
+        }
+        public int NumberOfBornCubs()
+        {
+
+            return totalCubCounter;
+        }
+        public int RabbitsKilled()
+        {
+
+            return lionsRabbitKillsCounter;
+        }
         public void StartGame(int aLions, int aRabbits)
         {
             //Code to start everything
@@ -74,9 +102,9 @@ namespace SavannahGame
                 {
                     Dead(animal);
                     AnimalMovement(animal);
-                //    CD.CountAnimals();
-                  //  Console.WriteLine(CD.CountAnimals());
-                    //  Thread.Sleep(500);
+                    //    CD.CountAnimals();
+                    //  Console.WriteLine(CD.CountAnimals());
+                    Thread.Sleep(100);
                 }
             }
 
@@ -178,11 +206,14 @@ namespace SavannahGame
                 case Rabbit _ when fPos.GreenField:
                     animal.Eat();
                     Console.WriteLine($"Rabbit {savedAnimal.ID} Ate some GRASS and now weigths {savedAnimal.Weight}");
+                    grassEaten++;
                     break;
 
                 //Rabbit Mate if a rabbit is on new pos, and the rabbit gender is different
                 case Rabbit _ when fPos.animal is Rabbit && animal.Gender != fPos.animal.Gender:
                     NewCubs(animal, true);
+                    rabbitCubCounter += 2;
+                    totalCubCounter += 2;
                     Console.WriteLine($"Rabbit: {savedAnimal.ID} and Rabbbit {fPos.animal.ID} is now parents :D");
                     break;
 
@@ -198,6 +229,8 @@ namespace SavannahGame
                 //Lion Mate if a Lion is on new pos, and the Lion gender is different
                 case Lion _ when fPos.animal is Lion && animal.Gender != fPos.animal.Gender:
                     NewCubs(animal, false);
+                    lionCubCounter++;
+                    totalCubCounter++;
                     Console.WriteLine($"Lion: {savedAnimal.ID} ({savedAnimal.Gender}) and Lion {fPos.animal.ID} ({fPos.animal.Gender}) are now parents :D");
                     break;
             }
@@ -254,7 +287,6 @@ namespace SavannahGame
 
             if (rabbit)
             {
-                Cubcounter += 2;
                 while (NumberOfNewRabbits != 0)
                 {
                     AddAnimal(0, 1);
@@ -265,7 +297,7 @@ namespace SavannahGame
             }
             else if (rabbit == false)
             {
-                Cubcounter += 1;
+              
                 while (NumberOfNewLions != 0)
                 {
                     AddAnimal(1, 0);
@@ -367,7 +399,7 @@ namespace SavannahGame
                     item.animal = null;
                 }
                 Console.WriteLine("ALL ANIMALS ARE DEAD GOOD FUCKING JOB IDIOTS");
-                Console.WriteLine($"All in all {Cubcounter} babies where born");
+                Console.WriteLine($"All in all {totalCubCounter} babies where born");
                 Console.WriteLine($"Lions killed {lionsRabbitKillsCounter} Rabbits");
             }
         }
@@ -377,7 +409,7 @@ namespace SavannahGame
             if (territories.SelectMany(c => c).Count(c => c.animal != null) < 1)
             {
                 Console.WriteLine("All animals killed eachother :( ");
-                Console.WriteLine($"All in all {Cubcounter} babies where born");
+                Console.WriteLine($"All in all {totalCubCounter} babies where born");
                 Console.WriteLine($"Lions killed {lionsRabbitKillsCounter} Rabbits");
             }
 

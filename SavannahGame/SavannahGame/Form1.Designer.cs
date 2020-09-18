@@ -36,17 +36,17 @@
             this.LionsLabel = new System.Windows.Forms.Label();
             this.NumberOfLionCubs = new System.Windows.Forms.Label();
             this.TotalWeigthLionsLabel = new System.Windows.Forms.Label();
-            this.NumberAfDeadLions = new System.Windows.Forms.Label();
+            this.LabelForKilledRabbits = new System.Windows.Forms.Label();
             this.RabbitLabel = new System.Windows.Forms.Label();
             this.NumberOfLionsLabel = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBoxForNumberOfKilledRabbits = new System.Windows.Forms.TextBox();
+            this.textBoxNumberOfLionCubs = new System.Windows.Forms.TextBox();
+            this.LionsTotalWeigthTextBox = new System.Windows.Forms.TextBox();
             this.NumberOfLions = new System.Windows.Forms.TextBox();
-            this.textBox5 = new System.Windows.Forms.TextBox();
-            this.textBox6 = new System.Windows.Forms.TextBox();
-            this.textBox7 = new System.Windows.Forms.TextBox();
-            this.textBox8 = new System.Windows.Forms.TextBox();
+            this.TotalNumberOfRabbitsTextBox = new System.Windows.Forms.TextBox();
+            this.RabbitTotalWeigthTextBox = new System.Windows.Forms.TextBox();
+            this.textBoxNumberOfRabbitCubs = new System.Windows.Forms.TextBox();
+            this.grasseatenTextBox = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -71,6 +71,10 @@
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label9 = new System.Windows.Forms.Label();
             this.stopButton = new System.Windows.Forms.Button();
+            this.TotalCubsBornTextBox = new System.Windows.Forms.TextBox();
+            this.TCBL = new System.Windows.Forms.Label();
+            this.textBoxNumberOfGreenFields = new System.Windows.Forms.TextBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.TopPanelForMovement.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MiniMaiseButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CloseButton)).BeginInit();
@@ -192,15 +196,15 @@
             this.TotalWeigthLionsLabel.TabIndex = 8;
             this.TotalWeigthLionsLabel.Text = "Weight";
             // 
-            // NumberAfDeadLions
+            // LabelForKilledRabbits
             // 
-            this.NumberAfDeadLions.AutoSize = true;
-            this.NumberAfDeadLions.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NumberAfDeadLions.Location = new System.Drawing.Point(480, 210);
-            this.NumberAfDeadLions.Name = "NumberAfDeadLions";
-            this.NumberAfDeadLions.Size = new System.Drawing.Size(54, 21);
-            this.NumberAfDeadLions.TabIndex = 9;
-            this.NumberAfDeadLions.Text = "Dead";
+            this.LabelForKilledRabbits.AutoSize = true;
+            this.LabelForKilledRabbits.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.LabelForKilledRabbits.Location = new System.Drawing.Point(480, 210);
+            this.LabelForKilledRabbits.Name = "LabelForKilledRabbits";
+            this.LabelForKilledRabbits.Size = new System.Drawing.Size(207, 21);
+            this.LabelForKilledRabbits.TabIndex = 9;
+            this.LabelForKilledRabbits.Text = "Number of eaten Rabbits";
             // 
             // RabbitLabel
             // 
@@ -222,62 +226,69 @@
             this.NumberOfLionsLabel.TabIndex = 15;
             this.NumberOfLionsLabel.Text = "Total number of Lions";
             // 
-            // textBox1
+            // textBoxForNumberOfKilledRabbits
             // 
-            this.textBox1.Location = new System.Drawing.Point(484, 234);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(100, 20);
-            this.textBox1.TabIndex = 16;
+            this.textBoxForNumberOfKilledRabbits.Location = new System.Drawing.Point(484, 234);
+            this.textBoxForNumberOfKilledRabbits.Name = "textBoxForNumberOfKilledRabbits";
+            this.textBoxForNumberOfKilledRabbits.ReadOnly = true;
+            this.textBoxForNumberOfKilledRabbits.Size = new System.Drawing.Size(100, 20);
+            this.textBoxForNumberOfKilledRabbits.TabIndex = 16;
             // 
-            // textBox2
+            // textBoxNumberOfLionCubs
             // 
-            this.textBox2.Location = new System.Drawing.Point(484, 189);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(100, 20);
-            this.textBox2.TabIndex = 17;
+            this.textBoxNumberOfLionCubs.Location = new System.Drawing.Point(484, 189);
+            this.textBoxNumberOfLionCubs.Name = "textBoxNumberOfLionCubs";
+            this.textBoxNumberOfLionCubs.ReadOnly = true;
+            this.textBoxNumberOfLionCubs.Size = new System.Drawing.Size(100, 20);
+            this.textBoxNumberOfLionCubs.TabIndex = 17;
             // 
-            // textBox3
+            // LionsTotalWeigthTextBox
             // 
-            this.textBox3.Location = new System.Drawing.Point(484, 138);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(100, 20);
-            this.textBox3.TabIndex = 18;
+            this.LionsTotalWeigthTextBox.Location = new System.Drawing.Point(484, 138);
+            this.LionsTotalWeigthTextBox.Name = "LionsTotalWeigthTextBox";
+            this.LionsTotalWeigthTextBox.ReadOnly = true;
+            this.LionsTotalWeigthTextBox.Size = new System.Drawing.Size(100, 20);
+            this.LionsTotalWeigthTextBox.TabIndex = 18;
             // 
             // NumberOfLions
             // 
             this.NumberOfLions.Location = new System.Drawing.Point(484, 90);
             this.NumberOfLions.Name = "NumberOfLions";
+            this.NumberOfLions.ReadOnly = true;
             this.NumberOfLions.Size = new System.Drawing.Size(100, 20);
             this.NumberOfLions.TabIndex = 19;
             // 
-            // textBox5
+            // TotalNumberOfRabbitsTextBox
             // 
-            this.textBox5.Location = new System.Drawing.Point(484, 348);
-            this.textBox5.Name = "textBox5";
-            this.textBox5.ReadOnly = true;
-            this.textBox5.Size = new System.Drawing.Size(100, 20);
-            this.textBox5.TabIndex = 27;
+            this.TotalNumberOfRabbitsTextBox.Location = new System.Drawing.Point(484, 348);
+            this.TotalNumberOfRabbitsTextBox.Name = "TotalNumberOfRabbitsTextBox";
+            this.TotalNumberOfRabbitsTextBox.ReadOnly = true;
+            this.TotalNumberOfRabbitsTextBox.Size = new System.Drawing.Size(100, 20);
+            this.TotalNumberOfRabbitsTextBox.TabIndex = 27;
             // 
-            // textBox6
+            // RabbitTotalWeigthTextBox
             // 
-            this.textBox6.Location = new System.Drawing.Point(484, 396);
-            this.textBox6.Name = "textBox6";
-            this.textBox6.Size = new System.Drawing.Size(100, 20);
-            this.textBox6.TabIndex = 26;
+            this.RabbitTotalWeigthTextBox.Location = new System.Drawing.Point(484, 396);
+            this.RabbitTotalWeigthTextBox.Name = "RabbitTotalWeigthTextBox";
+            this.RabbitTotalWeigthTextBox.ReadOnly = true;
+            this.RabbitTotalWeigthTextBox.Size = new System.Drawing.Size(100, 20);
+            this.RabbitTotalWeigthTextBox.TabIndex = 26;
             // 
-            // textBox7
+            // textBoxNumberOfRabbitCubs
             // 
-            this.textBox7.Location = new System.Drawing.Point(484, 447);
-            this.textBox7.Name = "textBox7";
-            this.textBox7.Size = new System.Drawing.Size(100, 20);
-            this.textBox7.TabIndex = 25;
+            this.textBoxNumberOfRabbitCubs.Location = new System.Drawing.Point(484, 447);
+            this.textBoxNumberOfRabbitCubs.Name = "textBoxNumberOfRabbitCubs";
+            this.textBoxNumberOfRabbitCubs.ReadOnly = true;
+            this.textBoxNumberOfRabbitCubs.Size = new System.Drawing.Size(100, 20);
+            this.textBoxNumberOfRabbitCubs.TabIndex = 25;
             // 
-            // textBox8
+            // grasseatenTextBox
             // 
-            this.textBox8.Location = new System.Drawing.Point(484, 492);
-            this.textBox8.Name = "textBox8";
-            this.textBox8.Size = new System.Drawing.Size(100, 20);
-            this.textBox8.TabIndex = 24;
+            this.grasseatenTextBox.Location = new System.Drawing.Point(484, 492);
+            this.grasseatenTextBox.Name = "grasseatenTextBox";
+            this.grasseatenTextBox.ReadOnly = true;
+            this.grasseatenTextBox.Size = new System.Drawing.Size(100, 20);
+            this.grasseatenTextBox.TabIndex = 24;
             // 
             // label1
             // 
@@ -295,9 +306,9 @@
             this.label2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(480, 468);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(54, 21);
+            this.label2.Size = new System.Drawing.Size(104, 21);
             this.label2.TabIndex = 22;
-            this.label2.Text = "Dead";
+            this.label2.Text = "Grass eaten";
             // 
             // label3
             // 
@@ -323,7 +334,7 @@
             // 
             this.HunterLabel.AutoSize = true;
             this.HunterLabel.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HunterLabel.Location = new System.Drawing.Point(480, 526);
+            this.HunterLabel.Location = new System.Drawing.Point(480, 623);
             this.HunterLabel.Name = "HunterLabel";
             this.HunterLabel.Size = new System.Drawing.Size(184, 23);
             this.HunterLabel.TabIndex = 28;
@@ -331,8 +342,9 @@
             // 
             // textBox9
             // 
-            this.textBox9.Location = new System.Drawing.Point(485, 553);
+            this.textBox9.Location = new System.Drawing.Point(485, 650);
             this.textBox9.Name = "textBox9";
+            this.textBox9.ReadOnly = true;
             this.textBox9.Size = new System.Drawing.Size(100, 20);
             this.textBox9.TabIndex = 29;
             // 
@@ -340,7 +352,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(480, 580);
+            this.label5.Location = new System.Drawing.Point(480, 677);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(121, 21);
             this.label5.TabIndex = 30;
@@ -348,8 +360,9 @@
             // 
             // textBox10
             // 
-            this.textBox10.Location = new System.Drawing.Point(484, 604);
+            this.textBox10.Location = new System.Drawing.Point(484, 701);
             this.textBox10.Name = "textBox10";
+            this.textBox10.ReadOnly = true;
             this.textBox10.Size = new System.Drawing.Size(100, 20);
             this.textBox10.TabIndex = 31;
             // 
@@ -511,12 +524,50 @@
             this.stopButton.UseVisualStyleBackColor = true;
             this.stopButton.Click += new System.EventHandler(this.stopButton_Click);
             // 
+            // TotalCubsBornTextBox
+            // 
+            this.TotalCubsBornTextBox.Location = new System.Drawing.Point(25, 726);
+            this.TotalCubsBornTextBox.Name = "TotalCubsBornTextBox";
+            this.TotalCubsBornTextBox.Size = new System.Drawing.Size(100, 20);
+            this.TotalCubsBornTextBox.TabIndex = 48;
+            // 
+            // TCBL
+            // 
+            this.TCBL.AutoSize = true;
+            this.TCBL.Location = new System.Drawing.Point(26, 707);
+            this.TCBL.Name = "TCBL";
+            this.TCBL.Size = new System.Drawing.Size(81, 13);
+            this.TCBL.TabIndex = 49;
+            this.TCBL.Text = "Total cubs born";
+            // 
+            // textBoxNumberOfGreenFields
+            // 
+            this.textBoxNumberOfGreenFields.Location = new System.Drawing.Point(484, 541);
+            this.textBoxNumberOfGreenFields.Name = "textBoxNumberOfGreenFields";
+            this.textBoxNumberOfGreenFields.ReadOnly = true;
+            this.textBoxNumberOfGreenFields.Size = new System.Drawing.Size(100, 20);
+            this.textBoxNumberOfGreenFields.TabIndex = 50;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label10.Location = new System.Drawing.Point(480, 517);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(161, 21);
+            this.label10.TabIndex = 51;
+            this.label10.Text = "Total Grass on fields";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(731, 807);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.textBoxNumberOfGreenFields);
+            this.Controls.Add(this.TCBL);
+            this.Controls.Add(this.TotalCubsBornTextBox);
             this.Controls.Add(this.stopButton);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.panel4);
@@ -535,21 +586,21 @@
             this.Controls.Add(this.label5);
             this.Controls.Add(this.textBox9);
             this.Controls.Add(this.HunterLabel);
-            this.Controls.Add(this.textBox5);
-            this.Controls.Add(this.textBox6);
-            this.Controls.Add(this.textBox7);
-            this.Controls.Add(this.textBox8);
+            this.Controls.Add(this.TotalNumberOfRabbitsTextBox);
+            this.Controls.Add(this.RabbitTotalWeigthTextBox);
+            this.Controls.Add(this.textBoxNumberOfRabbitCubs);
+            this.Controls.Add(this.grasseatenTextBox);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.NumberOfLions);
-            this.Controls.Add(this.textBox3);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.LionsTotalWeigthTextBox);
+            this.Controls.Add(this.textBoxNumberOfLionCubs);
+            this.Controls.Add(this.textBoxForNumberOfKilledRabbits);
             this.Controls.Add(this.NumberOfLionsLabel);
             this.Controls.Add(this.RabbitLabel);
-            this.Controls.Add(this.NumberAfDeadLions);
+            this.Controls.Add(this.LabelForKilledRabbits);
             this.Controls.Add(this.TotalWeigthLionsLabel);
             this.Controls.Add(this.NumberOfLionCubs);
             this.Controls.Add(this.LionsLabel);
@@ -581,17 +632,17 @@
         private System.Windows.Forms.Label LionsLabel;
         private System.Windows.Forms.Label NumberOfLionCubs;
         private System.Windows.Forms.Label TotalWeigthLionsLabel;
-        private System.Windows.Forms.Label NumberAfDeadLions;
+        private System.Windows.Forms.Label LabelForKilledRabbits;
         private System.Windows.Forms.Label RabbitLabel;
         private System.Windows.Forms.Label NumberOfLionsLabel;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBoxForNumberOfKilledRabbits;
+        private System.Windows.Forms.TextBox textBoxNumberOfLionCubs;
+        private System.Windows.Forms.TextBox LionsTotalWeigthTextBox;
         private System.Windows.Forms.TextBox NumberOfLions;
-        private System.Windows.Forms.TextBox textBox5;
-        private System.Windows.Forms.TextBox textBox6;
-        private System.Windows.Forms.TextBox textBox7;
-        private System.Windows.Forms.TextBox textBox8;
+        private System.Windows.Forms.TextBox TotalNumberOfRabbitsTextBox;
+        private System.Windows.Forms.TextBox RabbitTotalWeigthTextBox;
+        private System.Windows.Forms.TextBox textBoxNumberOfRabbitCubs;
+        private System.Windows.Forms.TextBox grasseatenTextBox;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
@@ -616,6 +667,10 @@
         private System.Windows.Forms.PictureBox MiniMaiseButton;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button stopButton;
+        private System.Windows.Forms.TextBox TotalCubsBornTextBox;
+        private System.Windows.Forms.Label TCBL;
+        private System.Windows.Forms.TextBox textBoxNumberOfGreenFields;
+        private System.Windows.Forms.Label label10;
     }
 }
 

@@ -23,7 +23,11 @@ namespace SavannahGame
 
           return gl.AllAnimals.Count();
         }
+        public int lionsKilled()
+        {
 
+            return gl.lionKilled();
+        }
 
         public int CountRabbits()
         {

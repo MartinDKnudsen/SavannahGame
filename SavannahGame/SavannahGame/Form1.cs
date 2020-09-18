@@ -14,7 +14,6 @@ namespace SavannahGame
 
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
-        private bool StopGame = false;
 
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
@@ -39,7 +38,7 @@ namespace SavannahGame
         }
         private void time_Tick(object e, EventArgs ea)
         {
-            if (i < 1000)
+            if (i < 100000)
             {
                 NumberOfLions.Text = Ct.CountLions().ToString();
                 TotalNumberOfRabbitsTextBox.Text = Ct.CountRabbits().ToString();
@@ -51,6 +50,7 @@ namespace SavannahGame
                 textBoxNumberOfRabbitCubs.Text = Ct.rabbitCubs().ToString();
                 textBoxNumberOfLionCubs.Text = Ct.lionCubs().ToString();
                 textBoxNumberOfGreenFields.Text = Ct.countGreenField().ToString();
+                textBoxLionsThatKilledEachOther.Text = Ct.lionsKilled().ToString();
                 i++;
 
             }

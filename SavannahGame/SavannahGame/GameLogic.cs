@@ -21,10 +21,12 @@ namespace SavannahGame
         public int animalID { get; set; }
         public List<List<Field>> territories = new List<List<Field>>();
         public List<Animal> AllAnimals = new List<Animal>();
+        public List<Thread> threads = new List<Thread>();
 
         public int totalCubCounter { get; set; }
         public int rabbitCubCounter { get; set; }
         public int lionCubCounter { get; set; }
+        public int lionsKilled { get; set; }
         public int lionsRabbitKillsCounter { get; set; }
         public int grassEaten { get; set; }
 
@@ -53,6 +55,13 @@ namespace SavannahGame
 
             }
         }
+
+        public int lionKilled()
+        {
+
+            return lionsKilled;
+        }
+
 
         public int GrassEated()
         {
@@ -100,6 +109,14 @@ namespace SavannahGame
 
                 foreach (var animal in territories.SelectMany(s => s).Where(s => s.animal != null).Select(s => s.animal))
                 {
+                    var test = territories.SelectMany(s => s).Where(s => s.animal != null).Select(s => s.animal).Count();
+                    for (int i = 0; i < test; i++)
+                    {
+                        threads.Add(new Thread(() => newThreads(animal)));
+
+                    }
+                    
+                    
                     Dead(animal);
                     AnimalMovement(animal);
                     //    CD.CountAnimals();
@@ -107,9 +124,22 @@ namespace SavannahGame
                     Thread.Sleep(100);
                 }
             }
+        
 
         }
 
+
+        public void newThreads(Animal animal)
+        {
+
+            var test = territories.SelectMany(s => s).Where(s => s.animal != null).Select(s => s.animal).Count();
+
+            for (int i = 0; i < test; i++)
+            {
+                Thread.Yield();
+            }
+
+        }
         // Add a field to all fields, and generate random number of greenfields
         public void AddFields()
         {
@@ -135,7 +165,7 @@ namespace SavannahGame
         //Add selected number of animals, and roll their gender 
         public void AddAnimal(int numberOfLion, int numberOfRabbits)
         {
-            while (numberOfLion != 0)
+            ; while (numberOfLion != 0)
             {
 
                 AllAnimals.Add(new Lion(RandomRoll.genderRoll(), animalID));
@@ -241,6 +271,7 @@ namespace SavannahGame
                 var newWeigth = savedAnimal.Weight + DeadLion.Weight;
                 Console.WriteLine($"Lion: {fPos.animal.ID} IS DEAD because Lion: {savedAnimal.ID} landed on same field. {savedAnimal.ID} Gained {DeadLion.Weight}, and now weigths {newWeigth}");
                 RemoveAnimal(DeadLion);
+                lionsKilled++;
                 // Thread.Sleep(100);
             }
 
@@ -297,7 +328,7 @@ namespace SavannahGame
             }
             else if (rabbit == false)
             {
-              
+
                 while (NumberOfNewLions != 0)
                 {
                     AddAnimal(1, 0);

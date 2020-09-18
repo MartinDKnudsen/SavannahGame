@@ -56,11 +56,20 @@ namespace SavannahGame
         //Show the weigth of all animals of a specific type on the Tavannah
         public double WeigthOfAllAnimalsOfAType<T>()
         {
+            try
+            {
+                var XAnimalWeigth = gl.FlatList().OrderByDescending(x => x.Weight).Where(c => c is T).ToList();
+                double total = XAnimalWeigth.Sum(item => item.Weight);
+                return total;
+            }
+            catch (Exception)
+            {
 
-            var XAnimalWeigth = gl.FlatList().OrderByDescending(x => x.Weight).Where(c => c is T).ToList();
+                throw;
+            }
+           
 
-            double total = XAnimalWeigth.Sum(item => item.Weight);
-            return total;
+          
 
         }
 

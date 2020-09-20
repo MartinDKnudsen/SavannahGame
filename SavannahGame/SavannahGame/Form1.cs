@@ -29,7 +29,7 @@ namespace SavannahGame
             time = new Timer();
             time.Tick += time_Tick;
             time.Interval = 100;
-            //time.Start();
+          
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -54,9 +54,7 @@ namespace SavannahGame
                 i++;
 
             }
-
-
-
+            
         }
 
         private void TopPanelForMovement_MouseDown(object sender, MouseEventArgs e)
@@ -124,8 +122,8 @@ namespace SavannahGame
 
         private void stopButton_Click(object sender, EventArgs e)
         {
-
-
+            Application.Restart();
+            Environment.Exit(0);
         }
 
     }

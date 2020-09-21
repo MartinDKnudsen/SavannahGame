@@ -8,6 +8,6 @@ namespace Persistens
     {
 
         void SaveData(int totalCubs, int AnimalsKilled, int AnimalsKilledByHunter);
-
+        void GetData();
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace SavannahGame
+﻿using System.Threading;
+
+namespace SavannahGame
 {
     public class Rabbit : Animal
     {
@@ -27,7 +29,5 @@
         {
             return "Rabbit";
         }
-
-
     }
 }

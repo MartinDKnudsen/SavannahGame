@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Timer = System.Windows.Forms.Timer;
@@ -29,7 +30,7 @@ namespace SavannahGame
             time = new Timer();
             time.Tick += time_Tick;
             time.Interval = 100;
-          
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -51,10 +52,10 @@ namespace SavannahGame
                 textBoxNumberOfLionCubs.Text = Ct.lionCubs().ToString();
                 textBoxNumberOfGreenFields.Text = Ct.countGreenField().ToString();
                 textBoxLionsThatKilledEachOther.Text = Ct.lionsKilled().ToString();
+                textBoxHunterKillCount.Text = Ct.hunterKills().ToString();
+                textBoxTotalAnimals.Text = Ct.TotalAnimals().ToString();
                 i++;
-
             }
-            
         }
 
         private void TopPanelForMovement_MouseDown(object sender, MouseEventArgs e)
@@ -81,16 +82,21 @@ namespace SavannahGame
 
             try
             {
-                Task.Factory.StartNew(() => Ct.StartSavannahGame(NumberOfStartRabbits, NumberOfStartLions));
-                time.Start();
+                if ((NumberOfStartLions < 0 || NumberOfStartLions > 400) || (NumberOfStartRabbits < 0 || NumberOfStartRabbits > 400))
+                {
+                    MessageBox.Show("Cant run with input numbers, please try again");
+                }
+                else
+                {
+                    Task.Factory.StartNew(() => Ct.StartSavannahGame(NumberOfStartRabbits, NumberOfStartLions));
+                    time.Start();
+                }
             }
 
-            catch (Exception ex)
+            catch (Exception)
             {
                 MessageBox.Show("Error");
-
             }
-
         }
 
         private void textBoxNumberOfRabbits_TextChanged(object sender, EventArgs e)
@@ -98,20 +104,26 @@ namespace SavannahGame
             try
             {
                 NumberOfStartRabbits = Convert.ToInt16(textBoxNumberOfRabbits.Text);
+                if (NumberOfStartRabbits > 400 || NumberOfStartRabbits < 1)
+                {
+                    MessageBox.Show("Number have to be larger than 0, but lower than 400 total");
+                }
             }
             catch (Exception)
             {
 
                 MessageBox.Show("Invalid input");
             }
-
         }
-
         private void textBoxNumberOfLions_TextChanged(object sender, EventArgs e)
         {
             try
             {
                 NumberOfStartLions = Convert.ToInt16(textBoxNumberOfLions.Text);
+                if (NumberOfStartLions > 400 || NumberOfStartLions < 1)
+                {
+                    MessageBox.Show("Number have to be larger than 0, but lower than 400 total");
+                }
             }
             catch (Exception)
             {
@@ -125,6 +137,5 @@ namespace SavannahGame
             Application.Restart();
             Environment.Exit(0);
         }
-
     }
 }

@@ -1,4 +1,6 @@
-﻿namespace SavannahGame
+﻿using System.Threading;
+
+namespace SavannahGame
 {
    public class Lion : Animal
     {
@@ -21,7 +23,9 @@
 
         public override void Move()
         {
+            
             this.Weight -= WeightLoss;
+         
         }
 
         public override string ToString()

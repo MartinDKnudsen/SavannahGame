@@ -1,9 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Threading;
 
 namespace SavannahGame
 {
-  public abstract class Animal
+    public abstract class Animal
     {
         public string Gender { get; set; }
         public double Weight { get; set; }
@@ -11,10 +10,12 @@ namespace SavannahGame
         public double WeightLoss { get; set; }
         public int ID { get; set; }
         public string AnimalType { get; set; }
-  
+        public Thread animalThread { get; set; }
+
         public abstract void Eat();
 
         public abstract void Move();
 
+       
     }
 }

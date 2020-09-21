@@ -52,53 +52,10 @@ namespace SavannahGame
 
                 }
 
-                if (animal is Hunter)
-                {
-                    Territories[0][0].animal = animal;
-                }
-                else
-                {
-                    Territories[r][r1].animal = animal;
-                }
-
-
+                Territories[r][r1].animal = animal;
             }
         }
 
-
-
-        public int lionKilled()
-        {
-
-            return LionsKilled;
-        }
-
-
-        public int GrassEated()
-        {
-            return GrassEaten;
-
-        }
-        public int numberOfNewLions()
-        {
-
-            return LionCubCounter;
-
-        }
-        public int numberOfNewrabbits()
-        {
-            return RabbitCubCounter;
-        }
-        public int NumberOfBornCubs()
-        {
-
-            return TotalCubCounter;
-        }
-        public int RabbitsKilled()
-        {
-
-            return LionsRabbitKillsCounter;
-        }
         public void StartGame(int aLions, int aRabbits)
         {
             //Code to start everything
@@ -108,6 +65,7 @@ namespace SavannahGame
             Placement();
             GameRunning();
         }
+
         //Do the full game here 
         public void GameRunning()
         {
@@ -120,45 +78,23 @@ namespace SavannahGame
 
                 foreach (var animal in Territories.SelectMany(s => s).Where(s => s.animal != null).Select(s => s.animal))
                 {
-                    var test = Territories.SelectMany(s => s).Where(s => s.animal != null).Select(s => s.animal).Count();
-                    for (int i = 0; i < test; i++)
-                    {
-                        Threads.Add(new Thread(() => newThreads(animal)));
-
-                    }
-
 
                     Dead(animal);
                     AnimalMovement(animal);
-                    //    CD.CountAnimals();
-                    //  Console.WriteLine(CD.CountAnimals());
                     Thread.Sleep(100);
                 }
             }
-
-
         }
 
 
-        public void newThreads(Animal animal)
-        {
-
-            var test = Territories.SelectMany(s => s).Where(s => s.animal != null).Select(s => s.animal).Count();
-
-            for (int i = 0; i < test; i++)
-            {
-                Thread.Yield();
-            }
-
-        }
         // Add a field to all fields, and generate random number of greenfields
         public void AddFields()
         {
-            for (int i = 0; i <= 20; i++)
+            for (int i = 0; i <= 19; i++)
             {
                 Territories.Add(new List<Field>());
 
-                for (int j = 0; j <= 20; j++)
+                for (int j = 0; j <= 19; j++)
                 {
                     int greenfield = RandomRoll.Greenfield();
                     if (greenfield < 5)
@@ -233,7 +169,7 @@ namespace SavannahGame
 
         public Field SelectAnimalOnTerritorie(Animal animal)
         {
-            var TheField = Territories.SelectMany(c => c).Select(c => c).First(c => c.animal == animal);
+            var TheField = Territories.SelectMany(c => c).ToList().Select(c => c).First(c => c.animal == animal);
             return TheField;
         }
 
@@ -300,6 +236,14 @@ namespace SavannahGame
                 //  Thread.Sleep(100);
 
             }
+            if (savedAnimal is Hunter && fPos.animal != null)
+            {
+                var deadAnimal = fPos.animal;
+                animal.Eat();
+                HunterKillCount++;
+                RemoveAnimal(fPos.animal);
+
+            }
 
             try
             {
@@ -312,19 +256,6 @@ namespace SavannahGame
             catch (Exception)
             {
                 Console.WriteLine();
-            }
-
-            if (savedAnimal is Hunter && fPos.animal != null)
-            {
-                var deadAnimal = fPos.animal;
-                animal.Eat();
-                RemoveAnimal(fPos.animal);
-
-            }
-
-            else
-            {
-                Dead(savedAnimal);
             }
 
         }
@@ -370,20 +301,17 @@ namespace SavannahGame
         private List<Field> ValidMovesForAnimal(Animal animal)
         {
 
-            //FINSIH THIS SHIT 
-
-
             int minimumToMove = 0, maximumToMove = 0, numberOfSteps = 0;
             if (animal is Lion || animal is Hunter)
             {
                 minimumToMove = 0;
-                maximumToMove = 20;
+                maximumToMove = 18;
                 numberOfSteps = 1;
             }
             else if (animal is Rabbit)
             {
                 minimumToMove = 2;
-                maximumToMove = 18;
+                maximumToMove = 16;
                 numberOfSteps = 2;
             }
 
@@ -397,15 +325,15 @@ namespace SavannahGame
 
             List<(int, int)> addList = new List<(int, int)>();
             #region !=0
-            if (animal is Lion || animal is Hunter && itemOne != minimumToMove || animal is Rabbit && itemOne > minimumToMove)
+            if ((animal is Lion || animal is Hunter) && itemOne != minimumToMove || animal is Rabbit && itemOne > minimumToMove)
                 addList.Add((itemOne - numberOfSteps, itemTwo));
-            if (animal is Lion || animal is Hunter && itemTwo != minimumToMove || animal is Rabbit && itemTwo > minimumToMove)
+            if ((animal is Lion || animal is Hunter) && itemTwo != minimumToMove || animal is Rabbit && itemTwo > minimumToMove)
                 addList.Add((itemOne, itemTwo - numberOfSteps));
             #endregion
             #region <18
-            if (animal is Lion || animal is Hunter && itemOne < maximumToMove || animal is Rabbit && itemOne < maximumToMove)
+            if ((animal is Lion || animal is Hunter) && itemOne < maximumToMove || animal is Rabbit && itemOne < maximumToMove)
                 addList.Add((itemOne + numberOfSteps, itemTwo));
-            if (animal is Lion || animal is Hunter && itemTwo < maximumToMove || animal is Rabbit && itemTwo < maximumToMove)
+            if ((animal is Lion || animal is Hunter) && itemTwo < maximumToMove || animal is Rabbit && itemTwo < maximumToMove)
                 addList.Add((itemOne, itemTwo + numberOfSteps));
             #endregion
             #region twoField
@@ -473,31 +401,6 @@ namespace SavannahGame
                 Console.WriteLine("All animals killed eachother :( ");
                 Console.WriteLine($"All in all {TotalCubCounter} babies where born");
                 Console.WriteLine($"Lions killed {LionsRabbitKillsCounter} Rabbits");
-            }
-
-        }
-
-        //Prints all field with animals and their cordinates
-        public void PrintFelter()
-        {
-            while (Territories.SelectMany(c => c).Count(c => c.animal != null) != 0)
-            {
-                GlobalWarming();
-
-                foreach (var animal in Territories.SelectMany(s => s).Where(s => s.animal != null).Select(s => s.animal))
-                {
-                    Dead(animal);
-
-                    AnimalMovement(animal);
-
-                }
-                foreach (var animal in Territories.SelectMany(s => s).Where(s => s.animal != null))
-                {
-                    Console.WriteLine("---------------NEW POS---------------");
-                    //   Thread.Sleep(200);
-                    Console.WriteLine($"{animal.animal.ID} {animal.animal} stands on {XandY(animal)} weigth {animal.animal.Weight} and is {animal.animal.Gender}");
-
-                }
             }
 
         }

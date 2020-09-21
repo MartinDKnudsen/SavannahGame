@@ -26,9 +26,15 @@ namespace SavannahGame
         public int lionsKilled()
         {
 
-            return gl.lionKilled();
+            return gl.LionsKilled;
         }
+        public int hunterKills()
+        {
 
+            return gl.HunterKillCount;
+
+        }
+          
         public int CountRabbits()
         {
 
@@ -44,7 +50,7 @@ namespace SavannahGame
         public int CountCubsBorn()
         {
 
-            return gl.NumberOfBornCubs();
+            return gl.TotalCubCounter;
 
         }
         public double TotalWeigthOfLions()
@@ -60,26 +66,26 @@ namespace SavannahGame
         }
         public int KilledRabbits()
         {
-            return gl.RabbitsKilled();
+            return gl.LionsRabbitKillsCounter;
 
         }
 
         public int rabbitCubs()
         {
-          return  gl.numberOfNewrabbits();
+          return  gl.RabbitCubCounter;
 
         }
 
         public int lionCubs()
         {
-            return gl.numberOfNewLions();
+            return gl.LionCubCounter;
         }
 
 
         public int GrassEat()
         {
 
-            return gl.GrassEated();
+            return gl.GrassEaten;
         }
 
         public int CountLions()
@@ -92,7 +98,10 @@ namespace SavannahGame
       {
             gl.GameRunning();
       }
+        public int TotalAnimals()
+        {
+            return cD.CountAnimals();
 
-        
+        }
     }
 }

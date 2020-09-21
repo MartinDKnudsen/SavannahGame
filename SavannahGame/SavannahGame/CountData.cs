@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 
 namespace SavannahGame
 {
@@ -28,21 +29,21 @@ namespace SavannahGame
         //Count Greenfields
         public int CountGreenField()
         {
-            return gl.Territories.SelectMany(e => e).Count(e => e.GreenField);
+            return gl.Territories.SelectMany(e => e).ToList().Count(e => e.GreenField);
         }
 
         //Count number of Fields
         public int CountField()
         {
             //Tæller felter
-            return gl.Territories.SelectMany(f => f).Count();
+            return gl.Territories.SelectMany(f => f).ToList().Count();
         }
 
         //Count number of selected animal on Territories
         public int CountAllSpecAnimalOnTheTerritories<T>()
         {
-            int SelectedAnimalsOnTheTerritories = gl.Territories.SelectMany(c => c).Count(c => c.animal is T);
-            return SelectedAnimalsOnTheTerritories;
+            return gl.Territories.SelectMany(c => c).Count(c => c.animal is T);
+          
         }
 
         // Count all animals in Animal List
@@ -62,15 +63,11 @@ namespace SavannahGame
                 double total = XAnimalWeigth.Sum(item => item.Weight);
                 return total;
             }
+
             catch (Exception)
-            {
-
+            { 
                 throw;
-            }
-           
-
-          
-
+            }    
         }
 
         //Print all animals

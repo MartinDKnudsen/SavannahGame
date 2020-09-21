@@ -6,9 +6,8 @@ namespace Persistens
 {
     interface IDatabase
     {
-        
-        //Methods
 
+        void SaveData(int totalCubs, int AnimalsKilled, int AnimalsKilledByHunter);
 
     }
 }

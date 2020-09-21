@@ -22,26 +22,26 @@ namespace SavannahGame
         //Count all animals on the Savannah
         public int CountAnimals()
         {
-            return gl.territories.SelectMany(c => c).Count(c => c.animal != null);
+            return gl.Territories.SelectMany(c => c).Count(c => c.animal != null);
         }
 
         //Count Greenfields
         public int CountGreenField()
         {
-            return gl.territories.SelectMany(e => e).Count(e => e.GreenField);
+            return gl.Territories.SelectMany(e => e).Count(e => e.GreenField);
         }
 
         //Count number of Fields
         public int CountField()
         {
             //Tæller felter
-            return gl.territories.SelectMany(f => f).Count();
+            return gl.Territories.SelectMany(f => f).Count();
         }
 
         //Count number of selected animal on Territories
         public int CountAllSpecAnimalOnTheTerritories<T>()
         {
-            int SelectedAnimalsOnTheTerritories = gl.territories.SelectMany(c => c).Count(c => c.animal is T);
+            int SelectedAnimalsOnTheTerritories = gl.Territories.SelectMany(c => c).Count(c => c.animal is T);
             return SelectedAnimalsOnTheTerritories;
         }
 

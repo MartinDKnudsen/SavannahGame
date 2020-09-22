@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 
 namespace SavannahGame
 {
@@ -80,6 +81,7 @@ namespace SavannahGame
                         continue;
                     }
                     AnimalMovement(AllAnimals[i]);
+                   Thread.Sleep(100);
                 }
             }
 

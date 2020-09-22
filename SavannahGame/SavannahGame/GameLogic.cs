@@ -59,7 +59,6 @@ namespace SavannahGame
         public void StartGame(int aLions, int aRabbits)
         {
             //Code to start everything
-
             AddAnimal(aLions, aRabbits);
             AddFields();
             Placement();

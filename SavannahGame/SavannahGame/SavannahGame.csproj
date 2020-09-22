@@ -149,5 +149,11 @@
   <ItemGroup>
     <None Include="Resources\icons8_minimize_window_24px.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Persistens\Persistens.csproj">
+      <Project>{08a43158-fbdb-454c-8c0e-8b1198545d95}</Project>
+      <Name>Persistens</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

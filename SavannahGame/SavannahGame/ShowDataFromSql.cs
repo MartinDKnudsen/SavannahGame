@@ -15,6 +15,8 @@ namespace SavannahGame
         public ShowDataFromSql()
         {
             InitializeComponent();
+
+
         }
 
         private void dataGridViewFromDatabase_CellContentClick(object sender, DataGridViewCellEventArgs e)

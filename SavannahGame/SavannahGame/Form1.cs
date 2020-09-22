@@ -36,6 +36,8 @@ namespace SavannahGame
         private void Form1_Load(object sender, EventArgs e)
         {
 
+         dataGridView1.DataSource =  Ct.DT();
+
         }
         private void time_Tick(object e, EventArgs ea)
         {
@@ -136,6 +138,11 @@ namespace SavannahGame
         {
             Application.Restart();
             Environment.Exit(0);
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
         }
     }
 }

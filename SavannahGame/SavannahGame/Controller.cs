@@ -1,10 +1,12 @@
-﻿using System.Linq;
+﻿using System.Data;
+using System.Linq;
+using Persistens;
 
 namespace SavannahGame
 {
     public class Controller
     {
-
+        private Database DB = new Database();
 
         private GameLogic gl = GameLogic.Getinstance();
 
@@ -69,7 +71,10 @@ namespace SavannahGame
             return gl.LionsRabbitKillsCounter;
 
         }
-
+        public DataTable DT()
+        {
+          return DB.GetData();
+        }
         public int rabbitCubs()
         {
           return  gl.RabbitCubCounter;

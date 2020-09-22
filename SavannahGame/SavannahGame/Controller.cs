@@ -15,7 +15,7 @@ namespace SavannahGame
         
         public void StartSavannahGame(int rabbits, int lions)
         {
-
+            gl.RGame = true;
             gl.StartGame(lions, rabbits);
     
         }

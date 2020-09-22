@@ -69,12 +69,8 @@ namespace SavannahGame
         public void GameRunning()
         {
 
-            while (Territories.SelectMany(c => c).Count(c => c.animal != null) != 0)
+            while (AllAnimals.Count != 1 || AllAnimals.Count > 390)
             {
-
-                NonSurvivers();
-                GlobalWarming();
-
                 foreach (var animal in Territories.SelectMany(s => s).Where(s => s.animal != null).Select(s => s.animal))
                 {
 
@@ -82,7 +78,11 @@ namespace SavannahGame
                     AnimalMovement(animal);
                     Thread.Sleep(100);
                 }
+                break;
             }
+
+
+            GlobalWarming();
         }
 
 
@@ -112,21 +112,22 @@ namespace SavannahGame
         public void AddAnimal(int numberOfLion, int numberOfRabbits)
         {
             //Add one hunter to the field
-            AllAnimals.Add(new Hunter());
-            AnimalId = 1;
+            if (numberOfLion != 0 && numberOfRabbits != 0)
+            {
+                AllAnimals.Add(new Hunter());
+            }
 
             while (numberOfLion != 0)
             {
-
-                AllAnimals.Add(new Lion(RandomRoll.genderRoll(), AnimalId));
                 AnimalId++;
+                AllAnimals.Add(new Lion(RandomRoll.genderRoll(), AnimalId));
                 numberOfLion--;
             }
 
             while (numberOfRabbits != 0)
             {
-                AllAnimals.Add(new Rabbit(RandomRoll.genderRoll(), AnimalId));
                 AnimalId++;
+                AllAnimals.Add(new Rabbit(RandomRoll.genderRoll(), AnimalId));
                 numberOfRabbits--;
             }
 
@@ -152,6 +153,7 @@ namespace SavannahGame
             }
             catch (Exception)
             {
+                AllAnimals.Remove(animal);
                 Console.WriteLine();
             }
         }
@@ -181,7 +183,12 @@ namespace SavannahGame
             var randomPos = SelectetMove(savedAnimal);
             var fPos = Territories[randomPos.Item1][randomPos.Item2];
 
-            switch (animal)
+            //if (fPos.animal != null && savedAnimal.ID == fPos.animal.ID)
+            //{
+            //    RemoveAnimal(fPos.animal);
+            //}
+
+            switch (savedAnimal)
             {
                 //If rabbit move to greenfield, it eats
                 case Rabbit _ when fPos.GreenField:
@@ -192,10 +199,11 @@ namespace SavannahGame
 
                 //Rabbit Mate if a rabbit is on new pos, and the rabbit gender is different
                 case Rabbit _ when fPos.animal is Rabbit && animal.Gender != fPos.animal.Gender:
-                    NewCubs(animal, true);
+                    NewCubs(true);
                     RabbitCubCounter += 2;
                     TotalCubCounter += 2;
                     Console.WriteLine($"Rabbit: {savedAnimal.ID} and Rabbbit {fPos.animal.ID} is now parents :D");
+                    RemoveAnimal(fPos.animal);
                     break;
 
                 //If lion move to a field with a rabbit, it eats it.
@@ -203,45 +211,47 @@ namespace SavannahGame
                     var soonToDieRabbit = fPos.animal;
                     Console.WriteLine($"Lion number {savedAnimal.ID} eat Rabbit: {soonToDieRabbit.ID} and gained {soonToDieRabbit.Weight} more kg");
                     RemoveAnimal(soonToDieRabbit);
+
                     LionsRabbitKillsCounter++;
-                    animal.Eat();
+                    savedAnimal.Eat();
                     break;
 
                 //Lion Mate if a Lion is on new pos, and the Lion gender is different
                 case Lion _ when fPos.animal is Lion && animal.Gender != fPos.animal.Gender:
-                    NewCubs(animal, false);
+                    NewCubs(false);
                     LionCubCounter++;
                     TotalCubCounter++;
                     Console.WriteLine($"Lion: {savedAnimal.ID} ({savedAnimal.Gender}) and Lion {fPos.animal.ID} ({fPos.animal.Gender}) are now parents :D");
+                    RemoveAnimal(fPos.animal);
                     break;
             }
             //Male Animals kill eachother of they land on same field 
-            if (fPos.animal != null && animal is Lion && animal.Gender == fPos.animal.Gender && fPos.animal is Lion)
+            if (fPos.animal != null && animal is Lion && savedAnimal.Gender == fPos.animal.Gender && fPos.animal is Lion)
             {
-                var deadLion = fPos.animal;
-                var newWeigth = savedAnimal.Weight + deadLion.Weight;
-                Console.WriteLine($"Lion: {fPos.animal.ID} IS DEAD because Lion: {savedAnimal.ID} landed on same field. {savedAnimal.ID} Gained {deadLion.Weight}, and now weigths {newWeigth}");
-                RemoveAnimal(deadLion);
+
+                var newWeigth = savedAnimal.Weight + fPos.animal.Weight;
+                Console.WriteLine($"Lion: {fPos.animal.ID} IS DEAD because Lion: {savedAnimal.ID} landed on same field. {savedAnimal.ID} Gained {fPos.animal.Weight}, and now weigths {newWeigth}");
+                RemoveAnimal(fPos.animal);
                 LionsKilled++;
                 // Thread.Sleep(100);
             }
 
-            if (fPos.animal != null && animal is Rabbit && animal.Gender == fPos.animal.Gender && fPos.animal is Rabbit)
+            if ((fPos.animal != null) && animal is Rabbit && savedAnimal.Gender == fPos.animal.Gender && fPos.animal is Rabbit)
             {
-                var deadRabbit = fPos.animal;
+
                 Console.WriteLine($"Rabbit: {fPos.animal.ID} IS DEAD because Rabbit: {savedAnimal.ID} landed on same field. ");
 
-                RemoveAnimal(deadRabbit);
+                RemoveAnimal(fPos.animal);
+
                 //  Thread.Sleep(100);
 
             }
             if (savedAnimal is Hunter && fPos.animal != null)
             {
                 var deadAnimal = fPos.animal;
-                animal.Eat();
+                savedAnimal.Eat();
                 HunterKillCount++;
                 RemoveAnimal(fPos.animal);
-
             }
 
             try
@@ -249,30 +259,27 @@ namespace SavannahGame
                 Territories.SelectMany(c => c).Select(c => c).First(c => c.animal == savedAnimal).animal = null;
 
                 Territories[randomPos.Item1][randomPos.Item2].animal = savedAnimal;
-
             }
-
             catch (Exception)
             {
                 Console.WriteLine();
             }
 
         }
-
         private void Dead(Animal animal)
         {
-            if (animal.Weight < 0)
+            if (animal.Weight <= 0)
             {
-                RemoveAnimal(animal);
                 Console.WriteLine($"{animal} ({animal.ID}) is dead... :(");
+                RemoveAnimal(animal);
                 Console.WriteLine(AllAnimals.Count());
-                Thread.Sleep(1000);
 
+                // Thread.Sleep(1000);
             }
         }
 
         //Add Cubs to the animal list
-        private void NewCubs(Animal animal, bool rabbit, int NumberOfNewRabbits = 2, int NumberOfNewLions = 1)
+        private void NewCubs(bool rabbit, int NumberOfNewRabbits = 2, int NumberOfNewLions = 1)
         {
 
             if (rabbit)
@@ -380,26 +387,36 @@ namespace SavannahGame
 
         private void GlobalWarming()
         {
-            if (Territories.SelectMany(c => c).Count(c => c.animal != null) >= 390)
+
+            if (AllAnimals.Count() >= 399)
             {
+
                 Console.WriteLine("All animals are dying because of global warming ");
                 foreach (var item in Territories.SelectMany(c => c))
                 {
+                    RemoveAnimal(item.animal);
                     item.animal = null;
+
                 }
                 Console.WriteLine("ALL ANIMALS ARE DEAD GOOD FUCKING JOB IDIOTS");
                 Console.WriteLine($"All in all {TotalCubCounter} babies where born");
                 Console.WriteLine($"Lions killed {LionsRabbitKillsCounter} Rabbits");
             }
+            else
+            {
+                NonSurvivers();
+            }
         }
 
         private void NonSurvivers()
         {
-            if (Territories.SelectMany(c => c).Count(c => c.animal != null) < 1)
+            if (AllAnimals.Count() <= 1)
             {
-                Console.WriteLine("All animals killed eachother :( ");
-                Console.WriteLine($"All in all {TotalCubCounter} babies where born");
-                Console.WriteLine($"Lions killed {LionsRabbitKillsCounter} Rabbits");
+                Console.WriteLine("Hunter won");
+                //Console.WriteLine("All animals killed eachother :( ");
+                //Console.WriteLine($"All in all {TotalCubCounter} babies where born");
+                //Console.WriteLine($"Lions killed {LionsRabbitKillsCounter} Rabbits");
+                Console.ReadLine();
             }
 
         }

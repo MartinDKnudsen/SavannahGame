@@ -41,7 +41,7 @@ namespace SavannahGame
         }
         private void time_Tick(object e, EventArgs ea)
         {
-            if (i < 100000)
+            if (i < 1000000000)
             {
                 NumberOfLions.Text = Ct.CountLions().ToString();
                 TotalNumberOfRabbitsTextBox.Text = Ct.CountRabbits().ToString();
@@ -90,8 +90,9 @@ namespace SavannahGame
                 }
                 else
                 {
-                    Task.Factory.StartNew(() => Ct.StartSavannahGame(NumberOfStartRabbits, NumberOfStartLions));
                     time.Start();
+                    Task.Factory.StartNew(() => Ct.StartSavannahGame(NumberOfStartRabbits, NumberOfStartLions));
+                   
                 }
             }
 

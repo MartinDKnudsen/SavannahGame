@@ -60,6 +60,8 @@
             this.label8 = new System.Windows.Forms.Label();
             this.button3 = new System.Windows.Forms.Button();
             this.TopPanelForMovement = new System.Windows.Forms.Panel();
+            this.MiniMaiseButton = new System.Windows.Forms.PictureBox();
+            this.CloseButton = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -73,11 +75,11 @@
             this.label11 = new System.Windows.Forms.Label();
             this.textBoxTotalAnimals = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.MiniMaiseButton = new System.Windows.Forms.PictureBox();
-            this.CloseButton = new System.Windows.Forms.PictureBox();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.label13 = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.TopPanelForMovement.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MiniMaiseButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CloseButton)).BeginInit();
@@ -298,7 +300,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(482, 729);
+            this.label5.Location = new System.Drawing.Point(585, 729);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(121, 21);
             this.label5.TabIndex = 30;
@@ -306,7 +308,7 @@
             // 
             // textBoxHunterKillCount
             // 
-            this.textBoxHunterKillCount.Location = new System.Drawing.Point(486, 753);
+            this.textBoxHunterKillCount.Location = new System.Drawing.Point(589, 753);
             this.textBoxHunterKillCount.Name = "textBoxHunterKillCount";
             this.textBoxHunterKillCount.ReadOnly = true;
             this.textBoxHunterKillCount.Size = new System.Drawing.Size(100, 20);
@@ -380,6 +382,28 @@
             this.TopPanelForMovement.Size = new System.Drawing.Size(731, 32);
             this.TopPanelForMovement.TabIndex = 41;
             this.TopPanelForMovement.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TopPanelForMovement_MouseDown);
+            // 
+            // MiniMaiseButton
+            // 
+            this.MiniMaiseButton.BackColor = System.Drawing.Color.Black;
+            this.MiniMaiseButton.Image = ((System.Drawing.Image)(resources.GetObject("MiniMaiseButton.Image")));
+            this.MiniMaiseButton.Location = new System.Drawing.Point(663, 6);
+            this.MiniMaiseButton.Name = "MiniMaiseButton";
+            this.MiniMaiseButton.Size = new System.Drawing.Size(25, 23);
+            this.MiniMaiseButton.TabIndex = 45;
+            this.MiniMaiseButton.TabStop = false;
+            this.MiniMaiseButton.Click += new System.EventHandler(this.MiniMaiseButton_Click);
+            // 
+            // CloseButton
+            // 
+            this.CloseButton.BackColor = System.Drawing.Color.Black;
+            this.CloseButton.Image = ((System.Drawing.Image)(resources.GetObject("CloseButton.Image")));
+            this.CloseButton.Location = new System.Drawing.Point(694, 6);
+            this.CloseButton.Name = "CloseButton";
+            this.CloseButton.Size = new System.Drawing.Size(25, 23);
+            this.CloseButton.TabIndex = 45;
+            this.CloseButton.TabStop = false;
+            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
             // 
             // panel2
             // 
@@ -500,31 +524,9 @@
             this.label12.TabIndex = 55;
             this.label12.Text = "Total animals";
             // 
-            // MiniMaiseButton
-            // 
-            this.MiniMaiseButton.BackColor = System.Drawing.Color.Black;
-            this.MiniMaiseButton.Image = global::SavannahGame.Properties.Resources.icons8_minimize_window_24px;
-            this.MiniMaiseButton.Location = new System.Drawing.Point(663, 6);
-            this.MiniMaiseButton.Name = "MiniMaiseButton";
-            this.MiniMaiseButton.Size = new System.Drawing.Size(25, 23);
-            this.MiniMaiseButton.TabIndex = 45;
-            this.MiniMaiseButton.TabStop = false;
-            this.MiniMaiseButton.Click += new System.EventHandler(this.MiniMaiseButton_Click);
-            // 
-            // CloseButton
-            // 
-            this.CloseButton.BackColor = System.Drawing.Color.Black;
-            this.CloseButton.Image = global::SavannahGame.Properties.Resources.icons8_close_window_26px;
-            this.CloseButton.Location = new System.Drawing.Point(694, 6);
-            this.CloseButton.Name = "CloseButton";
-            this.CloseButton.Size = new System.Drawing.Size(25, 23);
-            this.CloseButton.TabIndex = 45;
-            this.CloseButton.TabStop = false;
-            this.CloseButton.Click += new System.EventHandler(this.CloseButton_Click);
-            // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = global::SavannahGame.Properties.Resources.icons8_lion_48px;
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
             this.pictureBox2.Location = new System.Drawing.Point(189, 502);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(46, 47);
@@ -533,7 +535,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = global::SavannahGame.Properties.Resources.icons8_rabbit_48px;
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
             this.pictureBox1.Location = new System.Drawing.Point(25, 501);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(49, 48);
@@ -549,12 +551,33 @@
             this.dataGridView1.TabIndex = 56;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(422, 729);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(161, 21);
+            this.label13.TabIndex = 57;
+            this.label13.Text = "Hunter on Svannah";
+            // 
+            // textBox1
+            // 
+            this.textBox1.Location = new System.Drawing.Point(426, 753);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(100, 20);
+            this.textBox1.TabIndex = 58;
+            this.textBox1.Text = "1";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(731, 807);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.label13);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.textBoxTotalAnimals);
@@ -669,6 +692,8 @@
         private System.Windows.Forms.TextBox textBoxTotalAnimals;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }
 

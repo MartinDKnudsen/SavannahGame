@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Data;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -141,9 +142,41 @@ namespace SavannahGame
             Environment.Exit(0);
         }
 
-        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        public DataTable SetupCurrentAsDataTable()
         {
+            DataTable dt = new DataTable();
+            foreach (DataGridViewColumn col in dataGridView1.Columns)
+            {
+                dt.Columns.Add(col.Name);
+            }
 
+            foreach (DataGridViewRow row in dataGridView1.Rows)
+            {
+                DataRow dRow = dt.NewRow();
+
+                foreach (DataGridViewCell cell in row.Cells)
+                {
+                    dRow[cell.ColumnIndex] = cell.Value;
+                }
+                dt.Rows.Add(dRow);
+            }
+
+            return dt;
         }
+        private void PrintDTButton_Click(object sender, EventArgs e)
+        {
+            Ct.PrintDataTable("ResultsFromSavannaGame", SetupCurrentAsDataTable());
+            MessageBox.Show("Done");
+        }
+
+        private void buttonSaveToDB_Click(object sender, EventArgs e)
+        {
+            int CubsBorn = Convert.ToInt32(TotalCubsBornTextBox.Text);
+            int HunterKills = Convert.ToInt32(textBoxHunterKillCount.Text);
+            int RabbitsDead = Convert.ToInt32(textBoxForNumberOfKilledRabbits.Text);
+            Ct.saveData(CubsBorn, RabbitsDead, HunterKills);
+            dataGridView1.DataSource = Ct.DT();
+        }
+
     }
 }

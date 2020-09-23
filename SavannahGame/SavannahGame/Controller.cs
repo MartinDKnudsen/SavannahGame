@@ -1,25 +1,35 @@
 ﻿using System.Data;
 using System.Linq;
 using Persistens;
-
+using BusinessLogic;
 namespace SavannahGame
 {
     public class Controller
     {
+        //  Kobling mellem methoder og forms
+
         private Database DB = new Database();
 
         private GameLogic gl = GameLogic.Getinstance();
 
         private CountData cD = SavannahGame.CountData.Getinstance();
 
-        
+     
         public void StartSavannahGame(int rabbits, int lions)
         {
             gl.RGame = true;
             gl.StartGame(lions, rabbits);
     
         }
+        public void saveData(int totalCubs, int AnimalsKilled, int AnimalsKilledByHunter)
+        {
+            DB.SaveData(totalCubs, AnimalsKilled, AnimalsKilledByHunter);
+        }
+        public void PrintDataTable(string name, DataTable datatable)
+        {
 
+            TxtPrinter.Write(name, datatable);
+        }
         public int CountData()
         {
 
@@ -97,7 +107,7 @@ namespace SavannahGame
         {
             return cD.CountAllSpecAnimalOnTheTerritories<Lion>();
         }
-      //  Kobling mellem methoder og forms
+      
 
       public void testafgame()
       {
@@ -108,5 +118,6 @@ namespace SavannahGame
             return cD.CountAnimals();
 
         }
+
     }
 }

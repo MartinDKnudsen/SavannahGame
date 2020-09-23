@@ -7,19 +7,19 @@ namespace SavannahGame
     {
         public int Bullets { get; set; }
 
-
+        //How to get new bullets? 
         public Hunter()
         {
             Bullets = 20;
             Weight = 100;
-            WeightLoss = 5;
+            WeightLoss = 1;
             WeigthGain = 10;
                        
         }
 
         public override void Eat()
         {
-            Bullets -= 1;
+          //  Bullets -= 1;
             Weight += WeigthGain;
         }
 

@@ -30,8 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.StartButton = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.PrintResultButton = new System.Windows.Forms.Button();
+            this.PrintDTButton = new System.Windows.Forms.Button();
             this.LionsLabel = new System.Windows.Forms.Label();
             this.NumberOfLionCubs = new System.Windows.Forms.Label();
             this.TotalWeigthLionsLabel = new System.Windows.Forms.Label();
@@ -80,6 +79,7 @@
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label13 = new System.Windows.Forms.Label();
             this.textBox1 = new System.Windows.Forms.TextBox();
+            this.buttonSaveToDB = new System.Windows.Forms.Button();
             this.TopPanelForMovement.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MiniMaiseButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CloseButton)).BeginInit();
@@ -100,27 +100,17 @@
             this.StartButton.UseVisualStyleBackColor = true;
             this.StartButton.Click += new System.EventHandler(this.StartButton_Click);
             // 
-            // button1
+            // PrintDTButton
             // 
-            this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(176, 562);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(112, 39);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Save result";
-            this.button1.UseVisualStyleBackColor = true;
-            // 
-            // PrintResultButton
-            // 
-            this.PrintResultButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.PrintResultButton.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PrintResultButton.Location = new System.Drawing.Point(324, 562);
-            this.PrintResultButton.Name = "PrintResultButton";
-            this.PrintResultButton.Size = new System.Drawing.Size(112, 39);
-            this.PrintResultButton.TabIndex = 4;
-            this.PrintResultButton.Text = "Print result";
-            this.PrintResultButton.UseVisualStyleBackColor = true;
+            this.PrintDTButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.PrintDTButton.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PrintDTButton.Location = new System.Drawing.Point(143, 562);
+            this.PrintDTButton.Name = "PrintDTButton";
+            this.PrintDTButton.Size = new System.Drawing.Size(112, 39);
+            this.PrintDTButton.TabIndex = 4;
+            this.PrintDTButton.Text = "Print";
+            this.PrintDTButton.UseVisualStyleBackColor = true;
+            this.PrintDTButton.Click += new System.EventHandler(this.PrintDTButton_Click);
             // 
             // LionsLabel
             // 
@@ -290,7 +280,7 @@
             // 
             this.HunterLabel.AutoSize = true;
             this.HunterLabel.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HunterLabel.Location = new System.Drawing.Point(482, 706);
+            this.HunterLabel.Location = new System.Drawing.Point(422, 707);
             this.HunterLabel.Name = "HunterLabel";
             this.HunterLabel.Size = new System.Drawing.Size(69, 23);
             this.HunterLabel.TabIndex = 28;
@@ -364,11 +354,11 @@
             // 
             this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(223, 607);
+            this.button3.Location = new System.Drawing.Point(143, 607);
             this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(213, 39);
+            this.button3.Size = new System.Drawing.Size(112, 39);
             this.button3.TabIndex = 38;
-            this.button3.Text = "Show previous simulated games";
+            this.button3.Text = "Show print";
             this.button3.UseVisualStyleBackColor = true;
             // 
             // TopPanelForMovement
@@ -436,7 +426,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(25, 679);
+            this.label9.Location = new System.Drawing.Point(25, 667);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(228, 24);
             this.label9.TabIndex = 45;
@@ -456,15 +446,16 @@
             // 
             // TotalCubsBornTextBox
             // 
-            this.TotalCubsBornTextBox.Location = new System.Drawing.Point(29, 723);
+            this.TotalCubsBornTextBox.Location = new System.Drawing.Point(29, 711);
             this.TotalCubsBornTextBox.Name = "TotalCubsBornTextBox";
+            this.TotalCubsBornTextBox.ReadOnly = true;
             this.TotalCubsBornTextBox.Size = new System.Drawing.Size(100, 20);
             this.TotalCubsBornTextBox.TabIndex = 48;
             // 
             // TCBL
             // 
             this.TCBL.AutoSize = true;
-            this.TCBL.Location = new System.Drawing.Point(26, 707);
+            this.TCBL.Location = new System.Drawing.Point(25, 695);
             this.TCBL.Name = "TCBL";
             this.TCBL.Size = new System.Drawing.Size(81, 13);
             this.TCBL.TabIndex = 49;
@@ -547,9 +538,8 @@
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Location = new System.Drawing.Point(25, 38);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(455, 381);
+            this.dataGridView1.Size = new System.Drawing.Size(444, 381);
             this.dataGridView1.TabIndex = 56;
-            this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
             // label13
             // 
@@ -569,6 +559,18 @@
             this.textBox1.Size = new System.Drawing.Size(100, 20);
             this.textBox1.TabIndex = 58;
             this.textBox1.Text = "1";
+            // 
+            // buttonSaveToDB
+            // 
+            this.buttonSaveToDB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSaveToDB.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSaveToDB.Location = new System.Drawing.Point(29, 741);
+            this.buttonSaveToDB.Name = "buttonSaveToDB";
+            this.buttonSaveToDB.Size = new System.Drawing.Size(112, 39);
+            this.buttonSaveToDB.TabIndex = 3;
+            this.buttonSaveToDB.Text = "Save result";
+            this.buttonSaveToDB.UseVisualStyleBackColor = true;
+            this.buttonSaveToDB.Click += new System.EventHandler(this.buttonSaveToDB_Click);
             // 
             // Form1
             // 
@@ -622,8 +624,8 @@
             this.Controls.Add(this.TotalWeigthLionsLabel);
             this.Controls.Add(this.NumberOfLionCubs);
             this.Controls.Add(this.LionsLabel);
-            this.Controls.Add(this.PrintResultButton);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.PrintDTButton);
+            this.Controls.Add(this.buttonSaveToDB);
             this.Controls.Add(this.StartButton);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -644,8 +646,7 @@
 
         #endregion
         private System.Windows.Forms.Button StartButton;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button PrintResultButton;
+        private System.Windows.Forms.Button PrintDTButton;
         private System.Windows.Forms.Label LionsLabel;
         private System.Windows.Forms.Label NumberOfLionCubs;
         private System.Windows.Forms.Label TotalWeigthLionsLabel;
@@ -694,6 +695,7 @@
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Button buttonSaveToDB;
     }
 }
 

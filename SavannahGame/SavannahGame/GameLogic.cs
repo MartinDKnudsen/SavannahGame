@@ -180,7 +180,6 @@ namespace SavannahGame
 
 
             var theField = Territories.SelectMany(c => c).Select(c => c).First(c => c.animal == animal);
-
             return theField;
 
 
@@ -277,6 +276,7 @@ namespace SavannahGame
                         }
 
                         Territories[randomPos.Item1][randomPos.Item2].animal = savedAnimal;
+
                         Dead(savedAnimal);
 
                     }

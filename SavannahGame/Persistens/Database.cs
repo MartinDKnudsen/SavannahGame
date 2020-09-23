@@ -24,7 +24,7 @@ namespace Persistens
         {
             SqlConnection conn = new SqlConnection(connString);
             conn.Open();
-            SqlCommand c = new SqlCommand($"insert into Simulations(totalCubs, AnimalsKilled, AnimalKilledByHunter) values {totalCubs}, {AnimalsKilled}, {AnimalsKilledByHunter}", conn);
+            SqlCommand c = new SqlCommand($"insert into Simulations([Total animals born], [Rabbits killed], [Hunter kills]) values ({totalCubs}, {AnimalsKilled}, {AnimalsKilledByHunter})", conn);
             c.ExecuteNonQuery();
             conn.Close();
         }

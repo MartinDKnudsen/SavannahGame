@@ -17,6 +17,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{2600B3
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Persistens", "Persistens\Persistens.csproj", "{08A43158-FBDB-454C-8C0E-8B1198545D95}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BusinessLogic", "BusinessLogic\BusinessLogic.csproj", "{21DFD5D5-9FDF-48C8-B20F-E42D14F0CB78}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{08A43158-FBDB-454C-8C0E-8B1198545D95}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08A43158-FBDB-454C-8C0E-8B1198545D95}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{08A43158-FBDB-454C-8C0E-8B1198545D95}.Release|Any CPU.Build.0 = Release|Any CPU
+		{21DFD5D5-9FDF-48C8-B20F-E42D14F0CB78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{21DFD5D5-9FDF-48C8-B20F-E42D14F0CB78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{21DFD5D5-9FDF-48C8-B20F-E42D14F0CB78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{21DFD5D5-9FDF-48C8-B20F-E42D14F0CB78}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -150,6 +150,10 @@
     <None Include="Resources\icons8_minimize_window_24px.png" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\BusinessLogic\BusinessLogic.csproj">
+      <Project>{21dfd5d5-9fdf-48c8-b20f-e42d14f0cb78}</Project>
+      <Name>BusinessLogic</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Persistens\Persistens.csproj">
       <Project>{08a43158-fbdb-454c-8c0e-8b1198545d95}</Project>
       <Name>Persistens</Name>

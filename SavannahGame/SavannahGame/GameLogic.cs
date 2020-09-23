@@ -79,13 +79,13 @@ namespace SavannahGame
                     {
                         continue;
                     }
+                    Dead(AllAnimals[i]);
+                    GlobalWarming();
                     AnimalMovement(AllAnimals[i]);
-                   Thread.Sleep(100);
+                    Thread.Sleep(100);
                 }
             }
 
-
-            // GlobalWarming();
         }
 
 
@@ -260,7 +260,6 @@ namespace SavannahGame
 
                     try
                     {
-
                         if (AllAnimals.Contains(savedAnimal))
                         {
                             RemoveAnimalFromField(savedAnimal);
@@ -268,21 +267,16 @@ namespace SavannahGame
 
                         Territories[randomPos.Item1][randomPos.Item2].animal = savedAnimal;
                         Dead(savedAnimal);
-
-
                     }
                     catch (Exception)
                     {
                         Dead(savedAnimal);
                     }
-                    
-
                 }
             }
         }
         private void RemoveAnimalFromField(Animal animal)
         {
-
             Territories.SelectMany(c => c).Select(c => c).First(c => c.animal == animal).animal = null;
         }
 
@@ -294,7 +288,7 @@ namespace SavannahGame
                 RemoveAnimal(animal);
                 Console.WriteLine(AllAnimals.Count());
             }
-            if (AllAnimals.Count() <= 2)
+            if (AllAnimals.Count() <= 1)
             {
                 NonSurvivers();
             }
@@ -409,7 +403,6 @@ namespace SavannahGame
 
         private void GlobalWarming()
         {
-
             if (AllAnimals.Count() >= 399)
             {
 
@@ -424,11 +417,6 @@ namespace SavannahGame
                 Console.WriteLine("ALL ANIMALS ARE DEAD GOOD FUCKING JOB IDIOTS");
                 Console.WriteLine($"All in all {TotalCubCounter} babies where born");
                 Console.WriteLine($"Lions killed {LionsRabbitKillsCounter} Rabbits");
-             
-            }
-            else
-            {
-                NonSurvivers();
             }
         }
 

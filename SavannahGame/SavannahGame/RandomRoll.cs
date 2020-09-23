@@ -39,13 +39,6 @@ namespace SavannahGame
             return ARP;
         }
 
-        public static (int, int) NewPos()
-        {
-            int fNumber = RandomNumber(0, 20);
-            int sNumber = RandomNumber(0, 20);
-            return (fNumber, sNumber);
-        }
-
         public static int RandomNumber(int min, int max)
         {
             return random.Next(min, max);
@@ -57,7 +50,6 @@ namespace SavannahGame
             return randomField;
 
         }
-
     }
 
 }

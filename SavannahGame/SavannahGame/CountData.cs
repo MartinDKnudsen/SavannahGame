@@ -46,55 +46,14 @@ namespace SavannahGame
           
         }
 
-        // Count all animals in Animal List
-        public int CountAnimalsByType<T>()
-        {
-            var AnimalsOfType = gl.AllAnimals.Count(c => c is T);
-            return AnimalsOfType;
-        }
-
-
         //Show the weigth of all animals of a specific type on the Tavannah
         public double WeigthOfAllAnimalsOfAType<T>()
         {
-            //try
-            //{
-                var XAnimalWeigth = gl.FlatList().Where(c => c is T).ToList();
+            var XAnimalWeigth = gl.FlatList().Where(c => c is T).ToList();
                 double total = XAnimalWeigth.Sum(item => item.Weight);
                 return total;
-            //}
-            //catch (Exception)
-            //{ 
-            //    throw;
-            //}    
         }
-
-        //Print all animals
-        public void PrintAllAnimals()
-        {
-            if (gl.AllAnimals.Count != 0)
-            {
-                var list = gl.AllAnimals.Where(c => c is Lion);
-                var list2 = gl.AllAnimals.Where(c => c is Rabbit);
-                foreach (var item in list)
-                {
-                    Console.WriteLine($"Id of animal: {item.ID} -- Gender: {item.Gender} -- is Type: {item.AnimalType}");
-
-                }
-                Console.WriteLine("_________________________");
-
-                foreach (var item in list2)
-                {
-                    Console.WriteLine($"Id of animal: {item.ID} -- Gender: {item.Gender} -- Type: {item.AnimalType}");
-                }
-
-                Console.WriteLine("_________________________");
-            }
-            else
-            {
-                Console.WriteLine("All animals are dead");
-            }
-        }
+      
 
     }
 }

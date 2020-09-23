@@ -8,9 +8,6 @@ namespace SavannahGame
 {
     class Savannah
     {
-        // Start the game here 
        
-        //Methods for game
-
     }
 }

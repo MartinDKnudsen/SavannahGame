@@ -11,7 +11,7 @@ namespace BetaTest
         {
 
             var m = GameLogic.Getinstance();
-            m.RGame = true;
+           
             m.StartGame(100, 100);
          
             Console.ReadLine();

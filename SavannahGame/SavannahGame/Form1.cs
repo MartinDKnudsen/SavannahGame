@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Data;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Timer = System.Windows.Forms.Timer;
@@ -11,6 +10,7 @@ namespace SavannahGame
     {
         public int NumberOfStartRabbits { get; set; }
         public int NumberOfStartLions { get; set; }
+        public bool animalsOnFields = true; 
 
         public Controller Ct = new Controller();
 
@@ -27,10 +27,15 @@ namespace SavannahGame
 
         public Form1()
         {
+           
             InitializeComponent();
-            time = new Timer();
-            time.Tick += time_Tick;
-            time.Interval = 100;
+            
+           
+                time = new Timer();
+                time.Tick += time_Tick;
+                time.Interval = 10;
+            
+            
 
         }
 
@@ -38,27 +43,43 @@ namespace SavannahGame
         {
 
          dataGridView1.DataSource =  Ct.DT();
-
+         // animalsOnFields = true;
         }
         private void time_Tick(object e, EventArgs ea)
         {
-            if (i < 1000000000)
+           
+            var timetoTick = 1000000000;
+          
+                if (i < timetoTick)
+                {
+                    NumberOfLions.Text = Ct.CountLions().ToString();
+                    TotalNumberOfRabbitsTextBox.Text = Ct.CountRabbits().ToString();
+                    TotalCubsBornTextBox.Text = Ct.CountCubsBorn().ToString();
+                    LionsTotalWeigthTextBox.Text = Ct.TotalWeigthOfLions().ToString();
+                    RabbitTotalWeigthTextBox.Text = Ct.TotalWeigthOfRabbits().ToString();
+                    textBoxForNumberOfKilledRabbits.Text = Ct.KilledRabbits().ToString();
+                    grasseatenTextBox.Text = Ct.GrassEat().ToString();
+                    textBoxNumberOfRabbitCubs.Text = Ct.rabbitCubs().ToString();
+                    textBoxNumberOfLionCubs.Text = Ct.lionCubs().ToString();
+                    textBoxNumberOfGreenFields.Text = Ct.countGreenField().ToString();
+                    textBoxLionsThatKilledEachOther.Text = Ct.lionsKilled().ToString();
+                    textBoxHunterKillCount.Text = Ct.hunterKills().ToString();
+                    textBoxTotalAnimals.Text = Ct.TotalAnimals().ToString();
+                    i++;
+                }
+                CheckHunterWin();
+        }
+
+        private void CheckHunterWin()
+        {
+            int OnlyHunterLeft = Convert.ToInt32(textBoxTotalAnimals.Text);
+            if (OnlyHunterLeft == 1)
             {
-                NumberOfLions.Text = Ct.CountLions().ToString();
-                TotalNumberOfRabbitsTextBox.Text = Ct.CountRabbits().ToString();
-                TotalCubsBornTextBox.Text = Ct.CountCubsBorn().ToString();
-                LionsTotalWeigthTextBox.Text = Ct.TotalWeigthOfLions().ToString();
-                RabbitTotalWeigthTextBox.Text = Ct.TotalWeigthOfRabbits().ToString();
-                textBoxForNumberOfKilledRabbits.Text = Ct.KilledRabbits().ToString();
-                grasseatenTextBox.Text = Ct.GrassEat().ToString();
-                textBoxNumberOfRabbitCubs.Text = Ct.rabbitCubs().ToString();
-                textBoxNumberOfLionCubs.Text = Ct.lionCubs().ToString();
-                textBoxNumberOfGreenFields.Text = Ct.countGreenField().ToString();
-                textBoxLionsThatKilledEachOther.Text = Ct.lionsKilled().ToString();
-                textBoxHunterKillCount.Text = Ct.hunterKills().ToString();
-                textBoxTotalAnimals.Text = Ct.TotalAnimals().ToString();
-                i++;
+                time.Stop();
+                MessageBox.Show(Ct.HunterWon());
+                
             }
+
         }
 
         private void TopPanelForMovement_MouseDown(object sender, MouseEventArgs e)
@@ -178,5 +199,6 @@ namespace SavannahGame
             dataGridView1.DataSource = Ct.DT();
         }
 
+     
     }
 }

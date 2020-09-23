@@ -23,7 +23,6 @@ namespace SavannahGame
         public List<Animal> AllAnimals = new List<Animal>();
 
 
-        public bool RGame { get; set; }
         public int TotalCubCounter { get; set; }
         public int RabbitCubCounter { get; set; }
         public int LionCubCounter { get; set; }
@@ -134,8 +133,6 @@ namespace SavannahGame
                 AllAnimals.Add(new Rabbit(RandomRoll.genderRoll(), AnimalId));
                 numberOfRabbits--;
             }
-
-
         }
 
         //Create a FlatList of animals on territories
@@ -177,13 +174,8 @@ namespace SavannahGame
 
         public Field SelectAnimalOnTerritorie(Animal animal)
         {
-
-
             var theField = Territories.SelectMany(c => c).Select(c => c).First(c => c.animal == animal);
             return theField;
-
-
-
         }
 
         private void AnimalMovement(Animal animal)
@@ -271,24 +263,29 @@ namespace SavannahGame
 
                         if (AllAnimals.Contains(savedAnimal))
                         {
-                            //  AllAnimals.Remove(savedAnimal);
-                            Territories.SelectMany(c => c).Select(c => c).First(c => c.animal == savedAnimal).animal = null;
+                            RemoveAnimalFromField(savedAnimal);
                         }
 
                         Territories[randomPos.Item1][randomPos.Item2].animal = savedAnimal;
-
                         Dead(savedAnimal);
+
 
                     }
                     catch (Exception)
                     {
-                        Console.WriteLine();
+                        Dead(savedAnimal);
                     }
-                    //}
+                    
 
                 }
             }
         }
+        private void RemoveAnimalFromField(Animal animal)
+        {
+
+            Territories.SelectMany(c => c).Select(c => c).First(c => c.animal == animal).animal = null;
+        }
+
         private void Dead(Animal animal)
         {
             if (animal.Weight <= 0)
@@ -296,8 +293,10 @@ namespace SavannahGame
                 Console.WriteLine($"{animal} ({animal.ID}) is dead... :(");
                 RemoveAnimal(animal);
                 Console.WriteLine(AllAnimals.Count());
-                RGame = false;
-                // Thread.Sleep(1000);
+            }
+            if (AllAnimals.Count() <= 2)
+            {
+                NonSurvivers();
             }
         }
 
@@ -425,7 +424,7 @@ namespace SavannahGame
                 Console.WriteLine("ALL ANIMALS ARE DEAD GOOD FUCKING JOB IDIOTS");
                 Console.WriteLine($"All in all {TotalCubCounter} babies where born");
                 Console.WriteLine($"Lions killed {LionsRabbitKillsCounter} Rabbits");
-                RGame = false;
+             
             }
             else
             {
@@ -433,17 +432,15 @@ namespace SavannahGame
             }
         }
 
-        private void NonSurvivers()
+        public string NonSurvivers()
         {
-            if (AllAnimals.Count() <= 1)
-            {
-                Console.WriteLine("Hunter won");
-                //Console.WriteLine("All animals killed eachother :( ");
-                //Console.WriteLine($"All in all {TotalCubCounter} babies where born");
-                //Console.WriteLine($"Lions killed {LionsRabbitKillsCounter} Rabbits");
-                RGame = false;
-                Console.ReadLine();
-            }
+            //if (AllAnimals.Count() <= 1)
+            //{
+                //Console.WriteLine("Hunter won");
+                            
+                //Console.ReadLine();
+            return "Hunter Won";
+            //}
 
         }
     }

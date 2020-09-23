@@ -8,33 +8,44 @@ namespace SavannahGame
     {
         //  Kobling mellem methoder og forms
 
-        private Database DB = new Database();
+
+        private Database db = new Database();
+
+        IDatabase DB;
 
         private GameLogic gl = GameLogic.Getinstance();
 
         private CountData cD = SavannahGame.CountData.Getinstance();
 
-     
+        public Controller()
+        {
+            DB = db;
+        }
+
+        public string HunterWon()
+        {
+            return gl.NonSurvivers();
+
+        }
         public void StartSavannahGame(int rabbits, int lions)
         {
-            gl.RGame = true;
             gl.StartGame(lions, rabbits);
-    
         }
         public void saveData(int totalCubs, int AnimalsKilled, int AnimalsKilledByHunter)
         {
             DB.SaveData(totalCubs, AnimalsKilled, AnimalsKilledByHunter);
         }
+        public DataTable DT()
+        {
+            return DB.GetData();
+        }
+
         public void PrintDataTable(string name, DataTable datatable)
         {
 
             TxtPrinter.Write(name, datatable);
         }
-        public int CountData()
-        {
-
-          return gl.AllAnimals.Count();
-        }
+    
         public int lionsKilled()
         {
 
@@ -81,10 +92,7 @@ namespace SavannahGame
             return gl.LionsRabbitKillsCounter;
 
         }
-        public DataTable DT()
-        {
-          return DB.GetData();
-        }
+    
         public int rabbitCubs()
         {
           return  gl.RabbitCubCounter;
@@ -108,11 +116,6 @@ namespace SavannahGame
             return cD.CountAllSpecAnimalOnTheTerritories<Lion>();
         }
       
-
-      public void testafgame()
-      {
-            gl.GameRunning();
-      }
         public int TotalAnimals()
         {
             return cD.CountAnimals();

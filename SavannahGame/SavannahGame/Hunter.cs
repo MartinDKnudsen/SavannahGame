@@ -25,7 +25,7 @@ namespace SavannahGame
 
         public override void Move()
         {
-            Weight -= WeightLoss;
+          //  Weight -= WeightLoss;
         }
     }
 }

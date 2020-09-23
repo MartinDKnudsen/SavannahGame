@@ -88,12 +88,6 @@
     <Compile Include="Rabbit.cs" />
     <Compile Include="RandomRoll.cs" />
     <Compile Include="Savannah.cs" />
-    <Compile Include="ShowDataFromSql.cs">
-      <SubType>UserControl</SubType>
-    </Compile>
-    <Compile Include="ShowDataFromSql.Designer.cs">
-      <DependentUpon>ShowDataFromSql.cs</DependentUpon>
-    </Compile>
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
@@ -107,9 +101,6 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="ShowDataFromSql.resx">
-      <DependentUpon>ShowDataFromSql.cs</DependentUpon>
-    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\DataSources\CountData.datasource" />
     <None Include="Properties\Settings.settings">

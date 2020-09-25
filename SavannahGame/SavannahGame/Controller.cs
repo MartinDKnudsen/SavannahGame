@@ -22,14 +22,26 @@ namespace SavannahGame
             DB = db;
         }
 
+        public int CountArrows()
+        {
+            return gl.Arrows;
+
+        }
         public string HunterWon()
         {
             return gl.NonSurvivers();
 
         }
-        public void StartSavannahGame(int rabbits, int lions)
+
+        public string FullSavanna()
         {
-            gl.StartGame(lions, rabbits);
+            return gl.NoMoreRoom();
+
+        }
+
+        public void StartSavannahGame(int rabbits, int lions, int hunters)
+        {
+            gl.StartGame(lions, rabbits, hunters);
         }
         public void saveData(int totalCubs, int AnimalsKilled, int AnimalsKilledByHunter)
         {
@@ -79,13 +91,13 @@ namespace SavannahGame
         public double TotalWeigthOfLions()
         {
 
-            return cD.WeigthOfAllAnimalsOfAType<Lion>();
+            return cD.WeightOfAllAnimalsOfAType<Lion>();
         }
 
         public double TotalWeigthOfRabbits()
         {
 
-            return cD.WeigthOfAllAnimalsOfAType<Rabbit>();
+            return cD.WeightOfAllAnimalsOfAType<Rabbit>();
         }
         public int KilledRabbits()
         {

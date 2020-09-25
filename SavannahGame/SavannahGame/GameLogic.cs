@@ -30,16 +30,15 @@ namespace SavannahGame
         public int LionsRabbitKillsCounter { get; set; }
         public int GrassEaten { get; set; }
         public int HunterKillCount { get; set; }
+        public int Arrows { get; set; }
+        public int NumberofHunters { get; set; }
 
         //Placement of animals to random fields - make private
-        public void Placement()
+        private void Placement()
         {
             // Flatter min liste og tjekker hvilke dyr der ikke er på felt    
             var existingAnimals = Territories.SelectMany(c => c).Where(a => AllAnimals.Contains(a.animal)).Select(m => m.animal);
-            if (Territories.SelectMany(c => c).Count(c => c.animal != null) >= 398)
-            {
-                GlobalWarming();
-            }
+
             foreach (var animal in AllAnimals.Except(existingAnimals))
             {
                 var r = RandomRoll.AnimalRandomPlacement();
@@ -56,20 +55,19 @@ namespace SavannahGame
             }
         }
 
-        public void StartGame(int aLions, int aRabbits)
+        //Code to start everything
+        public void StartGame(int aLions, int aRabbits, int aHunter)
         {
 
-            AddAnimal(aLions, aRabbits);
+            AddAnimal(aLions, aRabbits, aHunter);
             AddFields();
             Placement();
             GameRunning();
 
-            //Code to start everything
-
         }
 
-        //Do the full game here 
-        public void GameRunning()
+        //Game running
+        private void GameRunning()
         {
             while (AllAnimals.Count != 1)
             {
@@ -80,17 +78,14 @@ namespace SavannahGame
                         continue;
                     }
                     Dead(AllAnimals[i]);
-                    GlobalWarming();
                     AnimalMovement(AllAnimals[i]);
                     Thread.Sleep(100);
                 }
             }
-
         }
 
-
         // Add a field to all fields, and generate random number of greenfields
-        public void AddFields()
+        private void AddFields()
         {
             for (int i = 0; i <= 19; i++)
             {
@@ -112,25 +107,28 @@ namespace SavannahGame
         }
 
         //Add selected number of animals, and roll their gender 
-        public void AddAnimal(int numberOfLion, int numberOfRabbits)
+        private void AddAnimal(int numberOfLion, int numberOfRabbits, int numberofHunters)
         {
+            NumberofHunters = numberofHunters;
             //Add one hunter to the field
-            if (numberOfLion != 0 && numberOfRabbits != 0)
+            while (numberofHunters != 0)
             {
                 AllAnimals.Add(new Hunter());
+                Arrows += 20;
+                numberofHunters--;
             }
 
             while (numberOfLion != 0)
             {
                 AnimalId++;
-                AllAnimals.Add(new Lion(RandomRoll.genderRoll(), AnimalId));
+                AllAnimals.Add(new Lion(RandomRoll.GenderRoll(), AnimalId));
                 numberOfLion--;
             }
 
             while (numberOfRabbits != 0)
             {
                 AnimalId++;
-                AllAnimals.Add(new Rabbit(RandomRoll.genderRoll(), AnimalId));
+                AllAnimals.Add(new Rabbit(RandomRoll.GenderRoll(), AnimalId));
                 numberOfRabbits--;
             }
         }
@@ -158,10 +156,10 @@ namespace SavannahGame
             catch (Exception)
             {
                 AllAnimals.Remove(animal);
-                Console.WriteLine();
             }
         }
 
+        //Random select move from validmoves
         private (int, int) SelectetMove(Animal animal)
         {
 
@@ -172,12 +170,15 @@ namespace SavannahGame
             return posOfRField;
         }
 
+        //Select animal on its Territories
         public Field SelectAnimalOnTerritorie(Animal animal)
         {
             var theField = Territories.SelectMany(c => c).Select(c => c).First(c => c.animal == animal);
             return theField;
         }
 
+
+        //Movement for animals
         private void AnimalMovement(Animal animal)
         {
             if (AllAnimals.Contains(animal))
@@ -206,8 +207,9 @@ namespace SavannahGame
                             NewCubs(true);
                             RabbitCubCounter += 2;
                             TotalCubCounter += 2;
-                            Console.WriteLine($"Rabbit: {savedAnimal.ID} and Rabbbit {fPos.animal.ID} is now parents :D");
-                            RemoveAnimal(fPos.animal);
+                            //  Console.WriteLine($"Rabbit: {savedAnimal.ID} and Rabbbit {fPos.animal.ID} is now parents :D");
+                            RemoveAnimalFromField(fPos.animal);
+                            Placement();
                             break;
 
                         //If lion move to a field with a rabbit, it eats it.
@@ -247,15 +249,19 @@ namespace SavannahGame
 
                         RemoveAnimal(fPos.animal);
 
-                        //  Thread.Sleep(100);
 
                     }
                     if (savedAnimal is Hunter && fPos.animal != null)
                     {
-                        var deadAnimal = fPos.animal;
                         savedAnimal.Eat();
+                        Arrows -= 1;
                         HunterKillCount++;
                         RemoveAnimal(fPos.animal);
+                    }
+
+                    if (savedAnimal is Hunter && fPos.animal == null)
+                    {
+                        Arrows += 1;
                     }
 
                     try
@@ -275,11 +281,13 @@ namespace SavannahGame
                 }
             }
         }
+        //Remove animal from field
         private void RemoveAnimalFromField(Animal animal)
         {
             Territories.SelectMany(c => c).Select(c => c).First(c => c.animal == animal).animal = null;
         }
 
+        //Check if animal is dead, and remove if it it is
         private void Dead(Animal animal)
         {
             if (animal.Weight <= 0)
@@ -288,7 +296,7 @@ namespace SavannahGame
                 RemoveAnimal(animal);
                 Console.WriteLine(AllAnimals.Count());
             }
-            if (AllAnimals.Count() <= 1)
+            if (AllAnimals.Count() <= NumberofHunters)
             {
                 NonSurvivers();
             }
@@ -302,7 +310,7 @@ namespace SavannahGame
             {
                 while (NumberOfNewRabbits != 0)
                 {
-                    AddAnimal(0, 1);
+                    AddAnimal(0, 1, 0);
 
                     NumberOfNewRabbits--;
                 }
@@ -313,16 +321,17 @@ namespace SavannahGame
 
                 while (NumberOfNewLions != 0)
                 {
-                    AddAnimal(1, 0);
+                    AddAnimal(1, 0, 0);
                     NumberOfNewLions--;
                 }
             }
             Placement();
         }
 
+        //Check for valid moves that the animal can choose from
         private List<Field> ValidMovesForAnimal(Animal animal)
         {
-
+            //Set moves for lion, hunter or rabbit
             int minimumToMove = 0, maximumToMove = 0, numberOfSteps = 0;
             if (animal is Lion || animal is Hunter)
             {
@@ -388,6 +397,7 @@ namespace SavannahGame
 
         }
 
+        //Gets the coordination of a field
         private (int, int) XandY(Field field)
         {
             //Take a field and find the cordinates of it 
@@ -401,35 +411,15 @@ namespace SavannahGame
 
         }
 
-        private void GlobalWarming()
-        {
-            if (AllAnimals.Count() >= 399)
-            {
-
-                Console.WriteLine("All animals are dying because of global warming ");
-                foreach (var item in Territories.SelectMany(c => c))
-                {
-                    RemoveAnimal(item.animal);
-                    item.animal = null;
-
-                }
-
-                Console.WriteLine("ALL ANIMALS ARE DEAD GOOD FUCKING JOB IDIOTS");
-                Console.WriteLine($"All in all {TotalCubCounter} babies where born");
-                Console.WriteLine($"Lions killed {LionsRabbitKillsCounter} Rabbits");
-            }
-        }
-
+        //If only Hunter is left on the savannah
         public string NonSurvivers()
         {
-            //if (AllAnimals.Count() <= 1)
-            //{
-                //Console.WriteLine("Hunter won");
-                            
-                //Console.ReadLine();
             return "Hunter Won";
-            //}
+        }
 
+        public string NoMoreRoom()
+        {
+            return "Savannah full";
         }
     }
 }

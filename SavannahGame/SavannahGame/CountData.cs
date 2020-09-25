@@ -7,9 +7,9 @@ namespace SavannahGame
     public class CountData
     {
 
-        private GameLogic gl = GameLogic.Getinstance();
+        private readonly GameLogic _gl = GameLogic.Getinstance();
 
-        private static CountData cD = null;
+        private static CountData _cD = null;
 
         private CountData()
         {
@@ -17,40 +17,40 @@ namespace SavannahGame
         }
         public static CountData Getinstance()
         {
-            return cD ?? (cD = new CountData());
+            return _cD ?? (_cD = new CountData());
         }
 
         //Count all animals on the Savannah
         public int CountAnimals()
         {
-            return gl.Territories.SelectMany(c => c).Count(c => c.animal != null);
+            return _gl.Territories.SelectMany(c => c).Count(c => c.animal != null);
         }
 
         //Count Greenfields
         public int CountGreenField()
         {
-            return gl.Territories.SelectMany(e => e).ToList().Count(e => e.GreenField);
+            return _gl.Territories.SelectMany(e => e).Count(e => e.GreenField);
         }
 
         //Count number of Fields
         public int CountField()
         {
             //Tæller felter
-            return gl.Territories.SelectMany(f => f).ToList().Count();
+            return _gl.Territories.SelectMany(f => f).ToList().Count();
         }
 
         //Count number of selected animal on Territories
         public int CountAllSpecAnimalOnTheTerritories<T>()
         {
-            return gl.Territories.SelectMany(c => c).Count(c => c.animal is T);
+            return _gl.Territories.SelectMany(c => c).ToList().Count(c => c.animal is T);
           
         }
 
-        //Show the weigth of all animals of a specific type on the Tavannah
-        public double WeigthOfAllAnimalsOfAType<T>()
+        //Show the weight of all animals of a specific type on the Tavannah
+        public double WeightOfAllAnimalsOfAType<T>()
         {
-            var XAnimalWeigth = gl.FlatList().Where(c => c is T).ToList();
-                double total = XAnimalWeigth.Sum(item => item.Weight);
+            var xAnimalWeigth = _gl.FlatList().Where(c => c is T).ToList();
+                double total = xAnimalWeigth.Sum(item => item.Weight);
                 return total;
         }
       

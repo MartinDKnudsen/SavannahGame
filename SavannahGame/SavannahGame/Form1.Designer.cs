@@ -74,18 +74,24 @@
             this.label11 = new System.Windows.Forms.Label();
             this.textBoxTotalAnimals = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.label13 = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.textBoxNumberOfHunters = new System.Windows.Forms.TextBox();
             this.buttonSaveToDB = new System.Windows.Forms.Button();
+            this.textBoxNumberOfArrows = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label = new System.Windows.Forms.Label();
+            this.textBoxNumberOfStartHunters = new System.Windows.Forms.TextBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.TopPanelForMovement.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.MiniMaiseButton)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.CloseButton)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
             // StartButton
@@ -116,18 +122,17 @@
             // 
             this.LionsLabel.AutoSize = true;
             this.LionsLabel.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LionsLabel.Location = new System.Drawing.Point(480, 114);
+            this.LionsLabel.Location = new System.Drawing.Point(479, 97);
             this.LionsLabel.Name = "LionsLabel";
             this.LionsLabel.Size = new System.Drawing.Size(61, 25);
             this.LionsLabel.TabIndex = 5;
             this.LionsLabel.Text = "Lions";
-           
             // 
             // NumberOfLionCubs
             // 
             this.NumberOfLionCubs.AutoSize = true;
             this.NumberOfLionCubs.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NumberOfLionCubs.Location = new System.Drawing.Point(481, 248);
+            this.NumberOfLionCubs.Location = new System.Drawing.Point(480, 231);
             this.NumberOfLionCubs.Name = "NumberOfLionCubs";
             this.NumberOfLionCubs.Size = new System.Drawing.Size(133, 21);
             this.NumberOfLionCubs.TabIndex = 7;
@@ -137,7 +142,7 @@
             // 
             this.TotalWeigthLionsLabel.AutoSize = true;
             this.TotalWeigthLionsLabel.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TotalWeigthLionsLabel.Location = new System.Drawing.Point(481, 197);
+            this.TotalWeigthLionsLabel.Location = new System.Drawing.Point(480, 180);
             this.TotalWeigthLionsLabel.Name = "TotalWeigthLionsLabel";
             this.TotalWeigthLionsLabel.Size = new System.Drawing.Size(66, 21);
             this.TotalWeigthLionsLabel.TabIndex = 8;
@@ -147,7 +152,7 @@
             // 
             this.LabelForKilledRabbits.AutoSize = true;
             this.LabelForKilledRabbits.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LabelForKilledRabbits.Location = new System.Drawing.Point(481, 293);
+            this.LabelForKilledRabbits.Location = new System.Drawing.Point(480, 276);
             this.LabelForKilledRabbits.Name = "LabelForKilledRabbits";
             this.LabelForKilledRabbits.Size = new System.Drawing.Size(207, 21);
             this.LabelForKilledRabbits.TabIndex = 9;
@@ -157,7 +162,7 @@
             // 
             this.RabbitLabel.AutoSize = true;
             this.RabbitLabel.Font = new System.Drawing.Font("Century Gothic", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RabbitLabel.Location = new System.Drawing.Point(480, 422);
+            this.RabbitLabel.Location = new System.Drawing.Point(480, 377);
             this.RabbitLabel.Name = "RabbitLabel";
             this.RabbitLabel.Size = new System.Drawing.Size(86, 25);
             this.RabbitLabel.TabIndex = 10;
@@ -167,7 +172,7 @@
             // 
             this.NumberOfLionsLabel.AutoSize = true;
             this.NumberOfLionsLabel.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NumberOfLionsLabel.Location = new System.Drawing.Point(481, 149);
+            this.NumberOfLionsLabel.Location = new System.Drawing.Point(480, 132);
             this.NumberOfLionsLabel.Name = "NumberOfLionsLabel";
             this.NumberOfLionsLabel.Size = new System.Drawing.Size(173, 21);
             this.NumberOfLionsLabel.TabIndex = 15;
@@ -176,7 +181,7 @@
             // textBoxForNumberOfKilledRabbits
             // 
             this.textBoxForNumberOfKilledRabbits.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxForNumberOfKilledRabbits.Location = new System.Drawing.Point(485, 317);
+            this.textBoxForNumberOfKilledRabbits.Location = new System.Drawing.Point(484, 300);
             this.textBoxForNumberOfKilledRabbits.Name = "textBoxForNumberOfKilledRabbits";
             this.textBoxForNumberOfKilledRabbits.ReadOnly = true;
             this.textBoxForNumberOfKilledRabbits.Size = new System.Drawing.Size(100, 22);
@@ -185,7 +190,7 @@
             // textBoxNumberOfLionCubs
             // 
             this.textBoxNumberOfLionCubs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxNumberOfLionCubs.Location = new System.Drawing.Point(485, 272);
+            this.textBoxNumberOfLionCubs.Location = new System.Drawing.Point(484, 255);
             this.textBoxNumberOfLionCubs.Name = "textBoxNumberOfLionCubs";
             this.textBoxNumberOfLionCubs.ReadOnly = true;
             this.textBoxNumberOfLionCubs.Size = new System.Drawing.Size(100, 22);
@@ -194,7 +199,7 @@
             // LionsTotalWeigthTextBox
             // 
             this.LionsTotalWeigthTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.LionsTotalWeigthTextBox.Location = new System.Drawing.Point(485, 221);
+            this.LionsTotalWeigthTextBox.Location = new System.Drawing.Point(484, 204);
             this.LionsTotalWeigthTextBox.Name = "LionsTotalWeigthTextBox";
             this.LionsTotalWeigthTextBox.ReadOnly = true;
             this.LionsTotalWeigthTextBox.Size = new System.Drawing.Size(100, 22);
@@ -203,7 +208,7 @@
             // NumberOfLions
             // 
             this.NumberOfLions.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.NumberOfLions.Location = new System.Drawing.Point(485, 173);
+            this.NumberOfLions.Location = new System.Drawing.Point(484, 156);
             this.NumberOfLions.Name = "NumberOfLions";
             this.NumberOfLions.ReadOnly = true;
             this.NumberOfLions.Size = new System.Drawing.Size(100, 22);
@@ -212,7 +217,7 @@
             // TotalNumberOfRabbitsTextBox
             // 
             this.TotalNumberOfRabbitsTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.TotalNumberOfRabbitsTextBox.Location = new System.Drawing.Point(485, 486);
+            this.TotalNumberOfRabbitsTextBox.Location = new System.Drawing.Point(484, 426);
             this.TotalNumberOfRabbitsTextBox.Name = "TotalNumberOfRabbitsTextBox";
             this.TotalNumberOfRabbitsTextBox.ReadOnly = true;
             this.TotalNumberOfRabbitsTextBox.Size = new System.Drawing.Size(100, 22);
@@ -221,7 +226,7 @@
             // RabbitTotalWeigthTextBox
             // 
             this.RabbitTotalWeigthTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.RabbitTotalWeigthTextBox.Location = new System.Drawing.Point(485, 534);
+            this.RabbitTotalWeigthTextBox.Location = new System.Drawing.Point(484, 474);
             this.RabbitTotalWeigthTextBox.Name = "RabbitTotalWeigthTextBox";
             this.RabbitTotalWeigthTextBox.ReadOnly = true;
             this.RabbitTotalWeigthTextBox.Size = new System.Drawing.Size(100, 22);
@@ -230,7 +235,7 @@
             // textBoxNumberOfRabbitCubs
             // 
             this.textBoxNumberOfRabbitCubs.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxNumberOfRabbitCubs.Location = new System.Drawing.Point(485, 585);
+            this.textBoxNumberOfRabbitCubs.Location = new System.Drawing.Point(484, 525);
             this.textBoxNumberOfRabbitCubs.Name = "textBoxNumberOfRabbitCubs";
             this.textBoxNumberOfRabbitCubs.ReadOnly = true;
             this.textBoxNumberOfRabbitCubs.Size = new System.Drawing.Size(100, 22);
@@ -239,7 +244,7 @@
             // grasseatenTextBox
             // 
             this.grasseatenTextBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.grasseatenTextBox.Location = new System.Drawing.Point(485, 630);
+            this.grasseatenTextBox.Location = new System.Drawing.Point(484, 570);
             this.grasseatenTextBox.Name = "grasseatenTextBox";
             this.grasseatenTextBox.ReadOnly = true;
             this.grasseatenTextBox.Size = new System.Drawing.Size(100, 22);
@@ -249,7 +254,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(481, 462);
+            this.label1.Location = new System.Drawing.Point(480, 402);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(196, 21);
             this.label1.TabIndex = 23;
@@ -259,7 +264,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(481, 606);
+            this.label2.Location = new System.Drawing.Point(480, 546);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(104, 21);
             this.label2.TabIndex = 22;
@@ -269,7 +274,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(481, 510);
+            this.label3.Location = new System.Drawing.Point(480, 450);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(66, 21);
             this.label3.TabIndex = 21;
@@ -279,7 +284,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(481, 561);
+            this.label4.Location = new System.Drawing.Point(480, 501);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(133, 21);
             this.label4.TabIndex = 20;
@@ -289,7 +294,7 @@
             // 
             this.HunterLabel.AutoSize = true;
             this.HunterLabel.Font = new System.Drawing.Font("Century Gothic", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.HunterLabel.Location = new System.Drawing.Point(422, 707);
+            this.HunterLabel.Location = new System.Drawing.Point(481, 644);
             this.HunterLabel.Name = "HunterLabel";
             this.HunterLabel.Size = new System.Drawing.Size(69, 23);
             this.HunterLabel.TabIndex = 28;
@@ -299,7 +304,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(585, 729);
+            this.label5.Location = new System.Drawing.Point(585, 721);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(121, 21);
             this.label5.TabIndex = 30;
@@ -307,11 +312,11 @@
             // 
             // textBoxHunterKillCount
             // 
-            this.textBoxHunterKillCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxHunterKillCount.Location = new System.Drawing.Point(589, 753);
+            this.textBoxHunterKillCount.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxHunterKillCount.Location = new System.Drawing.Point(589, 745);
             this.textBoxHunterKillCount.Name = "textBoxHunterKillCount";
             this.textBoxHunterKillCount.ReadOnly = true;
-            this.textBoxHunterKillCount.Size = new System.Drawing.Size(100, 22);
+            this.textBoxHunterKillCount.Size = new System.Drawing.Size(100, 23);
             this.textBoxHunterKillCount.TabIndex = 31;
             // 
             // label7
@@ -329,16 +334,16 @@
             this.textBoxNumberOfRabbits.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBoxNumberOfRabbits.Location = new System.Drawing.Point(80, 529);
             this.textBoxNumberOfRabbits.Name = "textBoxNumberOfRabbits";
-            this.textBoxNumberOfRabbits.Size = new System.Drawing.Size(100, 22);
+            this.textBoxNumberOfRabbits.Size = new System.Drawing.Size(75, 22);
             this.textBoxNumberOfRabbits.TabIndex = 34;
             this.textBoxNumberOfRabbits.TextChanged += new System.EventHandler(this.textBoxNumberOfRabbits_TextChanged);
             // 
             // textBoxNumberOfLions
             // 
             this.textBoxNumberOfLions.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxNumberOfLions.Location = new System.Drawing.Point(236, 529);
+            this.textBoxNumberOfLions.Location = new System.Drawing.Point(208, 530);
             this.textBoxNumberOfLions.Name = "textBoxNumberOfLions";
-            this.textBoxNumberOfLions.Size = new System.Drawing.Size(100, 22);
+            this.textBoxNumberOfLions.Size = new System.Drawing.Size(56, 22);
             this.textBoxNumberOfLions.TabIndex = 35;
             this.textBoxNumberOfLions.TextChanged += new System.EventHandler(this.textBoxNumberOfLions_TextChanged);
             // 
@@ -356,7 +361,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(232, 503);
+            this.label8.Location = new System.Drawing.Point(204, 504);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(60, 24);
             this.label8.TabIndex = 37;
@@ -477,7 +482,7 @@
             // textBoxNumberOfGreenFields
             // 
             this.textBoxNumberOfGreenFields.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxNumberOfGreenFields.Location = new System.Drawing.Point(485, 679);
+            this.textBoxNumberOfGreenFields.Location = new System.Drawing.Point(484, 619);
             this.textBoxNumberOfGreenFields.Name = "textBoxNumberOfGreenFields";
             this.textBoxNumberOfGreenFields.ReadOnly = true;
             this.textBoxNumberOfGreenFields.Size = new System.Drawing.Size(100, 22);
@@ -487,7 +492,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(481, 655);
+            this.label10.Location = new System.Drawing.Point(480, 595);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(161, 21);
             this.label10.TabIndex = 51;
@@ -496,7 +501,7 @@
             // textBoxLionsThatKilledEachOther
             // 
             this.textBoxLionsThatKilledEachOther.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxLionsThatKilledEachOther.Location = new System.Drawing.Point(485, 369);
+            this.textBoxLionsThatKilledEachOther.Location = new System.Drawing.Point(484, 352);
             this.textBoxLionsThatKilledEachOther.Name = "textBoxLionsThatKilledEachOther";
             this.textBoxLionsThatKilledEachOther.ReadOnly = true;
             this.textBoxLionsThatKilledEachOther.Size = new System.Drawing.Size(100, 22);
@@ -506,7 +511,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label11.Location = new System.Drawing.Point(482, 345);
+            this.label11.Location = new System.Drawing.Point(481, 328);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(218, 21);
             this.label11.TabIndex = 53;
@@ -515,7 +520,7 @@
             // textBoxTotalAnimals
             // 
             this.textBoxTotalAnimals.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxTotalAnimals.Location = new System.Drawing.Point(486, 78);
+            this.textBoxTotalAnimals.Location = new System.Drawing.Point(485, 61);
             this.textBoxTotalAnimals.Name = "textBoxTotalAnimals";
             this.textBoxTotalAnimals.ReadOnly = true;
             this.textBoxTotalAnimals.Size = new System.Drawing.Size(100, 26);
@@ -525,16 +530,102 @@
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(482, 56);
+            this.label12.Location = new System.Drawing.Point(481, 39);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(111, 19);
             this.label12.TabIndex = 55;
             this.label12.Text = "Total animals";
             // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(25, 38);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.Size = new System.Drawing.Size(444, 381);
+            this.dataGridView1.TabIndex = 56;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(481, 669);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(161, 21);
+            this.label13.TabIndex = 57;
+            this.label13.Text = "Hunter on Svannah";
+            // 
+            // textBoxNumberOfHunters
+            // 
+            this.textBoxNumberOfHunters.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxNumberOfHunters.Location = new System.Drawing.Point(485, 695);
+            this.textBoxNumberOfHunters.Name = "textBoxNumberOfHunters";
+            this.textBoxNumberOfHunters.ReadOnly = true;
+            this.textBoxNumberOfHunters.Size = new System.Drawing.Size(100, 23);
+            this.textBoxNumberOfHunters.TabIndex = 58;
+            // 
+            // buttonSaveToDB
+            // 
+            this.buttonSaveToDB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSaveToDB.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonSaveToDB.Location = new System.Drawing.Point(29, 741);
+            this.buttonSaveToDB.Name = "buttonSaveToDB";
+            this.buttonSaveToDB.Size = new System.Drawing.Size(112, 39);
+            this.buttonSaveToDB.TabIndex = 3;
+            this.buttonSaveToDB.Text = "Save result";
+            this.buttonSaveToDB.UseVisualStyleBackColor = true;
+            this.buttonSaveToDB.Click += new System.EventHandler(this.buttonSaveToDB_Click);
+            // 
+            // textBoxNumberOfArrows
+            // 
+            this.textBoxNumberOfArrows.Font = new System.Drawing.Font("Century Gothic", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxNumberOfArrows.Location = new System.Drawing.Point(485, 745);
+            this.textBoxNumberOfArrows.Name = "textBoxNumberOfArrows";
+            this.textBoxNumberOfArrows.ReadOnly = true;
+            this.textBoxNumberOfArrows.Size = new System.Drawing.Size(100, 23);
+            this.textBoxNumberOfArrows.TabIndex = 59;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label14.Location = new System.Drawing.Point(481, 721);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(63, 21);
+            this.label14.TabIndex = 60;
+            this.label14.Text = "Arrows";
+            // 
+            // label
+            // 
+            this.label.AutoSize = true;
+            this.label.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label.Location = new System.Drawing.Point(328, 504);
+            this.label.Name = "label";
+            this.label.Size = new System.Drawing.Size(83, 24);
+            this.label.TabIndex = 61;
+            this.label.Text = "Hunters";
+            // 
+            // textBoxNumberOfStartHunters
+            // 
+            this.textBoxNumberOfStartHunters.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxNumberOfStartHunters.Location = new System.Drawing.Point(328, 530);
+            this.textBoxNumberOfStartHunters.Name = "textBoxNumberOfStartHunters";
+            this.textBoxNumberOfStartHunters.Size = new System.Drawing.Size(83, 22);
+            this.textBoxNumberOfStartHunters.TabIndex = 62;
+            this.textBoxNumberOfStartHunters.TextChanged += new System.EventHandler(this.textBoxNumberOfStartHunters_TextChanged);
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = global::SavannahGame.Properties.Resources.icons8_hunter_48px;
+            this.pictureBox3.Location = new System.Drawing.Point(270, 504);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(52, 48);
+            this.pictureBox3.TabIndex = 64;
+            this.pictureBox3.TabStop = false;
+            // 
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(189, 502);
+            this.pictureBox2.Location = new System.Drawing.Point(161, 503);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(46, 47);
             this.pictureBox2.TabIndex = 40;
@@ -549,53 +640,19 @@
             this.pictureBox1.TabIndex = 39;
             this.pictureBox1.TabStop = false;
             // 
-            // dataGridView1
-            // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(25, 38);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(444, 381);
-            this.dataGridView1.TabIndex = 56;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(422, 729);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(161, 21);
-            this.label13.TabIndex = 57;
-            this.label13.Text = "Hunter on Svannah";
-            // 
-            // textBox1
-            // 
-            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(426, 753);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(100, 22);
-            this.textBox1.TabIndex = 58;
-            this.textBox1.Text = "1";
-            // 
-            // buttonSaveToDB
-            // 
-            this.buttonSaveToDB.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.buttonSaveToDB.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.buttonSaveToDB.Location = new System.Drawing.Point(29, 741);
-            this.buttonSaveToDB.Name = "buttonSaveToDB";
-            this.buttonSaveToDB.Size = new System.Drawing.Size(112, 39);
-            this.buttonSaveToDB.TabIndex = 3;
-            this.buttonSaveToDB.Text = "Save result";
-            this.buttonSaveToDB.UseVisualStyleBackColor = true;
-            this.buttonSaveToDB.Click += new System.EventHandler(this.buttonSaveToDB_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(731, 807);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.textBoxNumberOfStartHunters);
+            this.Controls.Add(this.label);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.textBoxNumberOfArrows);
+            this.Controls.Add(this.textBoxNumberOfHunters);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.label12);
@@ -621,7 +678,6 @@
             this.Controls.Add(this.textBoxNumberOfRabbits);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.textBoxHunterKillCount);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.HunterLabel);
             this.Controls.Add(this.TotalNumberOfRabbitsTextBox);
             this.Controls.Add(this.RabbitTotalWeigthTextBox);
@@ -653,9 +709,10 @@
             this.TopPanelForMovement.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.MiniMaiseButton)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.CloseButton)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -711,8 +768,13 @@
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.DataGridView dataGridView1;
         private System.Windows.Forms.Label label13;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxNumberOfHunters;
         private System.Windows.Forms.Button buttonSaveToDB;
+        private System.Windows.Forms.TextBox textBoxNumberOfArrows;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label label;
+        private System.Windows.Forms.TextBox textBoxNumberOfStartHunters;
+        private System.Windows.Forms.PictureBox pictureBox3;
     }
 }
 

@@ -12,7 +12,7 @@ namespace BetaTest
 
             var m = GameLogic.Getinstance();
            
-            m.StartGame(100, 100);
+            m.StartGame(100, 100, 20);
          
             Console.ReadLine();
         }

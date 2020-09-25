@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SavannahGame", "SavannahGam
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BetaTest", "BetaTest\BetaTest.csproj", "{6CE85E60-BE1A-4B39-BC4F-2BF9A1A4EB70}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTestOfSavannahGame", "UnitTestOfSavannahGame\UnitTestOfSavannahGame.csproj", "{CB8DCD30-716F-43D9-BFA6-9C5A452AD0FF}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Images", "Images", "{2600B321-2CAD-4E1F-960B-B44A63C501AD}"
 	ProjectSection(SolutionItems) = preProject
 		..\..\..\..\Desktop\icons8_lion_48px.png = ..\..\..\..\Desktop\icons8_lion_48px.png
@@ -33,10 +31,6 @@ Global
 		{6CE85E60-BE1A-4B39-BC4F-2BF9A1A4EB70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6CE85E60-BE1A-4B39-BC4F-2BF9A1A4EB70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6CE85E60-BE1A-4B39-BC4F-2BF9A1A4EB70}.Release|Any CPU.Build.0 = Release|Any CPU
-		{CB8DCD30-716F-43D9-BFA6-9C5A452AD0FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{CB8DCD30-716F-43D9-BFA6-9C5A452AD0FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{CB8DCD30-716F-43D9-BFA6-9C5A452AD0FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{CB8DCD30-716F-43D9-BFA6-9C5A452AD0FF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{08A43158-FBDB-454C-8C0E-8B1198545D95}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{08A43158-FBDB-454C-8C0E-8B1198545D95}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{08A43158-FBDB-454C-8C0E-8B1198545D95}.Release|Any CPU.ActiveCfg = Release|Any CPU

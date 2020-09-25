@@ -10,8 +10,8 @@ namespace SavannahGame
     {
         public int NumberOfStartRabbits { get; set; }
         public int NumberOfStartLions { get; set; }
-        public bool animalsOnFields = true; 
-
+        public int NumberOfStartHunters { get; set; }
+        public int TotalStartAnimals { get; set; }
         public Controller Ct = new Controller();
 
         public const int WM_NCLBUTTONDOWN = 0xA1;
@@ -27,57 +27,69 @@ namespace SavannahGame
 
         public Form1()
         {
-           
+
             InitializeComponent();
-            
-           
-                time = new Timer();
-                time.Tick += time_Tick;
-                time.Interval = 10;
-            
-            
+
+
+            time = new Timer();
+            time.Tick += time_Tick;
+            time.Interval = 10;
+
+
 
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
 
-         dataGridView1.DataSource =  Ct.DT();
-         // animalsOnFields = true;
+            dataGridView1.DataSource = Ct.DT();
+
         }
         private void time_Tick(object e, EventArgs ea)
         {
-           
+
             var timetoTick = 1000000000;
-          
-                if (i < timetoTick)
-                {
-                    NumberOfLions.Text = Ct.CountLions().ToString();
-                    TotalNumberOfRabbitsTextBox.Text = Ct.CountRabbits().ToString();
-                    TotalCubsBornTextBox.Text = Ct.CountCubsBorn().ToString();
-                    LionsTotalWeigthTextBox.Text = Ct.TotalWeigthOfLions().ToString();
-                    RabbitTotalWeigthTextBox.Text = Ct.TotalWeigthOfRabbits().ToString();
-                    textBoxForNumberOfKilledRabbits.Text = Ct.KilledRabbits().ToString();
-                    grasseatenTextBox.Text = Ct.GrassEat().ToString();
-                    textBoxNumberOfRabbitCubs.Text = Ct.rabbitCubs().ToString();
-                    textBoxNumberOfLionCubs.Text = Ct.lionCubs().ToString();
-                    textBoxNumberOfGreenFields.Text = Ct.countGreenField().ToString();
-                    textBoxLionsThatKilledEachOther.Text = Ct.lionsKilled().ToString();
-                    textBoxHunterKillCount.Text = Ct.hunterKills().ToString();
-                    textBoxTotalAnimals.Text = Ct.TotalAnimals().ToString();
-                    i++;
-                }
-                CheckHunterWin();
+
+            if (i < timetoTick)
+            {
+                NumberOfLions.Text = Ct.CountLions().ToString();
+                TotalNumberOfRabbitsTextBox.Text = Ct.CountRabbits().ToString();
+                TotalCubsBornTextBox.Text = Ct.CountCubsBorn().ToString();
+                LionsTotalWeigthTextBox.Text = Ct.TotalWeigthOfLions().ToString();
+                RabbitTotalWeigthTextBox.Text = Ct.TotalWeigthOfRabbits().ToString();
+                textBoxForNumberOfKilledRabbits.Text = Ct.KilledRabbits().ToString();
+                grasseatenTextBox.Text = Ct.GrassEat().ToString();
+                textBoxNumberOfRabbitCubs.Text = Ct.rabbitCubs().ToString();
+                textBoxNumberOfLionCubs.Text = Ct.lionCubs().ToString();
+                textBoxNumberOfGreenFields.Text = Ct.countGreenField().ToString();
+                textBoxLionsThatKilledEachOther.Text = Ct.lionsKilled().ToString();
+                textBoxHunterKillCount.Text = Ct.hunterKills().ToString();
+                textBoxTotalAnimals.Text = Ct.TotalAnimals().ToString();
+                textBoxNumberOfArrows.Text = Ct.CountArrows().ToString();
+                i++;
+            }
+            CheckHunterWin();
+            CheckFullSavannah();
+
         }
 
+        private void CheckFullSavannah()
+        {
+            int fullsavannah = Convert.ToInt32(textBoxTotalAnimals.Text);
+            if (fullsavannah >= 400)
+            {
+                time.Stop();
+                MessageBox.Show(Ct.FullSavanna());
+            }
+        }
         private void CheckHunterWin()
         {
             int OnlyHunterLeft = Convert.ToInt32(textBoxTotalAnimals.Text);
-            if (OnlyHunterLeft == 1)
+            if (OnlyHunterLeft == NumberOfStartHunters)
             {
                 time.Stop();
                 MessageBox.Show(Ct.HunterWon());
-                
+
             }
 
         }
@@ -104,24 +116,38 @@ namespace SavannahGame
         private void StartButton_Click(object sender, EventArgs e)
         {
 
-            try
+            TotalStartAnimals = NumberOfStartHunters + NumberOfStartLions + NumberOfStartRabbits;
+            if ( TotalStartAnimals < 10)
             {
-                if ((NumberOfStartLions < 0 || NumberOfStartLions > 400) || (NumberOfStartRabbits < 0 || NumberOfStartRabbits > 400))
-                {
-                    MessageBox.Show("Cant run with input numbers, please try again");
-                }
-                else
-                {
-                    time.Start();
-                    Task.Factory.StartNew(() => Ct.StartSavannahGame(NumberOfStartRabbits, NumberOfStartLions));
-                   
-                }
+                MessageBox.Show("Add more animals for the game to start (minimum 10 animals is required)");
             }
+            else if (TotalStartAnimals > 400 )
+            {
+                MessageBox.Show("Too many animals");
+            }
+            else
+            {
+                try
+                {
+                    if ((NumberOfStartLions < 0 || NumberOfStartLions > 400) || (NumberOfStartRabbits < 0 || NumberOfStartRabbits > 400))
+                    {
+                        MessageBox.Show("Cant run with input numbers, please try again");
+                    }
+                    else
+                    {
+                        time.Start();
+                        textBoxNumberOfHunters.Text = NumberOfStartHunters.ToString();
+                        Task.Factory.StartNew(() => Ct.StartSavannahGame(NumberOfStartRabbits, NumberOfStartLions, NumberOfStartHunters));
 
-            catch (Exception)
-            {
-                MessageBox.Show("Error");
+                    }
+                }
+
+                catch (Exception)
+                {
+                    MessageBox.Show("Error");
+                }
             }
+           
         }
 
         private void textBoxNumberOfRabbits_TextChanged(object sender, EventArgs e)
@@ -199,6 +225,21 @@ namespace SavannahGame
             dataGridView1.DataSource = Ct.DT();
         }
 
-     
+        private void textBoxNumberOfStartHunters_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                NumberOfStartHunters = Convert.ToInt32(textBoxNumberOfStartHunters.Text);
+                if (NumberOfStartHunters > 20 || NumberOfStartLions < 1)
+                {
+                    MessageBox.Show("Number have to be larger than 0, but lower than 20 total");
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Invalid input");
+            }
+           
+        }
     }
 }

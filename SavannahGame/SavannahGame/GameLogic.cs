@@ -207,7 +207,6 @@ namespace SavannahGame
                             NewCubs(true);
                             RabbitCubCounter += 2;
                             TotalCubCounter += 2;
-                            //  Console.WriteLine($"Rabbit: {savedAnimal.ID} and Rabbbit {fPos.animal.ID} is now parents :D");
                             RemoveAnimalFromField(fPos.animal);
                             Placement();
                             break;
@@ -281,6 +280,7 @@ namespace SavannahGame
                 }
             }
         }
+
         //Remove animal from field
         private void RemoveAnimalFromField(Animal animal)
         {

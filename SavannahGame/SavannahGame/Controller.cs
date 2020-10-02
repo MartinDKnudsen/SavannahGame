@@ -2,6 +2,8 @@
 using System.Linq;
 using Persistens;
 using BusinessLogic;
+using System.Security.Policy;
+
 namespace SavannahGame
 {
     public class Controller
@@ -22,6 +24,7 @@ namespace SavannahGame
             DB = db;
         }
 
+        
         public int CountArrows()
         {
             return gl.Arrows;
@@ -45,7 +48,7 @@ namespace SavannahGame
         }
         public void saveData(int totalCubs, int AnimalsKilled, int AnimalsKilledByHunter)
         {
-            DB.SaveData(totalCubs, AnimalsKilled, AnimalsKilledByHunter);
+            DB.SaveDataToDatabase(totalCubs, AnimalsKilled, AnimalsKilledByHunter);
         }
         public DataTable DT()
         {
@@ -58,6 +61,11 @@ namespace SavannahGame
             TxtPrinter.Write(name, datatable);
         }
     
+        public void OpenSavedTxt()
+        {
+
+            TxtOpener.supportTxt();
+        }
         public int lionsKilled()
         {
 

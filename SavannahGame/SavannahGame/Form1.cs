@@ -13,9 +13,10 @@ namespace SavannahGame
         public int NumberOfStartHunters { get; set; }
         public int TotalStartAnimals { get; set; }
         public Controller Ct = new Controller();
-
+        public bool OnlyStartOnce { get; set; }
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
+       
 
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
@@ -41,7 +42,7 @@ namespace SavannahGame
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+            OnlyStartOnce = true;
             dataGridView1.DataSource = Ct.DT();
 
         }
@@ -115,38 +116,43 @@ namespace SavannahGame
 
         private void StartButton_Click(object sender, EventArgs e)
         {
-
-            TotalStartAnimals = NumberOfStartHunters + NumberOfStartLions + NumberOfStartRabbits;
-            if ( TotalStartAnimals < 10)
+            if (OnlyStartOnce == true)
             {
-                MessageBox.Show("Add more animals for the game to start (minimum 10 animals is required)");
-            }
-            else if (TotalStartAnimals > 400 )
-            {
-                MessageBox.Show("Too many animals");
-            }
-            else
-            {
-                try
+                TotalStartAnimals = NumberOfStartHunters + NumberOfStartLions + NumberOfStartRabbits;
+                if (TotalStartAnimals < 10)
                 {
-                    if ((NumberOfStartLions < 0 || NumberOfStartLions > 400) || (NumberOfStartRabbits < 0 || NumberOfStartRabbits > 400))
-                    {
-                        MessageBox.Show("Cant run with input numbers, please try again");
-                    }
-                    else
-                    {
-                        time.Start();
-                        textBoxNumberOfHunters.Text = NumberOfStartHunters.ToString();
-                        Task.Factory.StartNew(() => Ct.StartSavannahGame(NumberOfStartRabbits, NumberOfStartLions, NumberOfStartHunters));
-
-                    }
+                    MessageBox.Show("Add more animals for the game to start (minimum 10 animals is required)");
                 }
-
-                catch (Exception)
+                else if (TotalStartAnimals > 400)
                 {
-                    MessageBox.Show("Error");
+                    MessageBox.Show("Too many animals");
+                }
+                else
+                {
+                    try
+                    {
+                        if ((NumberOfStartLions < 0 || NumberOfStartLions > 400) || (NumberOfStartRabbits < 0 || NumberOfStartRabbits > 400))
+                        {
+                            MessageBox.Show("Cant run with input numbers, please try again");
+                        }
+                        else
+                        {
+                            time.Start();
+                            textBoxNumberOfHunters.Text = NumberOfStartHunters.ToString();
+                            Task.Factory.StartNew(() => Ct.StartSavannahGame(NumberOfStartRabbits, NumberOfStartLions, NumberOfStartHunters));
+
+                        }
+                    }
+
+                    catch (Exception)
+                    {
+                        MessageBox.Show("Error");
+                    }
+                    OnlyStartOnce = false;
                 }
             }
+
+           
            
         }
 
@@ -240,6 +246,11 @@ namespace SavannahGame
                 MessageBox.Show("Invalid input");
             }
            
+        }
+
+        private void buttonShowPrint_Click(object sender, EventArgs e)
+        {
+            Ct.OpenSavedTxt();
         }
     }
 }

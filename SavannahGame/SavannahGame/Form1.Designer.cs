@@ -57,7 +57,7 @@
             this.textBoxNumberOfLions = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
-            this.button3 = new System.Windows.Forms.Button();
+            this.buttonShowPrint = new System.Windows.Forms.Button();
             this.TopPanelForMovement = new System.Windows.Forms.Panel();
             this.MiniMaiseButton = new System.Windows.Forms.PictureBox();
             this.CloseButton = new System.Windows.Forms.PictureBox();
@@ -367,16 +367,17 @@
             this.label8.TabIndex = 37;
             this.label8.Text = "Lions";
             // 
-            // button3
+            // buttonShowPrint
             // 
-            this.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.button3.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(143, 607);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(112, 39);
-            this.button3.TabIndex = 38;
-            this.button3.Text = "Show print";
-            this.button3.UseVisualStyleBackColor = true;
+            this.buttonShowPrint.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonShowPrint.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.buttonShowPrint.Location = new System.Drawing.Point(143, 607);
+            this.buttonShowPrint.Name = "buttonShowPrint";
+            this.buttonShowPrint.Size = new System.Drawing.Size(112, 39);
+            this.buttonShowPrint.TabIndex = 38;
+            this.buttonShowPrint.Text = "Show print";
+            this.buttonShowPrint.UseVisualStyleBackColor = true;
+            this.buttonShowPrint.Click += new System.EventHandler(this.buttonShowPrint_Click);
             // 
             // TopPanelForMovement
             // 
@@ -671,7 +672,7 @@
             this.Controls.Add(this.TopPanelForMovement);
             this.Controls.Add(this.pictureBox2);
             this.Controls.Add(this.pictureBox1);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.buttonShowPrint);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.textBoxNumberOfLions);
@@ -747,7 +748,7 @@
         private System.Windows.Forms.TextBox textBoxNumberOfLions;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button buttonShowPrint;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.Panel TopPanelForMovement;

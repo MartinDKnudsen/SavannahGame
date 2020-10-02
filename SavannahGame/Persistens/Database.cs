@@ -20,7 +20,7 @@ namespace Persistens
 
         }
 
-        public void SaveData(int totalCubs, int AnimalsKilled, int AnimalsKilledByHunter)
+        public void SaveDataToDatabase(int totalCubs, int AnimalsKilled, int AnimalsKilledByHunter)
         {
             SqlConnection conn = new SqlConnection(connString);
             conn.Open();

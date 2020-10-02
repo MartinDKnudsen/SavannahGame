@@ -4,8 +4,7 @@ namespace Persistens
 {
     public interface IDatabase
     {
-
-        void SaveData(int totalCubs, int AnimalsKilled, int AnimalsKilledByHunter);
+        void SaveDataToDatabase(int totalCubs, int AnimalsKilled, int AnimalsKilledByHunter);
         DataTable GetData();
 
     }

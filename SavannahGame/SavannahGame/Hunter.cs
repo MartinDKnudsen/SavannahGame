@@ -5,9 +5,6 @@ namespace SavannahGame
 {
     public class Hunter : Animal
     {
-
-       
-        //How to get new bullets? 
         public Hunter()
         {
             Weight = 100;
@@ -17,6 +14,7 @@ namespace SavannahGame
 
         public override void Eat()
         {
+            
            Weight += WeigthGain;
         }
 

@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Xml.Schema;
 
-namespace SavannahGame
+namespace BusinessLogic
 {
     public static class RandomRoll
     {

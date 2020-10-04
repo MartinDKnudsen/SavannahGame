@@ -1,6 +1,4 @@
-﻿using System.Threading;
-
-namespace SavannahGame
+﻿namespace BusinessLogic
 {
     public abstract class Animal
     {

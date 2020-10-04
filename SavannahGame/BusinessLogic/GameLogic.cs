@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 
-namespace SavannahGame
+namespace BusinessLogic
 {
     public class GameLogic
     {
@@ -198,7 +198,6 @@ namespace SavannahGame
                         //If rabbit move to greenfield, it eats
                         case Rabbit _ when fPos.GreenField:
                             animal.Eat();
-                            Console.WriteLine($"Rabbit {savedAnimal.ID} Ate some GRASS and now weigths {savedAnimal.Weight}");
                             GrassEaten++;
                             break;
 
@@ -214,7 +213,6 @@ namespace SavannahGame
                         //If lion move to a field with a rabbit, it eats it.
                         case Lion _ when fPos.animal is Rabbit:
                             var soonToDieRabbit = fPos.animal;
-                            Console.WriteLine($"Lion number {savedAnimal.ID} eat Rabbit: {soonToDieRabbit.ID} and gained {soonToDieRabbit.Weight} more kg");
                             RemoveAnimal(soonToDieRabbit);
 
                             LionsRabbitKillsCounter++;
@@ -226,30 +224,22 @@ namespace SavannahGame
                             NewCubs(false);
                             LionCubCounter++;
                             TotalCubCounter++;
-                            Console.WriteLine($"Lion: {savedAnimal.ID} ({savedAnimal.Gender}) and Lion {fPos.animal.ID} ({fPos.animal.Gender}) are now parents :D");
                             RemoveAnimal(fPos.animal);
                             break;
                     }
                     //Male Animals kill eachother of they land on same field 
                     if (fPos.animal != null && animal is Lion && savedAnimal.Gender == fPos.animal.Gender && fPos.animal is Lion)
                     {
-
-                        var newWeigth = savedAnimal.Weight + fPos.animal.Weight;
-                        Console.WriteLine($"Lion: {fPos.animal.ID} IS DEAD because Lion: {savedAnimal.ID} landed on same field. {savedAnimal.ID} Gained {fPos.animal.Weight}, and now weigths {newWeigth}");
                         RemoveAnimal(fPos.animal);
                         LionsKilled++;
-                        // Thread.Sleep(100);
+                        Thread.Sleep(100);
                     }
 
                     if ((fPos.animal != null) && animal is Rabbit && savedAnimal.Gender == fPos.animal.Gender && fPos.animal is Rabbit)
                     {
-
-                        Console.WriteLine($"Rabbit: {fPos.animal.ID} IS DEAD because Rabbit: {savedAnimal.ID} landed on same field. ");
-
                         RemoveAnimal(fPos.animal);
-
-
                     }
+
                     if (savedAnimal is Hunter && fPos.animal != null)
                     {
                         savedAnimal.Eat();
@@ -292,9 +282,7 @@ namespace SavannahGame
         {
             if (animal.Weight <= 0)
             {
-                Console.WriteLine($"{animal} ({animal.ID}) is dead... :(");
                 RemoveAnimal(animal);
-                Console.WriteLine(AllAnimals.Count());
             }
             if (AllAnimals.Count() <= NumberofHunters)
             {

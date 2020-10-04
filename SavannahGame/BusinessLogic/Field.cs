@@ -1,4 +1,4 @@
-﻿namespace SavannahGame
+﻿namespace BusinessLogic
 {
     public class Field
     {

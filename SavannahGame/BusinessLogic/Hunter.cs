@@ -1,7 +1,4 @@
-﻿using System;
-using System.Threading;
-
-namespace SavannahGame
+﻿namespace BusinessLogic
 {
     public class Hunter : Animal
     {

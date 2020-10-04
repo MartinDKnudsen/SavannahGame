@@ -43,7 +43,7 @@ namespace SavannahGame
         private void Form1_Load(object sender, EventArgs e)
         {
             OnlyStartOnce = true;
-            dataGridView1.DataSource = Ct.DT();
+            dataGridView1.DataSource = Ct.Dt();
 
         }
         private void time_Tick(object e, EventArgs ea)
@@ -60,11 +60,11 @@ namespace SavannahGame
                 RabbitTotalWeigthTextBox.Text = Ct.TotalWeigthOfRabbits().ToString();
                 textBoxForNumberOfKilledRabbits.Text = Ct.KilledRabbits().ToString();
                 grasseatenTextBox.Text = Ct.GrassEat().ToString();
-                textBoxNumberOfRabbitCubs.Text = Ct.rabbitCubs().ToString();
-                textBoxNumberOfLionCubs.Text = Ct.lionCubs().ToString();
-                textBoxNumberOfGreenFields.Text = Ct.countGreenField().ToString();
-                textBoxLionsThatKilledEachOther.Text = Ct.lionsKilled().ToString();
-                textBoxHunterKillCount.Text = Ct.hunterKills().ToString();
+                textBoxNumberOfRabbitCubs.Text = Ct.RabbitCubs().ToString();
+                textBoxNumberOfLionCubs.Text = Ct.LionCubs().ToString();
+                textBoxNumberOfGreenFields.Text = Ct.CountGreenField().ToString();
+                textBoxLionsThatKilledEachOther.Text = Ct.LionsKilled().ToString();
+                textBoxHunterKillCount.Text = Ct.HunterKills().ToString();
                 textBoxTotalAnimals.Text = Ct.TotalAnimals().ToString();
                 textBoxNumberOfArrows.Text = Ct.CountArrows().ToString();
                 i++;
@@ -227,8 +227,8 @@ namespace SavannahGame
             int CubsBorn = Convert.ToInt32(TotalCubsBornTextBox.Text);
             int HunterKills = Convert.ToInt32(textBoxHunterKillCount.Text);
             int RabbitsDead = Convert.ToInt32(textBoxForNumberOfKilledRabbits.Text);
-            Ct.saveData(CubsBorn, RabbitsDead, HunterKills);
-            dataGridView1.DataSource = Ct.DT();
+            Ct.SaveData(CubsBorn, RabbitsDead, HunterKills);
+            dataGridView1.DataSource = Ct.Dt();
         }
 
         private void textBoxNumberOfStartHunters_TextChanged(object sender, EventArgs e)

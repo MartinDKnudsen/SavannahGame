@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SavannahGame
+namespace BusinessLogic
 {
     public class TxtOpener
     {
@@ -10,7 +10,7 @@ namespace SavannahGame
             System.Diagnostics.Process.Start(txt);
         }
 
-        public static void supportTxt()
+        public static void SupportTxt()
         {
 
             string p = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) +

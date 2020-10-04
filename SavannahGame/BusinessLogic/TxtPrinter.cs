@@ -36,7 +36,6 @@ namespace BusinessLogic
             {
                 sw.WriteLine($"*** Table printed at: {DateTime.Now} *** \n");
 
-
                 for (int i = 0; i < dt.Columns.Count; i++)
                 {
                     sw.Write(dt.Columns[i].ColumnName.PadRight(maxLengths[i] + 2));
@@ -57,7 +56,6 @@ namespace BusinessLogic
                             sw.Write(new string(' ', maxLengths[i] + 2));
                         }
                     }
-
                     sw.WriteLine();
                 }
                 sw.Flush();

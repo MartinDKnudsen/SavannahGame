@@ -8,16 +8,13 @@ namespace SavannahGame
 {
     public class Controller
     {
-        //  Kobling mellem methoder og forms
-
-
         private Database db = new Database();
 
         IDatabase DB;
 
         private GameLogic gl = GameLogic.Getinstance();
 
-        private CountData cD = SavannahGame.CountData.Getinstance();
+        private CountData cD = CountData.Getinstance();
 
         public Controller()
         {
@@ -39,18 +36,17 @@ namespace SavannahGame
         public string FullSavanna()
         {
             return gl.NoMoreRoom();
-
         }
 
         public void StartSavannahGame(int rabbits, int lions, int hunters)
         {
             gl.StartGame(lions, rabbits, hunters);
         }
-        public void saveData(int totalCubs, int AnimalsKilled, int AnimalsKilledByHunter)
+        public void SaveData(int totalCubs, int AnimalsKilled, int AnimalsKilledByHunter)
         {
             DB.SaveDataToDatabase(totalCubs, AnimalsKilled, AnimalsKilledByHunter);
         }
-        public DataTable DT()
+        public DataTable Dt()
         {
             return DB.GetData();
         }
@@ -64,14 +60,14 @@ namespace SavannahGame
         public void OpenSavedTxt()
         {
 
-            TxtOpener.supportTxt();
+            TxtOpener.SupportTxt();
         }
-        public int lionsKilled()
+        public int LionsKilled()
         {
 
             return gl.LionsKilled;
         }
-        public int hunterKills()
+        public int HunterKills()
         {
 
             return gl.HunterKillCount;
@@ -84,7 +80,7 @@ namespace SavannahGame
             return cD.CountAllSpecAnimalOnTheTerritories<Rabbit>();
 
         }
-        public int countGreenField()
+        public int CountGreenField()
         {
 
             return cD.CountGreenField();
@@ -113,13 +109,13 @@ namespace SavannahGame
 
         }
     
-        public int rabbitCubs()
+        public int RabbitCubs()
         {
           return  gl.RabbitCubCounter;
 
         }
 
-        public int lionCubs()
+        public int LionCubs()
         {
             return gl.LionCubCounter;
         }

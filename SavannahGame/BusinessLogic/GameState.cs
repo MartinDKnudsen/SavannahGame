@@ -1,0 +1,11 @@
+﻿namespace BusinessLogic
+{
+    class GameState
+    {
+
+
+
+
+
+    }
+}

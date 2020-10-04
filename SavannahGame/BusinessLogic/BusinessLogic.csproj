@@ -41,7 +41,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Animal.cs" />
+    <Compile Include="CountData.cs" />
+    <Compile Include="Field.cs" />
+    <Compile Include="GameLogic.cs" />
+    <Compile Include="GameState.cs" />
+    <Compile Include="Hunter.cs" />
+    <Compile Include="Lion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Rabbit.cs" />
+    <Compile Include="RandomRoll.cs" />
+    <Compile Include="TxtOpener.cs" />
     <Compile Include="TxtPrinter.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

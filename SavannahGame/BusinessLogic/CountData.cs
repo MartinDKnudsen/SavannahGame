@@ -1,8 +1,6 @@
-﻿using System;
-using System.Linq;
-using System.Security.Cryptography.X509Certificates;
+﻿using System.Linq;
 
-namespace SavannahGame
+namespace BusinessLogic
 {
     public class CountData
     {

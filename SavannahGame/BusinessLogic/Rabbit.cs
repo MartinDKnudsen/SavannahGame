@@ -1,39 +1,31 @@
-﻿using System.Threading;
-
-namespace SavannahGame
+﻿namespace BusinessLogic
 {
-   public class Lion : Animal
+    public class Rabbit : Animal
     {
-      
-        public Lion(string gender, int counter)
+
+
+        public Rabbit(string gender, int counter)
         {
-            this.Weight = 250;
+            this.Weight = 20;
             this.Gender = gender;
             ID = counter;
-            AnimalType = "Lion";
-            WeightLoss = 10;
-            WeigthGain = 20;
-        }     
+            AnimalType = "Rabbit";
+            WeightLoss = 2;
+            WeigthGain = 4;
+        }
 
         public override void Eat()
         {
             Weight += WeigthGain;
-
         }
-
         public override void Move()
         {
-            
             this.Weight -= WeightLoss;
-         
         }
 
         public override string ToString()
         {
-            return "Lion";
+            return "Rabbit";
         }
-
-
     }
 }
-

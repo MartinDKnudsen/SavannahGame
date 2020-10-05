@@ -191,8 +191,7 @@ namespace SavannahGame
 
         private void stopButton_Click(object sender, EventArgs e)
         {
-            Application.Restart();
-            Environment.Exit(0);
+            time.Stop();
         }
 
         public DataTable SetupCurrentAsDataTable()

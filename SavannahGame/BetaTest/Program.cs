@@ -1,4 +1,5 @@
-﻿using SavannahGame;
+﻿using BusinessLogic;
+using SavannahGame;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace BetaTest
         static void Main(string[] args)
         {
 
-            var m = GameLogic.Getinstance();
+           GameLogic m = GameLogic.Getinstance();
            
             m.StartGame(100, 100, 20);
          

@@ -45,7 +45,6 @@
     <Compile Include="CountData.cs" />
     <Compile Include="Field.cs" />
     <Compile Include="GameLogic.cs" />
-    <Compile Include="GameState.cs" />
     <Compile Include="Hunter.cs" />
     <Compile Include="Lion.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -53,6 +52,9 @@
     <Compile Include="RandomRoll.cs" />
     <Compile Include="TxtOpener.cs" />
     <Compile Include="TxtPrinter.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

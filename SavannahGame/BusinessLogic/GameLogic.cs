@@ -252,12 +252,7 @@ namespace BusinessLogic
                     {
                         Arrows += 1;
                     }
-                    if (savedAnimal is Hunter && fPos.animal is Hunter) 
-                    {
-                        Arrows -= 1;
-                        RemoveAnimal(fPos.animal);
-                    }
-
+                   
                     try
                     {
                         if (AllAnimals.Contains(savedAnimal))

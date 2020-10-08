@@ -36,7 +36,7 @@ namespace BusinessLogic
         //Placement of animals to random fields - make private
         private void Placement()
         {
-            // Flatter min liste og tjekker hvilke dyr der ikke er på felt    
+            // Flat list and check animals thats not on a field  
             var existingAnimals = Territories.SelectMany(c => c).Where(a => AllAnimals.Contains(a.animal)).Select(m => m.animal);
 
             foreach (var animal in AllAnimals.Except(existingAnimals))

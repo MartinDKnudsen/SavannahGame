@@ -2,6 +2,7 @@
 using System.Data;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using BusinessLogic;
 using Timer = System.Windows.Forms.Timer;
 
 namespace SavannahGame
@@ -14,11 +15,13 @@ namespace SavannahGame
         public int TotalStartAnimals { get; set; }
         public Controller Ct = new Controller();
         public bool OnlyStartOnce { get; set; }
+       
         public const int WM_NCLBUTTONDOWN = 0xA1;
         public const int HT_CAPTION = 0x2;
        
 
         [System.Runtime.InteropServices.DllImport("user32.dll")]
+
         public static extern int SendMessage(IntPtr hWnd, int Msg, int wParam, int lParam);
         [System.Runtime.InteropServices.DllImport("user32.dll")]
         public static extern bool ReleaseCapture();

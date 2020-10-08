@@ -31,10 +31,9 @@ namespace BusinessLogic
         }
 
         //Count number of Fields
-        public int CountField()
+        public int CountFields()
         {
-            //Tæller felter
-            return _gl.Territories.SelectMany(f => f).ToList().Count();
+            return _gl.Territories.SelectMany(f => f).Count();
         }
 
         //Count number of selected animal on Territories

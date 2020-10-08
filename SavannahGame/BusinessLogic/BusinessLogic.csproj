@@ -42,6 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Animal.cs" />
+    <Compile Include="Controller.cs" />
     <Compile Include="CountData.cs" />
     <Compile Include="Field.cs" />
     <Compile Include="GameLogic.cs" />
@@ -54,7 +55,10 @@
     <Compile Include="TxtPrinter.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram1.cd" />
+    <ProjectReference Include="..\Persistens\Persistens.csproj">
+      <Project>{08A43158-FBDB-454C-8C0E-8B1198545D95}</Project>
+      <Name>Persistens</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

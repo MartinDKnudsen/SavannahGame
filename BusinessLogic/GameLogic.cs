@@ -22,7 +22,6 @@ namespace BusinessLogic
         public List<List<Field>> Territories = new List<List<Field>>();
         public List<Animal> AllAnimals = new List<Animal>();
 
-
         public int TotalCubCounter { get; set; }
         public int RabbitCubCounter { get; set; }
         public int LionCubCounter { get; set; }
@@ -33,29 +32,6 @@ namespace BusinessLogic
         public int Arrows { get; set; }
         public int NumberofHunters { get; set; }
 
-        //Placement of animals to random fields - make private
-        private void Placement()
-        {
-            // Flat list and check animals thats not on a field  
-            var existingAnimals = Territories.SelectMany(c => c).Where(a => AllAnimals.Contains(a.animal)).Select(m => m.animal);
-
-            foreach (var animal in AllAnimals.Except(existingAnimals))
-            {
-                var r = RandomRoll.AnimalRandomPlacement();
-                var r1 = RandomRoll.AnimalRandomPlacement();
-
-                while (Territories[r][r1].animal != null)
-                {
-                    r = RandomRoll.AnimalRandomPlacement();
-                    r1 = RandomRoll.AnimalRandomPlacement();
-
-                }
-
-                Territories[r][r1].animal = animal;
-            }
-        }
-
-        //Code to start everything
         public void StartGame(int aLions, int aRabbits, int aHunter)
         {
 
@@ -66,48 +42,8 @@ namespace BusinessLogic
 
         }
 
-        //Game running
-        private void GameRunning()
-        {
-            while (AllAnimals.Count != 1)
-            {
-                for (int i = 0; i < AllAnimals.Count; i++)
-                {
-                    if (!AllAnimals.Contains(AllAnimals[i]))
-                    {
-                        continue;
-                    }
-                    Dead(AllAnimals[i]);
-                    AnimalMovement(AllAnimals[i]);
-                    Thread.Sleep(100);
-                }
-            }
-        }
-
-        // Add a field to all fields, and generate random number of greenfields
-        private void AddFields()
-        {
-            for (int i = 0; i <= 19; i++)
-            {
-                Territories.Add(new List<Field>());
-
-                for (int j = 0; j <= 19; j++)
-                {
-                    int greenfield = RandomRoll.Greenfield();
-                    if (greenfield < 5)
-                    {
-                        Territories[i].Add(new Field(true));
-                    }
-                    else
-                    {
-                        Territories[i].Add(new Field(false));
-                    }
-                }
-            }
-        }
-
         //Add selected number of animals, and roll their gender 
-        private void AddAnimal(int numberOfLion, int numberOfRabbits, int numberofHunters)
+        public void AddAnimal(int numberOfLion, int numberOfRabbits, int numberofHunters)
         {
             NumberofHunters = numberofHunters;
             //Add one hunter to the field
@@ -133,6 +69,69 @@ namespace BusinessLogic
             }
         }
 
+        // Add a field to all fields, and generate random number of greenfields
+        private void AddFields()
+        {
+            for (int i = 0; i <= 19; i++)
+            {
+                Territories.Add(new List<Field>());
+
+                for (int j = 0; j <= 19; j++)
+                {
+                    int greenfield = RandomRoll.Greenfield();
+                    if (greenfield < 5)
+                    {
+                        Territories[i].Add(new Field(true));
+                    }
+                    else
+                    {
+                        Territories[i].Add(new Field(false));
+                    }
+                }
+            }
+        }
+
+
+        //Placement of animals to random fields - make private
+        public void Placement()
+        {
+            // Flat list and check animals thats not on a field  
+            var existingAnimals = Territories.SelectMany(c => c).Where(a => AllAnimals.Contains(a.animal)).Select(m => m.animal);
+
+            foreach (var animal in AllAnimals.Except(existingAnimals))
+            {
+                var r = RandomRoll.AnimalRandomPlacement();
+                var r1 = RandomRoll.AnimalRandomPlacement();
+
+                while (Territories[r][r1].animal != null)
+                {
+                    r = RandomRoll.AnimalRandomPlacement();
+                    r1 = RandomRoll.AnimalRandomPlacement();
+
+                }
+
+                Territories[r][r1].animal = animal;
+            }
+        }
+
+        //Game running
+        private void GameRunning()
+        {
+            while (AllAnimals.Count != 1)
+            {
+                for (int i = 0; i < AllAnimals.Count; i++)
+                {
+                    if (!AllAnimals.Contains(AllAnimals[i]))
+                    {
+                        continue;
+                    }
+                    Dead(AllAnimals[i]);
+                    AnimalMovement(AllAnimals[i]);
+                    Thread.Sleep(100);
+                }
+            }
+        }
+
         //Create a FlatList of animals on territories
         public List<Animal> FlatList()
         {
@@ -144,7 +143,7 @@ namespace BusinessLogic
         }
 
         //Remove specific animal
-        private void RemoveAnimal(Animal animal)
+        public void RemoveAnimal(Animal animal)
         {
             try
             {
@@ -159,8 +158,19 @@ namespace BusinessLogic
             }
         }
 
+        private void AnimalMovement(Animal animal)
+        {
+            if (AllAnimals.Contains(animal))
+            {
+                if (Territories.SelectMany(c => c).Select(c => c.animal).Contains(animal))
+                {
+                    animal.Move(animal);
+                }
+            }
+        }
+
         //Random select move from validmoves
-        private (int, int) SelectetMove(Animal animal)
+        public (int, int) SelectetMove(Animal animal)
         {
 
             var validFields = ValidMovesForAnimal(animal);
@@ -177,152 +187,15 @@ namespace BusinessLogic
             return theField;
         }
 
-        private void LionMovement(Animal animal)
-        {
-
-            var x = SelectAnimalOnTerritorie(animal);
-
-            var savedAnimal = x.animal;
-            savedAnimal.Move();
-            var randomPos = SelectetMove(savedAnimal);
-            var fPos = Territories[randomPos.Item1][randomPos.Item2];
-
-            if (fPos.animal is Rabbit)
-            {
-                RemoveAnimal(fPos.animal);
-                LionsRabbitKillsCounter++;
-                savedAnimal.Eat();
-
-            }
-            else if (fPos.animal is Lion && savedAnimal.Gender != fPos.animal.Gender)
-            {
-                NewCubs(false);
-                LionCubCounter++;
-                TotalCubCounter++;
-                RemoveAnimal(fPos.animal);
-            }
-            else if (fPos.animal is Lion && savedAnimal.Gender == fPos.animal.Gender)
-            {
-                RemoveAnimal(fPos.animal);
-                LionsKilled++;
-                Thread.Sleep(100);
-            }
-            try
-            {
-                if (AllAnimals.Contains(savedAnimal))
-                {
-                    RemoveAnimalFromField(savedAnimal);
-                }
-
-                Territories[randomPos.Item1][randomPos.Item2].animal = savedAnimal;
-                Dead(savedAnimal);
-            }
-            catch (Exception)
-            {
-                Dead(savedAnimal);
-            }
-
-        }
-
-        private void RabbitMovement(Animal animal)
-        {
-
-            var x = SelectAnimalOnTerritorie(animal);
-
-            var savedAnimal = x.animal;
-            savedAnimal.Move();
-            var randomPos = SelectetMove(savedAnimal);
-            var fPos = Territories[randomPos.Item1][randomPos.Item2];
-
-            if (fPos.GreenField)
-            {
-                animal.Eat();
-                GrassEaten++;
-            }
-            else if (fPos.animal is Rabbit && savedAnimal.Gender != fPos.animal.Gender)
-            {
-                NewCubs(true);
-                RabbitCubCounter += 2;
-                TotalCubCounter += 2;
-                RemoveAnimalFromField(fPos.animal);
-                Placement();
-            }
-            else if (fPos.animal != null && savedAnimal.Gender == fPos.animal.Gender && fPos.animal is Rabbit)
-            {
-                RemoveAnimal(fPos.animal);
-            }
-
-            try
-            {
-                if (AllAnimals.Contains(savedAnimal))
-                {
-                    RemoveAnimalFromField(savedAnimal);
-                }
-
-                Territories[randomPos.Item1][randomPos.Item2].animal = savedAnimal;
-                Dead(savedAnimal);
-            }
-            catch (Exception)
-            {
-                Dead(savedAnimal);
-            }
-
-        }
-
-        private void HunterMovement(Animal animal)
-        {
-
-            var x = SelectAnimalOnTerritorie(animal);
-
-            var savedAnimal = x.animal;
-            savedAnimal.Move();
-            var randomPos = SelectetMove(savedAnimal);
-            var fPos = Territories[randomPos.Item1][randomPos.Item2];
-
-            if (fPos.animal != null)
-            {
-                savedAnimal.Eat();
-                Arrows -= 1;
-                HunterKillCount++;
-                RemoveAnimal(fPos.animal);
-            }
-            else if (fPos.animal == null)
-            {
-                Arrows += 1;
-            }
-
-        }
-      
-        private void AnimalMovement(Animal animal)
-        {
-            if (AllAnimals.Contains(animal))
-            {
-                if (Territories.SelectMany(c => c).Select(c => c.animal).Contains(animal))
-                {
-                    switch (animal)
-                    {
-                        case Lion _:
-                            LionMovement(animal);
-                            break;
-                        case Rabbit _:
-                            RabbitMovement(animal);
-                            break;
-                        case Hunter _:
-                            HunterMovement(animal);
-                            break;
-                    }
-                }
-            }
-        }
 
         //Remove animal from field
-        private void RemoveAnimalFromField(Animal animal)
+        public void RemoveAnimalFromField(Animal animal)
         {
             Territories.SelectMany(c => c).Select(c => c).First(c => c.animal == animal).animal = null;
         }
 
         //Check if animal is dead, and remove if it it is
-        private void Dead(Animal animal)
+        public void Dead(Animal animal)
         {
             if (animal.Weight <= 0)
             {
@@ -332,32 +205,6 @@ namespace BusinessLogic
             {
                 NonSurvivers();
             }
-        }
-
-        //Add Cubs to the animal list
-        private void NewCubs(bool rabbit, int NumberOfNewRabbits = 2, int NumberOfNewLions = 1)
-        {
-
-            if (rabbit)
-            {
-                while (NumberOfNewRabbits != 0)
-                {
-                    AddAnimal(0, 1, 0);
-
-                    NumberOfNewRabbits--;
-                }
-
-            }
-            else if (rabbit == false)
-            {
-
-                while (NumberOfNewLions != 0)
-                {
-                    AddAnimal(1, 0, 0);
-                    NumberOfNewLions--;
-                }
-            }
-            Placement();
         }
 
         //Check for valid moves that the animal can choose from

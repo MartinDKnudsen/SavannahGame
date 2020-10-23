@@ -11,8 +11,8 @@
         
         public abstract void Eat();
 
-        public abstract void Move();
+        public abstract void Move(Animal animal);
 
-       
+        public abstract void Mate();
     }
 }
